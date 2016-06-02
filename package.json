@@ -1,0 +1,29 @@
+{
+  "name": "gulp-task-helpers",
+  "version": "1.0.0",
+  "description": "Helper functions for Gulp tasks",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VARIANTE/gulp-task-helpers.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "mocha tests --recursive --reporter spec"
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
