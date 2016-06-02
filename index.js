@@ -57,7 +57,7 @@ module.exports = function(options) {
 
     return this
       .src(src, { base: config.base });
-      .pipe(size({ title: '[videos]', gzip: true }))
+      .pipe(size({ title: `[${taskName}]`, gzip: true }))
       .pipe(this.dest(dest));
   }
 };
