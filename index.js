@@ -56,7 +56,7 @@ module.exports = function(options) {
     }
 
     return this
-      .src(src, { base: config.base });
+      .src(src, { base: config.base })
       .pipe(size({ title: `[${taskName}]`, gzip: true }))
       .pipe(this.dest(dest));
   }
