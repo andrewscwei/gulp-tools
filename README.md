@@ -2,6 +2,6 @@
 
 Micro library containing helper functions for common Gulp tasks, namely resolving config options and resolving globbing patterns.
 
-# License
+## License
 
 This software is released under the [MIT License](http://opensource.org/licenses/MIT).
