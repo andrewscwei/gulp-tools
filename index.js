@@ -69,7 +69,7 @@ module.exports = function(options) {
       stream = stream.pipe(imagemin(config.imagemin));
 
     return stream
-      .pipe(size({ title: '[images]', gzip: true }))
+      .pipe(size({ title: `[${taskName}]`, gzip: true }))
       .pipe(this.dest(dest));
   }
 };
