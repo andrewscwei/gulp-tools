@@ -47,27 +47,41 @@ Options that define the behavior of this task. You can override options for spec
 
 When `NODE_ENV` is blank, `production` environment is assumed.
 
+##### `options.base`
 
-##### `options.base` (required)
+Type: `string`<br>
+Default: `undefined`
 
-Type: `string`
+If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be relative to this path.
 
-Base path for the source files to emit into the stream.
-
-##### `options.src`
+##### `options.src` (required)
 
 Type: `string` or `Array`<br>
-Default: `**/*`
+Default: `undefined`
 
-Glob or an array of globs that matches files to emit. These globs are all relative to `options.base`.
+Glob or an array of globs that matches files to emit. These globs are all relative to `options.base` if specified.
 
 ##### `options.dest` (required)
 
-Type: `string`
+Type: `string`<br>
+Default: `undefined`
 
 Path of destination directory to write files to.
 
 ##### `options.watch`
+
+Type: `Object` or `boolean`
+
+Options that define the file watching behavior. If set to `false`, watching will be disabled regardless of the `--watch` flag.
+
+###### `options.watch.files`
+
+Type: `string` or `string[]`<br>
+Default: Patterns computed from `options.base` and `options.src`
+
+Glob pattern(s) that matches the files to be watched. Defaults to the patterns computed from `options.base` and `options.src`.
+
+###### `options.watch.tasks`
 
 Type: `string`, `Function` or `Array`<br>
 Default: Current task name
@@ -79,10 +93,10 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 You can pass a `--watch` or `--w` flag to the Gulp command to enable file watching, like so:
 
 ```
-$ gulp documents --watch
+$ gulp fonts --watch
 ```
 
-Files that were emitted as source files will be marked for watching, and by default the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
+By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
 
 ## License
 

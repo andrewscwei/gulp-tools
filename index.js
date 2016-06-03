@@ -15,22 +15,21 @@ const FILE_EXTENSIONS = ['md', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'csv'
 const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
-  src: '**/*',
+  src: undefined,
   watch: undefined
 };
 
 /**
- * Method that defines the task with configurable options. Only `options.base`
+ * Method that defines the task with configurable options. Only `options.src`
  * and `options.dest` are required.
  *
  * @param {Object} options - Task options.
- * @param {string} options.base - Base path for the source files to emit.
+ * @param {string} [options.base] - Base path for the source files to emit.
+ * @param {string|string[]} options.src - Glob or an array of globs that matches
+ *                                        files to emit. These globs are all
+ *                                        relative to `options.base`.
  * @param {string} options.dest - Path of destination directory to write files
  *                                to.
- * @param {string|Array} [options.src='**\/*'] - Glob or an array of globs that
- *                                               matches files to emit. These
- *                                               globs are all relative to
- *                                               `options.base`.
  * @param {string|Function|Array} [options.watch] - Task(s) or methods to invoke
  *                                                  whenever watched files have
  *                                                  changed. This array is
@@ -46,13 +45,13 @@ module.exports = function(options) {
 
   return function() {
     const taskName = this.seq[0];
-    const shouldWatch = util.env['watch'] || util.env['w'];
+    const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
     const dest = $.glob('', { base: config.dest });
 
     if (shouldWatch && !isWatching) {
       isWatching = true;
-      this.watch(src, () => { sequence.use(this).apply(null, [].concat(config.watch || [taskName])); });
+      this.watch((config.watch && config.watch.files) || src, () => { sequence.use(this).apply(null, [].concat((config.watch && config.watch.tasks) || [taskName])); });
     }
 
     return this
