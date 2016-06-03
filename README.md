@@ -8,7 +8,10 @@ Gulp task for processing images with the option to watch the emitted source file
 import gulp from 'gulp';
 import images from 'gulp-task-images';
 
-gulp.task('images', images(options));
+gulp.task('images', images({
+  src: 'app/images/**/*',
+  dest: 'public/images'
+}));
 ```
 
 ```
