@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-videos",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Gulp task for processing videos",
   "main": "index.js",
   "repository": {
