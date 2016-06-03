@@ -66,24 +66,24 @@ Options that define the behavior of this task. You can override options for spec
 
 When `NODE_ENV` is blank, `production` environment is assumed.
 
+##### `options.base`
 
-##### `options.base` 
+Type: `string`<br>
+Default: `undefined`
 
-Type: `string`
-
-Base path for the source files to emit into the stream. Patterns defined in
-`options.src` will be relative to this path.
+If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be relative to this path.
 
 ##### `options.src` (required)
 
-Type: `string` or `string[]`<br>
-Default: `**/*`
+Type: `string` or `Array`<br>
+Default: `undefined`
 
-Glob or an array of globs that matches files to emit. These globs are all relative to `options.base`.
+Glob or an array of globs that matches files to emit. These globs are all relative to `options.base` if specified.
 
 ##### `options.dest` (required)
 
-Type: `string`
+Type: `string`<br>
+Default: `undefined`
 
 Path of destination directory to write files to.
 
@@ -147,7 +147,7 @@ Specifies whether sourcemaps are enabled.
 You can pass a `--watch` or `--w` flag to the Gulp command to enable file watching, like so:
 
 ```
-$ gulp styles --watch
+$ gulp images --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
