@@ -53,14 +53,14 @@ When `NODE_ENV` is blank, `production` environment is assumed.
 Type: `string`<br>
 Default: `undefined`
 
-Base path for the source files to emit into the stream.
+If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be relative to this path.
 
 ##### `options.src` (required)
 
 Type: `string` or `Array`<br>
 Default: `undefined`
 
-Glob or an array of globs that matches files to emit. These globs are all relative to `options.base`.
+Glob or an array of globs that matches files to emit. These globs are all relative to `options.base` if specified.
 
 ##### `options.dest` (required)
 
