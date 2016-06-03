@@ -1,0 +1,34 @@
+{
+  "name": "gulp-task-sass",
+  "version": "1.0.0",
+  "description": "Gulp task for processing Sass files",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VARIANTE/gulp-task-sass.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^6.3.6",
+    "cssnano": "^3.6.2",
+    "gulp-postcss": "^6.1.1",
+    "gulp-purifycss": "^0.2.0",
+    "gulp-sass": "^2.3.1",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-task-helpers": "^1.0.1",
+    "gulp-util": "^3.0.7",
+    "run-sequence": "^1.2.1"
+  }
+}
