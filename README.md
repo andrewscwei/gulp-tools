@@ -8,7 +8,10 @@ Gulp task for processing documents with the option to watch the emitted source f
 import gulp from 'gulp';
 import documents from 'gulp-task-documents';
 
-gulp.task('documents', documents(options));
+gulp.task('documents', documents({
+  src: 'app/documents/**/*',
+  dest: 'public/documents'
+}));
 ```
 
 ```
