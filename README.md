@@ -67,15 +67,16 @@ Options that define the behavior of this task. You can override options for spec
 When `NODE_ENV` is blank, `production` environment is assumed.
 
 
-##### `options.base` (required)
+##### `options.base` 
 
 Type: `string`
 
-Base path for the source files to emit into the stream.
+Base path for the source files to emit into the stream. Patterns defined in
+`options.src` will be relative to this path.
 
-##### `options.src`
+##### `options.src` (required)
 
-Type: `string` or `Array`<br>
+Type: `string` or `string[]`<br>
 Default: `**/*`
 
 Glob or an array of globs that matches files to emit. These globs are all relative to `options.base`.
@@ -87,6 +88,19 @@ Type: `string`
 Path of destination directory to write files to.
 
 ##### `options.watch`
+
+Type: `Object` or `boolean`
+
+Options that define the file watching behavior. If set to `false`, watching will be disabled regardless of the `--watch` flag.
+
+###### `options.watch.files`
+
+Type: `string` or `string[]`<br>
+Default: Patterns computed from `options.base` and `options.src`
+
+Glob pattern(s) that matches the files to be watched. Defaults to the patterns computed from `options.base` and `options.src`.
+
+###### `options.watch.tasks`
 
 Type: `string`, `Function` or `Array`<br>
 Default: Current task name
