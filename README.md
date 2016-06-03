@@ -8,7 +8,10 @@ Gulp task for processing fonts with the option to watch the emitted source files
 import gulp from 'gulp';
 import fonts from 'gulp-task-fonts';
 
-gulp.task('fonts', fonts(options));
+gulp.task('fonts', fonts({
+  src: 'app/fonts/**/*',
+  dest: 'public/fonts'
+}));
 ```
 
 ```
