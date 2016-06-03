@@ -8,7 +8,16 @@ Gulp task for processing Sass files with the option to watch the emitted source 
 import gulp from 'gulp';
 import sass from 'gulp-task-sass';
 
-gulp.task('styles', sass(options));
+gulp.task('styles', sass({
+  src: 'app/stylesheets/**/*',
+  dest: 'public/stylesheets',
+  sourcemaps: true,
+  envs: {
+    production: {
+      sourcemaps: false
+    }
+  }
+}));
 ```
 
 ```
