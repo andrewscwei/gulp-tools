@@ -22,7 +22,7 @@ const PURIFY_EXTENSIONS = ['js', 'html', 'htm', 'php'];
 const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
-  src: '*',
+  src: undefined,
   watch: undefined,
   sass: undefined,
   autoprefixer: undefined,

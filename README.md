@@ -27,7 +27,7 @@ Default:
 {
   base: undefined,
   dest: undefined,
-  src: '*',
+  src: undefined,
   watch: undefined,
   sass: undefined,
   autoprefixer: undefined,
@@ -150,7 +150,7 @@ You can pass a `--watch` or `--w` flag to the Gulp command to enable file watchi
 $ gulp styles --watch
 ```
 
-Files that were emitted as source files will be marked for watching, and by default the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
+By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
 
 ## License
 
