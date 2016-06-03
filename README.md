@@ -8,7 +8,10 @@ Gulp task for processing videos with the option to watch the emitted source file
 import gulp from 'gulp';
 import videos from 'gulp-task-videos';
 
-gulp.task('videos', videos(options));
+gulp.task('videos', videos({
+  src: 'app/videos/**/*',
+  dest: 'public/videos'
+}));
 ```
 
 ```
