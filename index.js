@@ -69,11 +69,14 @@ const DEFAULT_CONFIG = {
  *                                  will be skipped.
  * @param {boolean} [options.sourcemaps] - Specifies whether sourcemaps are
  *                                         enabled.
+ * @param {boolean} [extendsDefaults=false] - Specifies whether array values are
+ *                                            concatenated when merging config
+ *                                            options with defaults.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
-module.exports = function(options) {
-  const config = $.config(options, DEFAULT_CONFIG);
+module.exports = function(options, extendsDefaults) {
+  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
   let isWatching = false;
 
   return function() {
