@@ -20,7 +20,7 @@ $ gulp documents
 
 ## API
 
-### `documents(options)`
+### `documents(options[, extendsDefaults])`
 
 #### `options`
 
@@ -91,12 +91,19 @@ Default: Current task name
 
 Task(s) or methods to invoke whenever watched files have changed. This array is applied to [`run-sequence`](https://www.npmjs.com/package/run-sequence). Defaults to the current task name.
 
+#### `extendsDefaults`
+
+Type: `boolean`<br>
+Default: `false`
+
+This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+
 ## Watching for Changes
 
 You can pass a `--watch` or `--w` flag to the Gulp command to enable file watching, like so:
 
 ```
-$ gulp fonts --watch
+$ gulp documents --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
