@@ -1,7 +1,7 @@
 {
   "name": "gulp-task-rev",
-  "version": "1.0.0",
-  "description": "Gulp task for processing fonts",
+  "version": "1.0.1",
+  "description": "Gulp task for static asset revisioning",
   "main": "index.js",
   "repository": {
     "type": "git",
