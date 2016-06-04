@@ -65,8 +65,9 @@ const DEFAULT_CONFIG = {
  *                                          set to `false`, watching will be
  *                                          disabled even if the `--watch` flag
  *                                          is set.
- * @param {boolean} [extendsDefaults=true] - Specifies whether sourcemaps are
- *                                           enabled.
+ * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
+ *                                           concatenated when merging config
+ *                                           options with defaults.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
