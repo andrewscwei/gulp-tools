@@ -113,7 +113,7 @@ Method invoked whenever Webpack rebundles changed files.
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default Webpack config provided for you. When you pass in your own Webpack config via the `options` parameter, the module resolves your config and the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+This module has a default Webpack config provided for you. When you pass in your own Webpack config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
 
 ## Watching for Changes
 
