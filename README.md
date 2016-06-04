@@ -20,7 +20,7 @@ $ gulp images
 
 ## API
 
-### `images(options)`
+### `images(options[, extendsDefaults])`
 
 #### `options`
 
@@ -98,6 +98,13 @@ Type: `string`, `Function` or `Array`<br>
 Default: Current task name
 
 Task(s) or methods to invoke whenever watched files have changed. This array is applied to [`run-sequence`](https://www.npmjs.com/package/run-sequence). Defaults to the current task name.
+
+#### `extendsDefaults`
+
+Type: `boolean`<br>
+Default: `false`
+
+This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
 
 ## Watching for Changes
 
