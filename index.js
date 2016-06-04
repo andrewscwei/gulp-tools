@@ -59,14 +59,14 @@ const DEFAULT_CONFIG = {
  * operations.
  *
  * @param {Object} options - `webpack` options.
- * @param {boolean} [extendsDefaults=true] - Specifies whether sourcemaps are
- *                                           enabled.
  * @param {Function} [watchOptions.callback] - Method invoked every a Webpack
  *                                             rebundles changed files.
  * @param {Object|boolean} [watchOptions] - Object describing watch behavior. If
  *                                          set to `false`, watching will be
  *                                          disabled even if the `--watch` flag
  *                                          is set.
+ * @param {boolean} [extendsDefaults=true] - Specifies whether sourcemaps are
+ *                                           enabled.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
