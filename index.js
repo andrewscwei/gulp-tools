@@ -8,8 +8,12 @@ const path = require('path');
  * with the optional `defaults` parameter. Environment specific config values
  * should reside in `envs.{NODE_ENV_NAME}` of the config object.
  *
- * @param {string|Object} [config]
- * @param {Object} [defaults]
+ * @param {Object} config - Target config object to resolve.
+ * @param {Object} [defaults] - Config object containing default values.
+ * @param {boolean} [shouldExtend] - Specifies whether array values between
+ *                                   target and default configs should be
+ *                                   concatenated instead of overwritten
+ *                                   (default).
  *
  * @return {string|Object}
  *
@@ -25,13 +29,18 @@ const path = require('path');
  *     }
  *   }
  */
-exports.config = function(config, defaults) {
+exports.config = function(config, defaults, shouldExtend) {
   const env = process.env.NODE_ENV || 'production';
   const defaultConfig = _.omit(defaults, 'envs') || {};
   const defaultEnvConfig = _.get(defaults, `envs.${env}`) || {};
-  const baseConfig = _.omit(config, 'envs') || {};
-  const envConfig = _.get(config, `envs.${env}`);
-  return _.merge(defaultConfig, baseConfig, defaultEnvConfig, envConfig);
+  const targetBaseConfig = _.omit(config, 'envs') || {};
+  const targetEnvConfig = _.get(config, `envs.${env}`) || {};
+  shouldExtend = (typeof defaults === 'boolean') ? defaults : shouldExtend;
+
+  const baseConfig = _.mergeWith(defaultConfig, targetBaseConfig, function(a, b) { return (shouldExtend && _.isArray(a)) ? _.union(a, b) : undefined; });
+  const envConfig = _.mergeWith(defaultEnvConfig, targetEnvConfig, function(a, b) { return (shouldExtend && _.isArray(a)) ? _.union(a, b) : undefined; });
+
+  return _.merge(baseConfig, envConfig);
 };
 
 /**
