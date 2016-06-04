@@ -1,0 +1,30 @@
+{
+  "name": "gulp-task-webpack",
+  "version": "1.0.0",
+  "description": "Gulp task for processing JavaScript files with Webpack",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VARIANTE/gulp-task-webpack.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "gulp-task-helpers": "^1.1.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.1"
+  }
+}
