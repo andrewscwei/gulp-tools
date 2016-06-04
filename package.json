@@ -1,7 +1,7 @@
 {
   "name": "gulp-task-webpack",
-  "version": "1.0.0",
-  "description": "Gulp task for processing JavaScript files with Webpack",
+  "version": "1.0.1",
+  "description": "Gulp task for Webpack",
   "main": "index.js",
   "repository": {
     "type": "git",
