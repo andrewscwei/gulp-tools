@@ -56,6 +56,7 @@ const DEFAULT_CONFIG = {
  * @return {Function} - A function that returns a Gulp stream.
  */
 module.exports = function(options, extendsDefaults) {
+  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
   let isWatching = false;
 
   return function() {
