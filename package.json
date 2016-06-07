@@ -1,0 +1,31 @@
+{
+  "name": "gulp-pipe-media",
+  "version": "1.0.0",
+  "description": "Gulp pipeline for media files",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VARIANTE/gulp-pipe-media.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-task-documents": "^1.1.1",
+    "gulp-task-fonts": "^1.1.1",
+    "gulp-task-helpers": "^1.1.0",
+    "gulp-task-images": "^1.1.2",
+    "gulp-task-videos": "^1.1.1",
+    "lodash": "^4.13.1"
+  }
+}
