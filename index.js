@@ -45,13 +45,15 @@ const DEFAULT_CONFIG = {
  *                                              directory as `options.src`.
  * @param {string} [options.prefix] - Prefix to be added to the revisioned file
  *                                    paths (i.e. CDN host).
- * @param {boolean} [extendsDefaults=false] - Specifies whether array values are
- *                                            concatenated when merging config
- *                                            options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
+ *                                           concatenated when merging config
+ *                                           options with defaults.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
 module.exports = function(options, extendsDefaults) {
+  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
+
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
 
   if (config.ignore) config.ignore = [].concat(config.ignore);
