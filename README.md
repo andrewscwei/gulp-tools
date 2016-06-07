@@ -93,7 +93,7 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 #### `extendsDefaults`
 
 Type: `boolean`<br>
-Default: `false`
+Default: `true`
 
 This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
 
