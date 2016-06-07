@@ -69,18 +69,28 @@ const DEFAULT_CONFIG = {
  *                                  will be skipped.
  * @param {boolean} [options.sourcemaps] - Specifies whether sourcemaps are
  *                                         enabled.
- * @param {boolean} [extendsDefaults=false] - Specifies whether array values are
- *                                            concatenated when merging config
- *                                            options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
+ *                                           concatenated when merging config
+ *                                           options with defaults.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
 module.exports = function(options, extendsDefaults) {
-  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
   let isWatching = false;
 
   return function() {
     const taskName = this.seq[0];
+
+    // Set defaults based on options before merging.
+    if (options.src) {
+      DEFAULT_CONFIG.watch = {
+        files: [$.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })],
+        tasks: [taskName]
+      }
+    }
+
+    const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
     const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
     const dest = $.glob('', { base: config.dest });
@@ -92,7 +102,7 @@ module.exports = function(options, extendsDefaults) {
 
     if (shouldWatch && !isWatching) {
       isWatching = true;
-      this.watch((config.watch && config.watch.files) || src, () => { sequence.use(this).apply(null, [].concat((config.watch && config.watch.tasks) || [taskName])); });
+      this.watch(config.watch.files, () => sequence.use(this).apply(null, config.watch.tasks));
     }
 
     let stream = this.src(src);
