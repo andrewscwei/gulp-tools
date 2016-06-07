@@ -25,7 +25,7 @@ const DEFAULT_CONFIG = {
   },
   fonts: {
     src: 'fonts/**/*',
-  }
+  },
   documents: {
     src: 'images/**/*'
   }
