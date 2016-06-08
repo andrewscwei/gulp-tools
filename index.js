@@ -105,7 +105,7 @@ module.exports = function(options, extendsDefaults) {
       this.watch(config.watch.files, () => sequence.use(this).apply(null, config.watch.tasks));
     }
 
-    let stream = this.src(src);
+    let stream = this.src(src, { base: config.base });
     if (config.sourcemaps) stream = stream.pipe(sourcemaps.init());
     stream = stream.pipe(sass(sassOptions).on('error', function(err) {
       if (shouldWatch) {
