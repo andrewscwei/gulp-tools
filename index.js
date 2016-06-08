@@ -27,7 +27,7 @@ const DEFAULT_CONFIG = {
     src: 'fonts/**/*',
   },
   documents: {
-    src: 'images/**/*'
+    src: 'documents/**/*'
   }
 };
 
@@ -53,11 +53,12 @@ exports.init = function(options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+  const tasks = ['images', 'videos', 'fonts', 'documents'];
 
-  gulp.task('images', images(_.merge(_.omit(config, ['images', 'videos', 'fonts', 'documents']), _.get(config, 'images'))));
-  gulp.task('videos', images(_.merge(_.omit(config, ['images', 'videos', 'fonts', 'documents']), _.get(config, 'videos'))));
-  gulp.task('fonts', images(_.merge(_.omit(config, ['images', 'videos', 'fonts', 'documents']), _.get(config, 'fonts'))));
-  gulp.task('documents', images(_.merge(_.omit(config, ['images', 'videos', 'fonts', 'documents']), _.get(config, 'documents'))));
+  gulp.task('images', images(_.merge(_.omit(config, tasks), _.get(config, 'images'))));
+  gulp.task('videos', videos(_.merge(_.omit(config, tasks), _.get(config, 'videos'))));
+  gulp.task('fonts', fonts(_.merge(_.omit(config, tasks), _.get(config, 'fonts'))));
+  gulp.task('documents', documents(_.merge(_.omit(config, tasks), _.get(config, 'documents'))));
 
   gulp.task('media', ['images', 'videos', 'fonts', 'documents']);
 };
