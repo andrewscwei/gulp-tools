@@ -9,8 +9,8 @@ const $ = require('gulp-task-helpers');
 const _ = require('lodash');
 const documents = require('gulp-task-documents');
 const fonts = require('gulp-task-fonts');
-const gulp = require('gulp');
 const images = require('gulp-task-images');
+const sequence = require('run-sequence');
 const videos = require('gulp-task-videos');
 
 const DEFAULT_CONFIG = {
@@ -34,6 +34,7 @@ const DEFAULT_CONFIG = {
 /**
  * Creates media processing Gulp tasks.
  *
+ * @param {Object} gulp - Gulp instance.
  * @param {Object} options - Task options.
  * @param {string} [options.base] - Fallback base path if individual task base
  *                                  paths are not provided.
@@ -49,16 +50,19 @@ const DEFAULT_CONFIG = {
  *                                           concatenated when merging config
  *                                           options with defaults.
  */
-exports.init = function(options, extendsDefaults) {
+exports.init = function(gulp, options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
   const tasks = ['images', 'videos', 'fonts', 'documents'];
 
-  gulp.task('images', images(_.merge(_.omit(config, tasks), _.get(config, 'images'))));
-  gulp.task('videos', videos(_.merge(_.omit(config, tasks), _.get(config, 'videos'))));
-  gulp.task('fonts', fonts(_.merge(_.omit(config, tasks), _.get(config, 'fonts'))));
-  gulp.task('documents', documents(_.merge(_.omit(config, tasks), _.get(config, 'documents'))));
+  gulp.task('images', images(_.merge(_.omit(config, tasks), _.get(config, 'images')), extendsDefaults));
+  gulp.task('videos', videos(_.merge(_.omit(config, tasks), _.get(config, 'videos')), extendsDefaults));
+  gulp.task('fonts', fonts(_.merge(_.omit(config, tasks), _.get(config, 'fonts')), extendsDefaults));
+  gulp.task('documents', documents(_.merge(_.omit(config, tasks), _.get(config, 'documents')), extendsDefaults));
 
-  gulp.task('media', ['images', 'videos', 'fonts', 'documents']);
+  gulp.task('media', function(callback) {
+    const seq = ['images', 'videos', 'fonts', 'documents'];
+    sequence.use(gulp).apply(null, seq);
+  });
 };

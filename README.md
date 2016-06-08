@@ -13,7 +13,7 @@ Gulp pipeline for media tasks (i.e. images, videos, fonts and documents). This p
 import gulp from 'gulp';
 import media from 'gulp-pipe-media';
 
-media.init({
+media.init(gulp, {
   base: 'app',
   dest: 'public'
 });
@@ -25,7 +25,13 @@ $ gulp media
 
 ## API
 
-### `init(options[, extendsDefaults])`
+### `init(gulp, options[, extendsDefaults])`
+
+#### `gulp`
+
+Type: `Object`
+
+Gulp instance.
 
 #### `options`
 
