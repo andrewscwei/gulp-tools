@@ -32,11 +32,6 @@ const DEFAULT_CONFIG = {
   resolve: {
     extensions: ['', '.js', '.json']
   },
-  resolveLoader: {
-    modulesDirectories: [
-      path.join(__dirname, 'node_modules')
-    ]
-  },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js')
   ],
