@@ -1,6 +1,6 @@
 # gulp-pipe-media [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-pipe-media/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-pipe-media/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-media.svg)](https://badge.fury.io/js/gulp-pipe-media)
 
-Gulp pipeline for media tasks (i.e. images, videos, fonts and documents). This pipeline creates 5 Gulp tasks: 'images', 'videos', 'fonts', 'videos' and 'media'. This pipeline uses the following submodules to generate its tasks:
+Gulp pipeline for media tasks (i.e. images, videos, fonts and documents). This pipeline creates 5 Gulp tasks: 'images', 'videos', 'fonts', 'documents' and 'media'. This pipeline uses the following submodules to generate its tasks:
 
 1. [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images)
 2. [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos)
