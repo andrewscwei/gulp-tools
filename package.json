@@ -1,6 +1,6 @@
 {
   "name": "gulp-pipe-assets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp asset pipeline with Sass and Webpack",
   "main": "index.js",
   "repository": {
@@ -26,7 +26,7 @@
     "gulp-task-helpers": "^1.1.0",
     "gulp-task-images": "^1.1.2",
     "gulp-task-rev": "^1.0.3",
-    "gulp-task-sass": "^1.1.2",
+    "gulp-task-sass": "^1.1.3",
     "gulp-task-videos": "^1.1.1",
     "gulp-task-webpack": "^1.1.0",
     "lodash": "^4.13.1",
