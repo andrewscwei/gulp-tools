@@ -30,12 +30,17 @@ const DEFAULT_CONFIG = {
  *                                        relative to `options.base`.
  * @param {string} options.dest - Path of destination directory to write files
  *                                to.
- * @param {string|Function|Array} [options.watch] - Task(s) or methods to invoke
- *                                                  whenever watched files have
- *                                                  changed. This array is
- *                                                  applied to `run-sequence`.
- *                                                  Defaults to the current
- *                                                  task name.
+ * @param {Object} [options.watch] - Options that define the file watching
+ *                                   behavior. If set to `false`, watching will
+ *                                   be disabled even if the CLI flag is set.
+ * @param {string|string[]} [options.watch.files] - Glob pattern(s) that matches
+ *                                                  files to watch. Defaults to
+ *                                                  the emitted files.
+ * @param {string|Function|Array} [options.watch.tasks] - Array of task names or
+ *                                                        functions to execute
+ *                                                        when watched files
+ *                                                        change. Defaults to
+ *                                                        the current task name.
  * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
  *                                           concatenated when merging config
  *                                           options with defaults.
