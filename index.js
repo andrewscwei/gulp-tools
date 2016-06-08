@@ -18,7 +18,7 @@ const REPLACE_EXTENSIONS = ['html', 'htm', 'php', 'js', 'css'];
 
 const DEFAULT_CONFIG = {
   src: undefined,
-  ignore: undefined,
+  ignore: `**/favicon.{ico,png}`,
   replace: undefined,
   prefix: undefined
 };

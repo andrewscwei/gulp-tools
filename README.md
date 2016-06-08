@@ -59,7 +59,7 @@ Path to the directory that contains files that needs to be revisioned. If unspec
 ##### `options.ignore`
 
 Type: `string` or `Array`<br>
-Default: `undefined`
+Default: `**/favicon.{ico,png}`
 
 Glob pattern(s) matching files to ignore for revisioning.
 
