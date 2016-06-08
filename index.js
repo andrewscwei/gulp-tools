@@ -74,13 +74,19 @@ const DEFAULT_CONFIG = {
 module.exports = function(options, watchOptions, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
 
-  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
-  const watchCallback = watchOptions && watchOptions.callback;
 
   let isWatching = false;
 
   return function(callback) {
     const taskName = this.seq[0];
+
+    // Set defaults based on options before merging.
+    if (options.context) {
+      DEFAULT_CONFIG.resolve.root = [options.context];
+    }
+
+    const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+    const watchCallback = watchOptions && watchOptions.callback;
     const shouldWatch = (util.env['watch'] || util.env['w']) && (watchOptions !== false);
 
     if (shouldWatch)
