@@ -46,14 +46,17 @@ exports.init = function(gulp, options, extendsDefaults) {
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
 
   gulp.task('views', function(callback) {
-    generatePrismicDocuments(config)
-    .then(() => {
+    if (config.apiEndpoint) {
+      generatePrismicDocuments(config)
+      .then(() => require('gulp-task-metalsmith')(config).bind(this)(callback))
+      .catch(err => {
+        util.log(util.colors.blue(`[prismic]`), util.colors.red(err));
+        throw new Error(err);
+      });
+    }
+    else {
       require('gulp-task-metalsmith')(config).bind(this)(callback);
-    })
-    .catch(err => {
-      util.log(util.colors.blue(`[prismic]`), util.colors.red(err));
-      throw new Error(err);
-    });
+    }
   });
 };
 
