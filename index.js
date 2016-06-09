@@ -52,9 +52,6 @@ const DEFAULT_CONFIG = {
   styles: {
     src: 'stylesheets/*',
     dest: undefined, // `options.dest/assets`
-    watch: {
-      files: undefined, // `options.base/stylesheets/**/*`
-    },
     envs: {
       production: {
         purify: undefined // `options.dest/**/*`
@@ -102,7 +99,6 @@ exports.init = function(gulp, options, extendsDefaults) {
   // Set defaults before merging.
   if (options.base) {
     DEFAULT_CONFIG.scripts.context = path.join(options.base, 'javascripts');
-    DEFAULT_CONFIG.styles.watch.files = path.join(options.base, 'stylesheets/**/*');
   }
 
   if (options.dest) {
