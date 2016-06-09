@@ -86,7 +86,7 @@ module.exports = function(options, extendsDefaults) {
     // Set defaults based on options before merging.
     if (options.src) {
       DEFAULT_CONFIG.watch = {
-        files: [$.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })],
+        files: [$.glob(path.join(path.dirname(options.src), '**/*'), { base: options.base, exts: FILE_EXTENSIONS })],
         tasks: [taskName]
       }
 
