@@ -60,10 +60,10 @@ If specified, this is the base path for the source files to emit into the stream
 
 ##### `options.src`
 
-Type: `string` or `Array`<br>
+Type: `string` or `string[]`<br>
 Default: `undefined`
 
-Glob or an array of globs that matches files to emit. These globs are all relative to `options.base` if specified.
+Glob pattern(s), relative to `options.base` if specified, that specifies what files to emit into the Gulp stream. These patterns are automatically appended with a wildcard glob of affected file extensions unless custom extensions are specified in the patterns.
 
 ##### `options.dest`
 

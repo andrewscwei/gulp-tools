@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-images",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Gulp task for processing images",
   "main": "index.js",
   "repository": {
