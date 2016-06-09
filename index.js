@@ -55,6 +55,7 @@ exports.init = function(gulp, options, extendsDefaults) {
       });
     }
     else {
+      util.log(util.colors.blue(`[prismic]`), util.colors.yellow('No credentials provided'));
       require('gulp-task-metalsmith')(config).bind(this)(callback);
     }
   });
