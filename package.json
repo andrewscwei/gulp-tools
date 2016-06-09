@@ -1,0 +1,32 @@
+{
+  "name": "gulp-pipe-metalprismic",
+  "version": "1.0.0",
+  "description": "Gulp pipeline for generating static views via Metalsmith content managed by Prismic",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VARIANTE/gulp-pipe-metalprismic.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^0.30.0",
+    "gulp-task-helpers": "^1.1.0",
+    "gulp-task-metalsmith": "^1.1.4",
+    "gulp-util": "^3.0.7",
+    "lodash": "^4.13.1",
+    "moment": "^2.13.0",
+    "prismic.io": "^3.0.0",
+    "yamljs": "^0.2.7"
+  }
+}
