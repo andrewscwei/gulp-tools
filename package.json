@@ -1,7 +1,7 @@
 {
   "name": "gulp-task-helpers",
-  "version": "1.1.0",
-  "description": "Helper functions for Gulp tasks",
+  "version": "1.2.0",
+  "description": "Helper functions for common Gulp tasks",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "gulp-size": "^2.1.0",
     "lodash": "^4.13.1"
   },
   "devDependencies": {

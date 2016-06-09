@@ -4,103 +4,121 @@ const _ = require('lodash');
 const path = require('path');
 
 /**
- * Gets config properties that conerns only the current Node environment, merged
- * with the optional `defaults` parameter. Environment specific config values
- * should reside in `envs.{NODE_ENV_NAME}` of the config object.
+ * Returns a new object by merging `config` into `defaults` with values that
+ * only concern the current `NODE_ENV` (defaults to `production` if blank).
+ * `NODE_ENV` specific values are specified inside the `envs.{NODE_ENV}` key,
+ * and will override the non `NODE_ENV`-specific values (ones that are defined
+ * in the root level of the object). If a key appears in both `config` and
+ * `defaults`, the value in `config` will take precedence and either overwrites
+ * or merges into the value in `defaults`, depending on its data type—`object`'s
+ * and `array`'s are merged recursively by iterating through their enumerable
+ * keys, all else (i.e. `string`, `number`, `boolean` and `function`) are
+ * overwritten. In the case where the value is an array, you can set
+ * `useConcat` to `true` to alter the merging behavior to concatenation
+ * instead.
  *
  * @param {Object} config - Target config object to resolve.
- * @param {Object} [defaults] - Config object containing default values.
- * @param {boolean} [shouldExtend] - Specifies whether array values between
- *                                   target and default configs should be
- *                                   concatenated instead of overwritten
- *                                   (default).
+ * @param {Object} [defaults={}] - Optional config object containing default
+ *                                 values.
+ * @param {boolean} [useConcat] - Specifies whether array values between
+ *                                `config` and `defaults` should be merged by
+ *                                concatenation rather than the iterating
+ *                                through each enumerable key.
  *
- * @return {string|Object}
+ * @return {Object} - Resulting config object that contains only current
+ *                    `NODE_ENV` specific values.
  *
  * @example
- *   // The following example will return a config object with `foo` set as `10`
- *   // in production environent.
- *   {
- *     foo: 1,
+ *   config({
+ *     foo: 10,
  *     envs: {
  *       production: {
- *         foo: 10
+ *         foo: 100
  *       }
  *     }
- *   }
+ *   }, {
+ *     foo: 1,
+ *     bar: 2
+ *   });
+ *
+ *   // Yields the following when `NODE_ENV` is `production`
+ *   // {
+ *   //   foo: 100,
+ *   //   bar: 2
+ *   // }
  */
-exports.config = function(config, defaults, shouldExtend) {
+exports.config = function(config, defaults, useConcat) {
   const env = process.env.NODE_ENV || 'production';
   const defaultConfig = _.omit(defaults, 'envs') || {};
   const defaultEnvConfig = _.get(defaults, `envs.${env}`) || {};
   const targetBaseConfig = _.omit(config, 'envs') || {};
   const targetEnvConfig = _.get(config, `envs.${env}`) || {};
-  shouldExtend = (typeof defaults === 'boolean') ? defaults : shouldExtend;
+  useConcat = (typeof defaults === 'boolean') ? defaults : useConcat;
 
-  const baseConfig = _.mergeWith(defaultConfig, targetBaseConfig, function(a, b) { return (shouldExtend && _.isArray(a)) ? _.union(a, b) : undefined; });
-  const envConfig = _.mergeWith(defaultEnvConfig, targetEnvConfig, function(a, b) { return (shouldExtend && _.isArray(a)) ? _.union(a, b) : undefined; });
+  const baseConfig = _.mergeWith(defaultConfig, targetBaseConfig, function(a, b) { return (useConcat && _.isArray(a)) ? _.union(a, b) : undefined; });
+  const envConfig = _.mergeWith(defaultEnvConfig, targetEnvConfig, function(a, b) { return (useConcat && _.isArray(a)) ? _.union(a, b) : undefined; });
 
   return _.merge(baseConfig, envConfig);
 };
 
 /**
- * Returns glob(s) using the specified pattern(s) relative to the `base`
- * directory, if provided. Option to append file extensions.
+ * Resolves and returns glob pattern(s) by prefixing `options.base` and
+ * appending the glob pattern derived from `options.exts` (an array of file
+ * extensions) to each value in `patterns`.
  *
- * @param {string|Array} [patterns] - Glob(s) relative to the `base` directory
- *                                    if specified in the options.
+ * @param {string|string[]} [patterns] - Glob pattern(s) to resolve.
  * @param {Object} [options] - Additional options.
- * @param {string} [options.base] - Base directory which the patterns will be
- *                                  relative to.
- * @param {Array} [options.exts] - Array of file extensions (no '.') to append
- *                                 to the globs that are returned.
+ * @param {string} [options.base] - Base path to prefix to each pattern provided
+ *                                  in `patterns`.
+ * @param {string|string[]} [options.exts] - Array of file extensions (no '.' in
+ *                                           front) to append to each pattern.
  *
- * @return {string|Array} - Resolved glob pattern(s).
+ * @return {string|string[]} - Resolved glob pattern(s).
+ *
+ * @example
+ *   glob([
+ *     'a/b',
+ *     'c/d'
+ *   ], {
+ *     exts: [
+ *       ['a', 'b'],
+ *       ['c', 'd']
+ *     ]
+ *   });
+ *
+ *   // Yields the following:
+ *   // [
+ *   //   'a/b.{a,b,c,d}',
+ *   //   'c/d.{a,b,c,d}'
+ *   // ];
  */
 exports.glob = function(patterns, options) {
-  var base = _.get(options, 'base');
-  var exts = _.get(options, 'exts');
-  return resolve(base, patterns, exts);
+  if (patterns instanceof Array) {
+    patterns = _.flatten(patterns);
+    return _.map(patterns, val => (exports.glob(val, options)));
+  }
+  else {
+    if (!patterns) patterns = '';
+    const base = _.get(options, 'base');
+    const negate = _.startsWith(patterns, '!') && patterns.length > 1;
+    const exts = (path.extname(patterns) === '') ? globExts(_.get(options, 'exts')) : '';
+
+    if (negate) patterns = patterns.substr(1);
+
+    return `${negate ? '!' : ''}${path.join(base || '', `${patterns}${exts}`)}`;
+  }
 };
 
 /**
- * Returns a glob with given pattern(s), base and allowed file extensions.
+ * Returns a wildcard glob pattern of the specified file extensions.
  *
- * @param {string} base - Base path of which all returned glob patterns will be
- *                        relative to.
- * @param {string|Array} [pattern] - Glob pattern(s) to be resolved.
- * @param {Array} [fileExtensions] - File extensions to be appened to the output
- *                                   glob(s).
+ * @param {...(string|string[])} extensions - Extensions to be included in the
+ *                                            wildcard pattern.
  *
- * @return {string|Array} - Resolved glob pattern(s).
- */
-function resolve(base, pattern, fileExtensions) {
-  if (pattern instanceof Array) {
-    let patterns = _.flatten(pattern);
-    return _.map(patterns, (val) => (resolve(base, val, fileExtensions)));
-  }
-  else {
-    if (!pattern) pattern = '';
-
-    let negate = _.startsWith(pattern, '!');
-    let exts = ((path.extname(pattern) === '') && fileExtensions) ? globExts(fileExtensions) : '';
-
-    if (_.startsWith(pattern, '!')) pattern = pattern.substr(1);
-
-    return `${negate ? '!' : ''}${path.join(base || '', `${pattern}${exts}`)}`;
-  }
-}
-
-/**
- * Returns a globbing pattern including the specified file extensions.
- *
- * @param {...(Array|string)} extensions - Extensions to be included in the
- *                                         returned glob. If unspecified, `.*`
- *                                         will be returned.
- *
- * @return {string} - Glob pattern consisting of all specified extensions.
+ * @return {string} - Wildcard glob pattern consisting of all specified
+ *                    extensions.
  */
 function globExts(extensions) {
   let exts = _.flattenDeep(_.concat.apply(null, arguments));
-  return (exts.length <= 1) ? `.${exts[0] || '*'}` : `.{${exts.join(',')}}`;
+  return (exts.length <= 1) ? (exts[0] && `.${exts[0]}` || '') : `.{${exts.join(',')}}`;
 };
