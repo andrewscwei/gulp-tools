@@ -8,6 +8,7 @@
 const $ = require('gulp-task-helpers');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const path = require('path');
 const postcss = require('gulp-postcss');
 const purifycss = require('gulp-purifycss');
 const sass = require('gulp-sass');
@@ -88,6 +89,11 @@ module.exports = function(options, extendsDefaults) {
         files: [$.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })],
         tasks: [taskName]
       }
+
+      DEFAULT_CONFIG.sass.includePaths = [
+        path.dirname(path.join(options.base || '', options.src || '')),
+        path.join(require.resolve('gulp').split('node_modules')[0], 'node_modules')
+      ]
     }
 
     const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
@@ -95,7 +101,6 @@ module.exports = function(options, extendsDefaults) {
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
     const dest = $.glob('', { base: config.dest });
     const postcssPlugins = [];
-    const sassOptions = config.sass || { includePaths: [ config.base ] };
     const purify = config.purify && [].concat($.glob(config.purify, { exts: PURIFY_EXTENSIONS }));
     if (config.autoprefixer !== false) postcssPlugins.push(autoprefixer(config.autoprefixer));
     if (config.nano !== false) postcssPlugins.push(cssnano());
@@ -107,7 +112,7 @@ module.exports = function(options, extendsDefaults) {
 
     let stream = this.src(src, { base: config.base });
     if (config.sourcemaps) stream = stream.pipe(sourcemaps.init());
-    stream = stream.pipe(sass(sassOptions).on('error', function(err) {
+    stream = stream.pipe(sass(config.sass).on('error', function(err) {
       if (shouldWatch) {
         // When watching, don't kill the process.
         util.log(util.colors.blue(`[sass]`), util.colors.red(err));
