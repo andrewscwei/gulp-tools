@@ -1,6 +1,8 @@
 # gulp-task-images [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-images/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-images/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-images.svg)](https://badge.fury.io/js/gulp-task-images)
 
-Gulp task for processing images with the option to watch the emitted source files for changes.
+Gulp task for processing images with built-in support for watching emitted source files for changes. This task supports the following plugins:
+
+1. [`gulp-imagemin`](https://www.npmjs.com/package/gulp-imagemin)
 
 ## Usage
 
@@ -9,8 +11,10 @@ import gulp from 'gulp';
 import images from 'gulp-task-images';
 
 gulp.task('images', images({
-  src: 'app/images/**/*',
-  dest: 'public/images'
+  base: 'app',
+  src: 'images/**/*',
+  dest: 'public',
+  imagemin: false
 }));
 ```
 
@@ -22,50 +26,46 @@ $ gulp images
 
 ### `images(options[, extendsDefaults])`
 
+Return: `Function`
+
 #### `options`
 
 Type: `Object`<br>
-Default: `{ src: '**/*' }`
-
-Options that define the behavior of this task. You can override options for specific `NODE_ENV` environments by putting the same option inside `options.envs.{NODE_ENV}`. For example:
-
+Default: 
 ```js
 {
-  src: '**/*',
+  base: undefined,
+  dest: undefined,
+  src: undefined,
+  watch: {
+    files: {Emitted files}
+    tasks: {Current task name}
+  },
   envs: {
-    production: {
-      src: 'foo/**/*'
+    development: {
+      imagemin: false
     }
   }
 }
 ```
 
-...would give you the following when `NODE_ENV` is `production`:
-
-```js
-{
-  src: 'foo/**/*'
-}
-```
-
-When `NODE_ENV` is blank, `production` environment is assumed.
-
+Options that define the behavior of this task. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base`
 
 Type: `string`<br>
 Default: `undefined`
 
-If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be relative to this path.
+If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be prefixed by this path.
 
-##### `options.src` (required)
+##### `options.src`
 
 Type: `string` or `Array`<br>
 Default: `undefined`
 
 Glob or an array of globs that matches files to emit. These globs are all relative to `options.base` if specified.
 
-##### `options.dest` (required)
+##### `options.dest`
 
 Type: `string`<br>
 Default: `undefined`
@@ -75,7 +75,7 @@ Path of destination directory to write files to.
 ##### `options.imagemin`
 
 Type: `Object`<br>
-Default: `undefined`
+Default: `false` when `NODE_ENV=development`, `undefined` otherwise 
 
 Options for [`gulp-imagemin`](https://www.npmjs.com/package/gulp-imagemin) package. If set to `false`, `gulp-imagemin` will be skipped.
 
@@ -88,9 +88,9 @@ Options that define the file watching behavior. If set to `false`, watching will
 ###### `options.watch.files`
 
 Type: `string` or `string[]`<br>
-Default: Patterns computed from `options.base` and `options.src`
+Default: Emitted source files
 
-Glob pattern(s) that matches the files to be watched. Defaults to the patterns computed from `options.base` and `options.src`.
+Glob pattern(s) that matches the files to be watched. Defaults to the emitted source file patterns computed from `options.base` and `options.src`.
 
 ###### `options.watch.tasks`
 
@@ -104,7 +104,7 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
 ## Watching for Changes
 
@@ -114,7 +114,7 @@ You can pass a `--watch` or `--w` flag to the Gulp command to enable file watchi
 $ gulp images --watch
 ```
 
-By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
+By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
 
 ## License
 

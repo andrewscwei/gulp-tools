@@ -1,8 +1,7 @@
 // (c) VARIANTE
 /**
- * @file Gulp task for processing image files, with the option to watch for
- *       changes by passing either `--watch` or `--w` flag when running the
- *       task using the CLI.
+ * @file Gulp task for processing image files. Option to watch for changes by
+ *       passing either `--watch` or `--w` flag in the CLI.
  */
 
 const $ = require('gulp-task-helpers');
@@ -17,7 +16,10 @@ const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
   src: undefined,
-  watch: undefined,
+  watch: {
+    files: undefined, // Emitted files
+    tasks: undefined // Current task name
+  },
   envs: {
     development: {
       imagemin: false
@@ -26,32 +28,37 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * Method that defines the task with configurable options. Only `options.base`
- * and `options.dest` are required.
+ * Method that defines the Gulp task.
  *
  * @param {Object} options - Task options.
  * @param {string} [options.base] - Base path for the source files to emit.
- * @param {string|string[]} options.src - Glob or an array of globs that matches
- *                                        files to emit. These globs are all
- *                                        relative to `options.base`.
- * @param {string} options.dest - Path of destination directory to write files
- *                                to.
- * @param {Object} [options.imagemin] - `gulp-imagemin` options. If `false`,
- *                                      `gulp-imagemin` will be omitted.
+ * @param {string|string[]} [options.src] - Glob pattern(s), relative to
+ *                                          `options.base` if specified, that
+ *                                          specifies what files to emit into
+ *                                          the Gulp stream. These patterns are
+ *                                          automatically appended with a
+ *                                          wildcard glob of common image file
+ *                                          extensions unless custom extensions
+ *                                          are specified in the patterns.
+ * @param {string} options.dest - Destination path to write files to.
+ * @param {Object} [options.imagemin] - `gulp-imagemin` plugins and options. If
+ *                                      `false`, `gulp-imagemin` will be
+ *                                      omitted.
+ * @param {Array} [options.imagemin.plugins] - `gulp-imagemin` plugins.
+ * @param {Array} [options.imagemin.options] - `gulp-imagemin` options.
  * @param {Object} [options.watch] - Options that define the file watching
  *                                   behavior. If set to `false`, watching will
  *                                   be disabled even if the CLI flag is set.
  * @param {string|string[]} [options.watch.files] - Glob pattern(s) that matches
  *                                                  files to watch. Defaults to
- *                                                  the emitted files.
+ *                                                  the emitted source files.
  * @param {string|Function|Array} [options.watch.tasks] - Array of task names or
  *                                                        functions to execute
  *                                                        when watched files
  *                                                        change. Defaults to
  *                                                        the current task name.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
@@ -65,7 +72,7 @@ module.exports = function(options, extendsDefaults) {
     // Set defaults based on options before merging.
     if (options.src) {
       DEFAULT_CONFIG.watch = {
-        files: [$.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })],
+        files: [].concat($.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })),
         tasks: [taskName]
       }
     }
@@ -83,7 +90,7 @@ module.exports = function(options, extendsDefaults) {
     let stream = this.src(src, { base: config.base });
 
     if (config.imagemin !== false)
-      stream = stream.pipe(imagemin(config.imagemin));
+      stream = stream.pipe(imagemin(config.imagemin && config.imagemin.plugins, config.imagemin && config.imagemin.options));
 
     return stream
       .pipe(size({ title: `[${taskName}]`, gzip: true }))
