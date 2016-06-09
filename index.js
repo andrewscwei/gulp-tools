@@ -16,6 +16,11 @@ const path = require('path');
 const util = require('gulp-util');
 const sequence = require('run-sequence');
 
+util.log(util.colors.magenta('NODE_ENV'), '=', process.env.NODE_ENV);
+util.log(util.colors.magenta('PORT'), '=', process.env.PORT);
+util.log(util.colors.magenta('PRISMIC_API_ENDPOINT'), '=', process.env.PRISMIC_API_ENDPOINT);
+util.log(util.colors.magenta('PRISMIC_ACCESS_TOKEN'), '=', process.env.PRISMIC_ACCESS_TOKEN);
+
 const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,

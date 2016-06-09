@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-metalprismic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp pipeline for generating static views via Metalsmith content managed by Prismic",
   "main": "index.js",
   "repository": {
