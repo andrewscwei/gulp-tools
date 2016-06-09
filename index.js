@@ -60,10 +60,9 @@ const DEFAULT_CONFIG = {
  * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
  *                                           `gulp-task-helpers`#config.
  *
- * @return {Function} - A function that returns a Gulp stream.
+ * @return {Function} - A function that returns a Gulp stream for this task.
  */
 module.exports = function(options, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
   let isWatching = false;
 
   return function() {
@@ -77,7 +76,7 @@ module.exports = function(options, extendsDefaults) {
       }
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
     const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
     const dest = $.glob('', { base: config.dest });
