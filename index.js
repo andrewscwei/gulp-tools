@@ -87,8 +87,9 @@ exports.init = function(options, extendsDefaults) {
   require('gulp-pipe-metalprismic').init(gulp, _.merge(_.omit(config, tasks), _.get(config, 'views')), extendsDefaults);
 
   gulp.task('clean', function() {
+    if (!config.clean || !config.clean.length) return;
     config.clean.forEach(val => util.log(util.colors.blue('[clean]'), 'Removing', util.colors.cyan(val)));
-    return del(config.clean);
+    return del(config.clean, { force: true });
   });
 
   gulp.task('serve', function() {
