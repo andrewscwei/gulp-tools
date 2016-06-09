@@ -1,10 +1,8 @@
 // (c) VARIANTE
 /**
- * @file Gulp pipeline for processing templates content managed by Prismic.io.
- *       This pipeline generates a single task, `views`, which does two things:
- *       1) fetch and process documents from the Prismic repo so the resulting
- *       data can be made useful to the templates, and 2) generate static
- *       views using Metalsmith.
+ * @file An end-to-end Gulp build system and asset pipeline for a webapp
+ *       templated by Metalsmith and content-managed by Prismic.io. Includes
+ *       tasks for processing all asset types and asset fingerprinting.
  */
 
 const $ = require('gulp-task-helpers');
@@ -16,10 +14,10 @@ const path = require('path');
 const util = require('gulp-util');
 const sequence = require('run-sequence');
 
-util.log(util.colors.magenta('NODE_ENV'), '=', process.env.NODE_ENV);
-util.log(util.colors.magenta('PORT'), '=', process.env.PORT);
-util.log(util.colors.magenta('PRISMIC_API_ENDPOINT'), '=', process.env.PRISMIC_API_ENDPOINT);
-util.log(util.colors.magenta('PRISMIC_ACCESS_TOKEN'), '=', process.env.PRISMIC_ACCESS_TOKEN);
+util.log(`${util.colors.magenta('NODE_ENV')}=${process.env.NODE_ENV}`);
+util.log(`${util.colors.magenta('PORT')}=${process.env.PORT}`);
+util.log(`${util.colors.magenta('PRISMIC_API_ENDPOINT')}=${process.env.PRISMIC_API_ENDPOINT}`);
+util.log(`${util.colors.magenta('PRISMIC_ACCESS_TOKEN')}=${process.env.PRISMIC_ACCESS_TOKEN}`);
 
 const DEFAULT_CONFIG = {
   base: undefined,
@@ -27,7 +25,7 @@ const DEFAULT_CONFIG = {
   clean: undefined, // Defaults to [`$options.dest}`, `${options.dest}/views/.prismic`]
   views: {
     apiEndpoint: process.env.PRISMIC_API_ENDPOINT,
-    accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+    accessToken: process.env.PRISMIC_ACCESS_TOKEN
   },
   serve: {
     server: {
@@ -43,20 +41,32 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * Initializes the Prismic-Metalsmith pipeline with customizable options. The
- * options are basically an extension of the options supported by
- * `gulp-task-metalsmith`.
+ * Initializes the Prismic-Metalsmith build system with customizable options.
+ * This operation creates the following Gulp tasks for you: `clean`, `serve`,
+ * `images`, `videos`, `fonts`, `documents`, `extras`, `scripts`, `styles`,
+ * `rev`, `views` and `default`.
  *
- * @param {Object} gulp - Gulp instance.
- * @param {Object} options - Pipeline options, extends options supported by
- *                           `gulp-task-metalsmith`.
- * @param {string} options.apiEndpoint - API endpoint of the Prismic repo.
- * @param {string} [options.accessToken] - Access token of the Prismic repo.
+ * @param {Object} options - System options, extends options supported by
+ *                           `gulp-pipe-metalprismic` as `options.views` and
+ *                           `gulp-pipe-assets`, with a few extras (see below).
+ * @param {string} options.base - Fallback base path for source files.
+ * @param {string} options.dest - Fallback path to destination directory where
+ *                                piped files are written to.
+ * @param {Object} [options.watch] - Fallback file watching options.
+ * @param {Object} [options.images] - Options for `gulp-task-images`.
+ * @param {Object} [options.videos] - Options for `gulp-task-videos`.
+ * @param {Object} [options.fonts] - Options for `gulp-task-fonts`.
+ * @param {Object} [options.documents] - Options for `gulp-task-documents`.
+ * @param {Object} [options.extras] - Options for `gulp-task-extras`.
+ * @param {Object} [options.styles] - Options for `gulp-task-sass`.
+ * @param {Object} [options.scripts] - Options for `gulp-task-webpack`.
+ * @param {Object} [options.rev] - Options for `gulp-task-rev`.
+ * @param {Object} [options.views] - Options for `gulp-pipe-metalprismic`.
+ * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
+ * @param {Object} [options.serve] - Options for `browser-sync`.
  * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
  *                                           concatenated when merging config
  *                                           options with defaults.
- *
- * @return {Function} - A function that returns a Gulp stream.
  */
 exports.init = function(options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
