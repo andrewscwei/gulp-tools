@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-metalprismic",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Prismic.io.",
   "main": "index.js",
   "repository": {

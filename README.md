@@ -222,7 +222,7 @@ Default:
 ```js
 [
   `${options.dest}`, 
-  `${options.dest}/views/.prismic`
+  `${options.base}/views/.prismic`
 ]
 ```
 

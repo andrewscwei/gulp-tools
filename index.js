@@ -22,7 +22,7 @@ util.log(`${util.colors.magenta('PRISMIC_ACCESS_TOKEN')}=${process.env.PRISMIC_A
 const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
-  clean: undefined, // Defaults to [`$options.dest}`, `${options.dest}/views/.prismic`]
+  clean: undefined, // Defaults to [`$options.dest}`, `${options.base}/views/.prismic`]
   views: {
     apiEndpoint: process.env.PRISMIC_API_ENDPOINT,
     accessToken: process.env.PRISMIC_ACCESS_TOKEN
@@ -71,10 +71,10 @@ const DEFAULT_CONFIG = {
 exports.init = function(options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
 
-  if (options.dest) {
+  if (options.dest && options.base) {
     DEFAULT_CONFIG.clean = [
       options.dest,
-      path.join(options.dest, 'views', '.prismic')
+      path.join(options.base, 'views', '.prismic')
     ];
 
     DEFAULT_CONFIG.serve.server.baseDir = options.dest;
@@ -88,7 +88,7 @@ exports.init = function(options, extendsDefaults) {
 
   gulp.task('clean', function() {
     config.clean.forEach(val => util.log(util.colors.blue('[clean]'), 'Removing', util.colors.cyan(val)));
-    return del(config.clean, { force: true });
+    return del(config.clean);
   });
 
   gulp.task('serve', function() {
