@@ -90,10 +90,12 @@ module.exports = function(options, extendsDefaults) {
         tasks: [taskName]
       }
 
-      DEFAULT_CONFIG.sass.includePaths = [
-        path.dirname(path.join(options.base || '', options.src || '')),
-        path.join(require.resolve('gulp').split('node_modules')[0], 'node_modules')
-      ]
+      DEFAULT_CONFIG.sass = {
+        includePaths: [
+          path.dirname(path.join(options.base || '', options.src || '')),
+          path.join(require.resolve('gulp').split('node_modules')[0], 'node_modules')
+        ]
+      };
     }
 
     const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
