@@ -52,9 +52,6 @@ const DEFAULT_CONFIG = {
   styles: {
     src: 'stylesheets/*',
     dest: undefined, // `options.dest/assets`
-    sass: {
-      includePaths: [] // `options.base/stylesheets`
-    },
     watch: {
       files: undefined, // `options.base/stylesheets/**/*`
     },
@@ -105,7 +102,6 @@ exports.init = function(gulp, options, extendsDefaults) {
   // Set defaults before merging.
   if (options.base) {
     DEFAULT_CONFIG.scripts.context = path.join(options.base, 'javascripts');
-    DEFAULT_CONFIG.styles.sass.includePaths.push(path.join(options.base, 'stylesheets'));
     DEFAULT_CONFIG.styles.watch.files = path.join(options.base, 'stylesheets/**/*');
   }
 
@@ -121,7 +117,7 @@ exports.init = function(gulp, options, extendsDefaults) {
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
-  const tasks = ['images', 'videos', 'fonts', 'documents', 'scripts', 'styles', 'rev'];
+  const tasks = ['images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev'];
 
   gulp.task('images', images(_.merge(_.omit(config, tasks), _.get(config, 'images')), extendsDefaults));
   gulp.task('videos', videos(_.merge(_.omit(config, tasks), _.get(config, 'videos')), extendsDefaults));
