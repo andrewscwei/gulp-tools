@@ -37,7 +37,7 @@ const DEFAULT_CONFIG = {
  *                                          specifies what files to emit into
  *                                          the Gulp stream. These patterns are
  *                                          automatically appended with a
- *                                          wildcard glob of common image file
+ *                                          wildcard glob of affected file
  *                                          extensions unless custom extensions
  *                                          are specified in the patterns.
  * @param {string} options.dest - Destination path to write files to.

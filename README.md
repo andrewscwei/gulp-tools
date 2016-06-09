@@ -77,7 +77,7 @@ Path of destination directory to write files to.
 Type: `Object`<br>
 Default: `false` when `NODE_ENV=development`, `undefined` otherwise 
 
-Options for [`gulp-imagemin`](https://www.npmjs.com/package/gulp-imagemin) package. If set to `false`, `gulp-imagemin` will be skipped.
+Options for [`gulp-imagemin`](https://www.npmjs.com/package/gulp-imagemin) package. If set to `false`, `gulp-imagemin` will be skipped. Use `options.imagemin.plugins` and `options.imagemin.options`.
 
 ##### `options.watch`
 
