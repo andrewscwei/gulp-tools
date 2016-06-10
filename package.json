@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-stylus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp task for processing Stylus files",
   "main": "index.js",
   "repository": {

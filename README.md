@@ -1,6 +1,6 @@
 # gulp-task-stylus [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-stylus/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-stylus/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-stylus.svg)](https://badge.fury.io/js/gulp-task-stylus)
 
-Gulp task for processing Sass files with the option to watch the emitted source files for changes.
+Gulp task for processing Stylus files with the option to watch the emitted source files for changes.
 
 ## Usage
 

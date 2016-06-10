@@ -1,6 +1,6 @@
 // (c) VARIANTE
 /**
- * @file Gulp task for processing Sass files. Option to watch for changes by
+ * @file Gulp task for processing Stylus files. Option to watch for changes by
  *       passing either `--watch` or `--w` flag in the CLI.
  */
 
