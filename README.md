@@ -151,7 +151,7 @@ Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npm
 You can pass a `--watch` or `--w` flag to the Gulp command to enable file watching, like so:
 
 ```
-$ gulp videos --watch
+$ gulp styles --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
