@@ -9,8 +9,9 @@ import gulp from 'gulp';
 import sass from 'gulp-task-sass';
 
 gulp.task('styles', sass({
-  src: 'app/stylesheets/**/*',
-  dest: 'public/stylesheets',
+  base: 'app',
+  src: 'stylesheets/*',
+  dest: 'public',
   sourcemaps: true,
   envs: {
     production: {
@@ -52,44 +53,23 @@ Default:
 }
 ```
 
-Options that define the behavior of this task. You can override options for specific `NODE_ENV` environments by putting the same option inside `options.envs.{NODE_ENV}`. For example:
-
-```js
-{
-  src: '**/*',
-  envs: {
-    production: {
-      src: 'foo/**/*'
-    }
-  }
-}
-```
-
-...would give you the following when `NODE_ENV` is `production`:
-
-```js
-{
-  src: 'foo/**/*'
-}
-```
-
-When `NODE_ENV` is blank, `production` environment is assumed.
+Options that define the behavior of this task. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base`
 
 Type: `string`<br>
 Default: `undefined`
 
-If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be relative to this path.
+If specified, this is the base path for the source files to emit into the stream. Patterns defined in `options.src` will be prefixed by this path.
 
-##### `options.src` (required)
+##### `options.src`
 
-Type: `string` or `Array`<br>
+Type: `string` or `string[]`<br>
 Default: `undefined`
 
-Glob or an array of globs that matches files to emit. These globs are all relative to `options.base` if specified.
+Glob pattern(s), relative to `options.base` if specified, that specifies what files to emit into the Gulp stream. These patterns are automatically appended with a wildcard glob of affected file extensions unless custom extensions are specified in the patterns.
 
-##### `options.dest` (required)
+##### `options.dest`
 
 Type: `string`<br>
 Default: `undefined`
@@ -105,9 +85,9 @@ Options that define the file watching behavior. If set to `false`, watching will
 ###### `options.watch.files`
 
 Type: `string` or `string[]`<br>
-Default: Patterns computed from `options.base` and `options.src`
+Default: Emitted source files
 
-Glob pattern(s) that matches the files to be watched. Defaults to the patterns computed from `options.base` and `options.src`.
+Glob pattern(s) that matches the files to be watched. Defaults to the emitted source file patterns computed from `options.base` and `options.src`.
 
 ###### `options.watch.tasks`
 
@@ -119,7 +99,15 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 ##### `options.sass`
 
 Type: `Object`<br>
-Default: `undefined`
+Default:
+```js
+{
+  includePaths: [
+    {Directory of source files},
+    {Directory of Node modules}
+  ]
+}
+```
 
 Options for [`gulp-sass`](https://www.npmjs.com/package/gulp-sass).
 
@@ -147,7 +135,7 @@ Options for [`gulp-purifycss`](https://www.npmjs.com/package/gulp-purifycss).
 ##### `options.sourcemaps`
 
 Type: `boolean`<br>
-Default: `true`, `false` in `production`
+Default: `true`, `false` when `NODE_ENV=production`
 
 Specifies whether sourcemaps are enabled.
 
@@ -156,17 +144,17 @@ Specifies whether sourcemaps are enabled.
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
 ## Watching for Changes
 
 You can pass a `--watch` or `--w` flag to the Gulp command to enable file watching, like so:
 
 ```
-$ gulp styles --watch
+$ gulp videos --watch
 ```
 
-By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior use `options.watch`.
+By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
 
 ## License
 

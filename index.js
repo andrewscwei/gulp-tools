@@ -1,8 +1,7 @@
 // (c) VARIANTE
 /**
- * @file Gulp task for processing Sass files, with the option to watch for
- *       changes by passing either `--watch` or `--w` flag when running the
- *       task using the CLI.
+ * @file Gulp task for processing Sass files. Option to watch for changes by
+ *       passing either `--watch` or `--w` flag in the CLI.
  */
 
 const $ = require('gulp-task-helpers');
@@ -39,30 +38,31 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * Method that defines the task with configurable options. Only `options.src`
- * and `options.dest` are required.
+ * Method that defines the Gulp task.
  *
  * @param {Object} options - Task options.
  * @param {string} [options.base] - Base path for the source files to emit.
- * @param {string|string[]} options.src - Glob or an array of globs that matches
- *                                        files to emit. These globs are all
- *                                        relative to `options.base`.
- * @param {string} options.dest - Path of destination directory to write files
- *                                to.
+ * @param {string|string[]} [options.src] - Glob pattern(s), relative to
+ *                                          `options.base` if specified, that
+ *                                          specifies what files to emit into
+ *                                          the Gulp stream. These patterns are
+ *                                          automatically appended with a
+ *                                          wildcard glob of affected file
+ *                                          extensions unless custom extensions
+ *                                          are specified in the patterns.
+ * @param {string} options.dest - Destination path to write files to.
  * @param {Object} [options.watch] - Options that define the file watching
  *                                   behavior. If set to `false`, watching will
  *                                   be disabled even if the CLI flag is set.
  * @param {string|string[]} [options.watch.files] - Glob pattern(s) that matches
  *                                                  files to watch. Defaults to
- *                                                  the emitted files.
+ *                                                  the emitted source files.
  * @param {string|Function|Array} [options.watch.tasks] - Array of task names or
  *                                                        functions to execute
  *                                                        when watched files
  *                                                        change. Defaults to
  *                                                        the current task name.
- * @param {Object} [options.sass] - Options for `gulp-sass`. Defaults to an
- *                                  object with `includePaths` set to
- *                                  `options.base`.
+ * @param {Object} [options.sass] - Options for `gulp-sass`.
  * @param {Object} [options.autoprefixer] - Options for `autoprefixer`. If set
  *                                          to `false`, `autoprefixer` will be
  *                                          skipped.
@@ -70,14 +70,12 @@ const DEFAULT_CONFIG = {
  *                                  will be skipped.
  * @param {boolean} [options.sourcemaps] - Specifies whether sourcemaps are
  *                                         enabled.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  *
- * @return {Function} - A function that returns a Gulp stream.
+ * @return {Function} - A function that returns a Gulp stream for this task.
  */
 module.exports = function(options, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
   let isWatching = false;
 
   return function() {
@@ -98,7 +96,7 @@ module.exports = function(options, extendsDefaults) {
       };
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
     const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
     const dest = $.glob('', { base: config.dest });
