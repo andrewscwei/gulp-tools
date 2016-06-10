@@ -1,6 +1,6 @@
 # gulp-task-webpack [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-webpack/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-webpack/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-webpack.svg)](https://badge.fury.io/js/gulp-task-webpack)
 
-Gulp task for Webpack.
+Gulp task for [Webpack]((https://webpack.github.io/).
 
 ## Usage
 
@@ -9,7 +9,16 @@ import gulp from 'gulp';
 import browserSync from 'browser-sync';
 import webpack from 'gulp-task-webpack';
 
-gulp.task('scripts', webpack(options, true, {
+gulp.task('scripts', webpack({
+  context: 'app/javascripts',
+  entry: {
+    application: 'application.js'
+  },
+  output: {
+    path: 'public/javascripts',
+    publicPath: 'javascripts'
+  }
+}, {
   callback: browserSync.reload
 }));
 ```
@@ -20,7 +29,7 @@ $ gulp scripts
 
 ## API
 
-### `webpack(options[, extendsDefaults][, watchOptions])`
+### `webpack(options[, watchOptions][, extendsDefaults])`
 
 Return: `Function`
 
@@ -71,7 +80,7 @@ Default:
       ]
     }
   }
-};
+}
 ```
 
 [`webpack`](https://webpack.github.io/) options. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
@@ -105,7 +114,7 @@ You can pass a `--watch` or `--w` flag to the Gulp command to enable file watchi
 $ gulp scripts --watch
 ```
 
-By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
+By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `watchOptions`.
 
 ## License
 
