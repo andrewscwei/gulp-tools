@@ -17,6 +17,7 @@ metalprismic.init(gulp, {
   apiEndpoint: process.env.PRISMIC_API_ENDPOINT,
   accessToken: process.env.PRISMIC_ACCESS_TOKEN
 });
+```
 
 ```
 $ gulp views
