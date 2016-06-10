@@ -22,6 +22,8 @@ $ gulp scripts
 
 ### `webpack(options[, extendsDefaults][, watchOptions])`
 
+Return: `Function`
+
 #### `options`
 
 Type: `Object`<br>
@@ -72,27 +74,7 @@ Default:
 };
 ```
 
-[`webpack`](https://webpack.github.io/) options. You can override options for specific `NODE_ENV` environments by putting the same option inside `options.envs.{NODE_ENV}`. For example:
-
-```js
-{
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common.js')
-  ],
-  envs: {
-    production: {
-      plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common.js'),
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, sourceMap: false })
-      ]
-    }
-  }
-}
-```
-
-...would use Webpack's `UglifyJsPlugin` when `NODE_ENV` is `production`. 
-
-When `NODE_ENV` is blank, `production` environment is assumed.
+[`webpack`](https://webpack.github.io/) options. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
 
 #### `watchOptions`
 
@@ -113,7 +95,7 @@ Method invoked whenever Webpack rebundles changed files.
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default Webpack config provided for you. When you pass in your own Webpack config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
 ## Watching for Changes
 
@@ -122,6 +104,8 @@ You can pass a `--watch` or `--w` flag to the Gulp command to enable file watchi
 ```
 $ gulp scripts --watch
 ```
+
+By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
 
 ## License
 

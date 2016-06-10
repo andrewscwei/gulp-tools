@@ -1,8 +1,7 @@
 // (c) VARIANTE
 /**
- * @file Gulp task for processing JavaScript files using Webpack, with the
- *       option to use the built-in Webpack watching feature by passing either
- *       `--watch` or `--w` flag when running the task using the CLI.
+ * @file Gulp task for processing JavaScript files using Webpack. Option to
+ *       watch for changes by passing either `--watch` or `--w` flag in the CLI.
  */
 
 const $ = require('gulp-task-helpers');
@@ -60,16 +59,12 @@ const DEFAULT_CONFIG = {
  *                                          set to `false`, watching will be
  *                                          disabled even if the `--watch` flag
  *                                          is set.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
 module.exports = function(options, watchOptions, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
-
-
   let isWatching = false;
 
   return function(callback) {
@@ -80,7 +75,7 @@ module.exports = function(options, watchOptions, extendsDefaults) {
       DEFAULT_CONFIG.resolve.root = [options.context];
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
     const watchCallback = watchOptions && watchOptions.callback;
     const shouldWatch = (util.env['watch'] || util.env['w']) && (watchOptions !== false);
 
