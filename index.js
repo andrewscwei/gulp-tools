@@ -89,9 +89,8 @@ const DEFAULT_CONFIG = {
  * @param {Object} [options.scripts] - Options for `gulp-task-webpack`.
  * @param {Object} [options.styles] - Options for `gulp-task-sass`.
  * @param {Object} [options.rev] - Options for `gulp-task-rev`.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  */
 exports.init = function(gulp, options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;

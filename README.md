@@ -1,15 +1,16 @@
 # gulp-pipe-assets [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-pipe-assets/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-pipe-assets/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-assets.svg)](https://badge.fury.io/js/gulp-pipe-assets)
 
-Gulp asset pipeline (i.e. images, videos, fonts, documents, stylesheets via Sass, JavaScripts via Webpack, etc). This pipeline creates 9 Gulp tasks: 'images', 'videos', 'fonts', 'documents', 'extras', 'styles', 'scripts', 'rev' and 'assets'. This pipeline uses the following submodules to generate its tasks:
+Gulp asset pipeline (i.e. images, videos, fonts, documents, stylesheets via Sass, JavaScripts via Webpack, etc). This pipeline creates the following Gulp tasks:
 
-1. [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images)
-2. [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos)
-3. [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts)
-4. [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents)
-5. [`gulp-task-extras`](https://www.npmjs.com/package/gulp-task-extras)
-6. [`gulp-task-sass`](https://www.npmjs.com/package/gulp-task-sass)
-7. [`gulp-task-webpack`](https://www.npmjs.com/package/gulp-task-webpack)
-8. [`gulp-task-rev`](https://www.npmjs.com/package/gulp-task-rev)
+1. `images` - [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images)
+2. `videos` - [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos)
+3. `fonts` - [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts)
+4. `documents` - [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents)
+5. `extras` - [`gulp-task-extras`](https://www.npmjs.com/package/gulp-task-extras)
+6. `styles` - [`gulp-task-sass`](https://www.npmjs.com/package/gulp-task-sass)
+7. `scripts` - [`gulp-task-webpack`](https://www.npmjs.com/package/gulp-task-webpack)
+8. `rev` - [`gulp-task-rev`](https://www.npmjs.com/package/gulp-task-rev)
+9. `assets` - Sequence of the above tasks in that order.
 
 ## Usage
 
@@ -46,28 +47,7 @@ Gulp instance.
 
 Type: `Object`
 
-Options that define the behavior of this pipeline's tasks. You can override options for specific `NODE_ENV` environments by putting the same option inside `options.envs.{NODE_ENV}`. For example:
-
-```js
-{
-  base: 'app'
-  envs: {
-    production: {
-      base: 'public'
-    }
-  }
-}
-```
-
-...would give you the following when `NODE_ENV` is `production`:
-
-```js
-{
-  base: 'public'
-}
-```
-
-When `NODE_ENV` is blank, `production` environment is assumed.
+Options that define the behavior of this task. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base`
 
@@ -215,7 +195,7 @@ Options for [`gulp-task-rev`](https://www.npmjs.com/package/gulp-task-rev).
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
 ## License
 

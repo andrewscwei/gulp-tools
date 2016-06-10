@@ -1,6 +1,6 @@
 {
   "name": "gulp-pipe-assets",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Gulp asset pipeline with Sass and Webpack",
   "main": "index.js",
   "repository": {
@@ -20,15 +20,15 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "gulp-task-documents": "^1.1.1",
-    "gulp-task-extras": "^1.0.0",
-    "gulp-task-fonts": "^1.1.2",
-    "gulp-task-helpers": "^1.1.0",
-    "gulp-task-images": "^1.1.2",
-    "gulp-task-rev": "^1.0.3",
-    "gulp-task-sass": "^1.1.6",
-    "gulp-task-videos": "^1.1.1",
-    "gulp-task-webpack": "^1.1.0",
+    "gulp-task-documents": "^1.2.0",
+    "gulp-task-extras": "^1.2.0",
+    "gulp-task-fonts": "^1.2.0",
+    "gulp-task-helpers": "^1.2.0",
+    "gulp-task-images": "^1.2.3",
+    "gulp-task-rev": "^1.2.0",
+    "gulp-task-sass": "^1.2.1",
+    "gulp-task-videos": "^1.2.0",
+    "gulp-task-webpack": "^1.2.0",
     "lodash": "^4.13.1",
     "run-sequence": "^1.2.1"
   }
