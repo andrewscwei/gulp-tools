@@ -64,9 +64,8 @@ const DEFAULT_CONFIG = {
  * @param {Object} [options.views] - Options for `gulp-pipe-metalprismic`.
  * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
  * @param {Object} [options.serve] - Options for `browser-sync`.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  */
 exports.init = function(options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;

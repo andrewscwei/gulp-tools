@@ -53,28 +53,7 @@ $ gulp
 
 Type: `Object`
 
-Options that define the behavior of this task. You can override options for specific `NODE_ENV` environments by putting the same option inside `options.envs.{NODE_ENV}`. For example:
-
-```js
-{
-  src: '**/*',
-  envs: {
-    production: {
-      src: 'foo/**/*'
-    }
-  }
-}
-```
-
-...would give you the following when `NODE_ENV` is `production`:
-
-```js
-{
-  src: 'foo/**/*'
-}
-```
-
-When `NODE_ENV` is blank, `production` environment is assumed.
+Options that define the behavior of this task. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base` (required)
 
@@ -252,7 +231,7 @@ Options for [`browser-sync`](https://www.npmjs.com/package/browser-sync). To ser
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
 ## Watching for Changes
 
