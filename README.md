@@ -1,11 +1,12 @@
 # gulp-pipe-media [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-pipe-media/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-pipe-media/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-media.svg)](https://badge.fury.io/js/gulp-pipe-media)
 
-Gulp pipeline for media tasks (i.e. images, videos, fonts and documents). This pipeline creates 5 Gulp tasks: 'images', 'videos', 'fonts', 'documents' and 'media'. This pipeline uses the following submodules to generate its tasks:
+Gulp pipeline for media tasks (i.e. images, videos, fonts and documents). This pipeline creates the following Gulp tasks:
 
-1. [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images)
-2. [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos)
-3. [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts)
-4. [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents)
+1. `images` - [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images)
+2. `videos` - [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos)
+3. `fonts` - [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts)
+4. `documents` - [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents)
+5. `media` - Sequence of the above tasks.
 
 ## Usage
 
@@ -37,28 +38,7 @@ Gulp instance.
 
 Type: `Object`
 
-Options that define the behavior of this pipeline's tasks. You can override options for specific `NODE_ENV` environments by putting the same option inside `options.envs.{NODE_ENV}`. For example:
-
-```js
-{
-  base: 'app'
-  envs: {
-    production: {
-      base: 'public'
-    }
-  }
-}
-```
-
-...would give you the following when `NODE_ENV` is `production`:
-
-```js
-{
-  base: 'public'
-}
-```
-
-When `NODE_ENV` is blank, `production` environment is assumed.
+Options that define the behavior of this pipeline's tasks. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base`
 
@@ -113,7 +93,7 @@ Options for [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-docu
 Type: `boolean`<br>
 Default: `true`
 
-This module has a default config provided for you. When you pass in your own config via the `options` parameter, the module resolves your config with the default config by using `lodash`(https://lodash.com/)'s `merge` function, which doesn't concatenate array values. If `extendsDefaults` is set to `true`, array values will be concatenated.
+Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
 ## License
 

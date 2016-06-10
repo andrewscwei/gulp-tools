@@ -32,7 +32,7 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * Creates media processing Gulp tasks.
+ * Creates media processing Gulp tasks for images, videos, documents and fonts.
  *
  * @param {Object} gulp - Gulp instance.
  * @param {Object} options - Task options.
@@ -46,9 +46,8 @@ const DEFAULT_CONFIG = {
  * @param {Object} [options.videos] - Options for `gulp-task-videos`.
  * @param {Object} [options.fonts] - Options for `gulp-task-fonts`.
  * @param {Object} [options.documents] - Options for `gulp-task-documents`.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  */
 exports.init = function(gulp, options, extendsDefaults) {
   if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
@@ -62,7 +61,7 @@ exports.init = function(gulp, options, extendsDefaults) {
   gulp.task('documents', documents(_.merge(_.omit(config, tasks), _.get(config, 'documents')), extendsDefaults));
 
   gulp.task('media', function(callback) {
-    const seq = ['images', 'videos', 'fonts', 'documents'];
+    const seq = ['images', 'videos', 'fonts', 'documents', callback];
     sequence.use(gulp).apply(null, seq);
   });
 };
