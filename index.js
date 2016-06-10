@@ -24,8 +24,7 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * Method that defines the task with configurable options. Only `options.src`
- * and `options.dest` are required.
+ * Method that defines the Gulp task.
  *
  * @param {Object} options - Task options.
  * @param {string} [options.src] - Path to the directory that contains files
@@ -45,16 +44,13 @@ const DEFAULT_CONFIG = {
  *                                              directory as `options.src`.
  * @param {string} [options.prefix] - Prefix to be added to the revisioned file
  *                                    paths (i.e. CDN host).
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
 module.exports = function(options, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
-
-  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+  const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
 
   if (config.ignore) config.ignore = [].concat(config.ignore);
   config.ignore.forEach((val, i) => { config.ignore[i] = `!${val}`; });
