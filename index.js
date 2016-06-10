@@ -34,16 +34,13 @@ const DEFAULT_CONFIG = {
  *                           `gulp-task-metalsmith`.
  * @param {string} options.apiEndpoint - API endpoint of the Prismic repo.
  * @param {string} [options.accessToken] - Access token of the Prismic repo.
- * @param {boolean} [extendsDefaults=true] - Specifies whether array values are
- *                                           concatenated when merging config
- *                                           options with defaults.
+ * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
+ *                                           `gulp-task-helpers`#config.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */
 exports.init = function(gulp, options, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
-
-  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+  const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
 
   gulp.task('views', function(callback) {
     if (config.apiEndpoint) {
