@@ -1,5 +1,7 @@
 # gulp-task-images [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-images/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-images/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-images.svg)](https://badge.fury.io/js/gulp-task-images)
 
+## DEPRECATED, USE [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media) INSTEAD
+
 Gulp task for processing images with built-in support for watching emitted source files for changes. This task supports the following plugins:
 
 1. [`gulp-imagemin`](https://www.npmjs.com/package/gulp-imagemin)
