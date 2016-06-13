@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-rev",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Gulp task for static asset revisioning",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-rev.git"
+    "url": "https://github.com/andrewscwei/gulp-task-rev.git"
   },
   "files": [
     "index.js"

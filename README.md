@@ -1,4 +1,4 @@
-# gulp-task-rev [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-rev/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-rev/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-rev.svg)](https://badge.fury.io/js/gulp-task-rev)
+# gulp-task-rev [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-rev/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-rev/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-rev.svg)](https://badge.fury.io/js/gulp-task-rev)
 
 Gulp task for performing static asset revisioning by appending content hash to filenames. Original paths in html/js/css files will be automatically replaced with the revisioned path. Option to add a prefix to revisioned paths (i.e. CDN host).
 

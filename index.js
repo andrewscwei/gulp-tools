@@ -1,4 +1,4 @@
-// (c) VARIANTE
+// (c) Andrew Wei
 /**
  * @file Gulp task for performing static asset revisioning by appending content
  *       hash to filenames. Original paths in html/js/css files will be
