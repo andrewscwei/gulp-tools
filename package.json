@@ -20,11 +20,11 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "gulp-task-documents": "^1.2.2",
-    "gulp-task-fonts": "^1.2.2",
-    "gulp-task-helpers": "^1.2.2",
-    "gulp-task-images": "^1.2.5",
-    "gulp-task-videos": "^1.2.3",
+    "gulp-task-documents": "^1.2.4",
+    "gulp-task-fonts": "^1.2.4",
+    "gulp-task-helpers": "^1.2.8",
+    "gulp-task-images": "^1.2.9",
+    "gulp-task-videos": "^1.2.6",
     "lodash": "^4.13.1",
     "run-sequence": "^1.2.1"
   }
