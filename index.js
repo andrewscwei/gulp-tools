@@ -1,4 +1,4 @@
-// (c) VARIANTE
+// (c) Andrew Wei
 
 const _ = require('lodash');
 const path = require('path');
