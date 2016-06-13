@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-browserify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gulp task for Browserify",
   "main": "index.js",
   "repository": {
@@ -23,7 +23,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-task-helpers": "^1.2.0",
+    "gulp-task-helpers": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "through2": "^2.0.1",
     "vinyl-buffer": "^1.0.0",
