@@ -9,5 +9,3 @@ git commit -m "Update packages"
 git push
 git tag release-$VERSION
 git push --tags
-
-
