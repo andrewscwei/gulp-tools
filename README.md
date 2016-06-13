@@ -90,7 +90,7 @@ Fallback watch options for the individual tasks if a specific one is not provide
 
 ##### `options.images`
 
-Type: `Object`<br>
+Type: `Object` or `boolean`<br>
 Default:
 ```js
 {
@@ -109,7 +109,7 @@ Default:
 }
 ```
 
-Options for the `images` task.
+Options for the `images` task. Set this to `false` to disable this task.
 
 ###### `options.images.base`
 
@@ -161,7 +161,7 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 
 ##### `options.videos`
 
-Type: `Object`<br>
+Type: `Object` or `boolean`<br>
 Default:
 ```js
 {
@@ -175,7 +175,7 @@ Default:
 }
 ```
 
-Options for the `videos` task.
+Options for the `videos` task. Set this to `false` to disable this task.
 
 ###### `options.videos.base`
 
@@ -220,7 +220,7 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 
 ##### `options.fonts`
 
-Type: `Object`<br>
+Type: `Object` or `boolean`<br>
 Default:
 ```js
 {
@@ -234,7 +234,7 @@ Default:
 }
 ```
 
-Options for the `fonts` task.
+Options for the `fonts` task. Set this to `false` to disable this task.
 
 ###### `options.fonts.base`
 
@@ -279,7 +279,7 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 
 ##### `options.documents`
 
-Type: `Object`<br>
+Type: `Object` or `boolean`<br>
 Default:
 ```js
 {
@@ -293,7 +293,7 @@ Default:
 }
 ```
 
-Options for the `documents` task.
+Options for the `documents` task. Set this to `false` to disable this task.
 
 ###### `options.documents.base`
 
@@ -338,7 +338,7 @@ Task(s) or methods to invoke whenever watched files have changed. This array is 
 
 ##### `options.extras`
 
-Type: `Object`<br>
+Type: `Object` or `boolean`<br>
 Default:
 ```js
 {
@@ -352,7 +352,7 @@ Default:
 }
 ```
 
-Options for the `extras` task.
+Options for the `extras` task. Set this to `false` to disable this task.
 
 #### `extendsDefaults`
 
