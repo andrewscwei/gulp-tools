@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-stylus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gulp task for processing Stylus files",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-stylus.git"
+    "url": "https://github.com/andrewscwei/gulp-task-stylus.git"
   },
   "files": [
     "index.js"
