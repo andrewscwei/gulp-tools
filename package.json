@@ -23,7 +23,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-task-helpers": "^1.2.2",
+    "gulp-task-helpers": "^1.2.8",
     "gulp-uglify": "^1.5.3",
     "through2": "^2.0.1",
     "vinyl-buffer": "^1.0.0",
