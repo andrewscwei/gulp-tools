@@ -51,30 +51,4 @@ describe('helpers', function() {
       c: 4
     });
   });
-
-  it('config() should be environment specific', function() {
-    expect($.config({
-      a: 1,
-      b: 2,
-      envs: {
-        production: {
-          a: 10
-        }
-      }
-    }, {
-      a: 2,
-      b: 3,
-      c: 4,
-      envs: {
-        production: {
-          a: 5,
-          b: 20
-        }
-      }
-    })).to.eql({
-      a: 10,
-      b: 20,
-      c: 4
-    });
-  });
 });
