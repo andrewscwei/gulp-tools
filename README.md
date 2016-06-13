@@ -1,4 +1,4 @@
-# gulp-pipe-assets [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-pipe-assets/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-pipe-assets/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-assets.svg)](https://badge.fury.io/js/gulp-pipe-assets)
+# gulp-pipe-assets [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-assets/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-assets/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-assets.svg)](https://badge.fury.io/js/gulp-pipe-assets)
 
 Gulp asset pipeline (i.e. images, videos, fonts, documents, stylesheets via Sass, JavaScripts via Webpack, etc). This pipeline creates the following Gulp tasks:
 
