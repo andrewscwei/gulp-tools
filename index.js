@@ -8,40 +8,22 @@
 
 const $ = require('gulp-task-helpers');
 const _ = require('lodash');
-const documents = require('gulp-task-documents');
-const extras = require('gulp-task-extras');
-const fonts = require('gulp-task-fonts');
-const images = require('gulp-task-images');
+const media = require('gulp-pipe-media');
 const path = require('path');
 const rev = require('gulp-task-rev');
 const sass = require('gulp-task-sass');
 const sequence = require('run-sequence');
-const videos = require('gulp-task-videos');
 const webpack = require('gulp-task-webpack');
 
 const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
   watch: undefined,
-  images: {
-    src: 'images/**/*',
-    dest: undefined // `options.dest/assets`
-  },
-  videos: {
-    src: 'videos/**/*',
-    dest: undefined // `options.dest/assets`
-  },
-  fonts: {
-    src: 'fonts/**/*',
-    dest: undefined // `options.dest/assets`
-  },
-  documents: {
-    src: 'documents/**/*',
-    dest: undefined // `options.dest/assets`
-  },
-  extras: {
-    src: '*'
-  },
+  images: undefined,
+  videos: undefined,
+  fonts: undefined,
+  documents: undefined,
+  extras: undefined,
   scripts: {
     context: undefined, // `options.base/javascripts`
     output: {
@@ -81,11 +63,16 @@ const DEFAULT_CONFIG = {
  *                                  paths are not provided.
  * @param {Object} [options.watch] - Fallback watch options if invidual task
  *                                   watch options are not provided.
- * @param {Object} [options.images] - Options for `gulp-task-images`.
- * @param {Object} [options.videos] - Options for `gulp-task-videos`.
- * @param {Object} [options.fonts] - Options for `gulp-task-fonts`.
- * @param {Object} [options.documents] - Options for `gulp-task-documents`.
- * @param {Object} [options.extras] - Options for `gulp-task-extras`.
+ * @param {Object} [options.images] - Options for the `images` task in
+ *                                    `gulp-pipe-media`.
+ * @param {Object} [options.videos] - Options for the `videos` task in
+ *                                   `gulp-pipe-media`.
+ * @param {Object} [options.fonts] - Options for the `fonts` task in
+ *                                   `gulp-pipe-media`.
+ * @param {Object} [options.documents] - Options for the `documents` task in
+ *                                       `gulp-pipe-media`.
+ * @param {Object} [options.extras] - Options for the `extras` task in
+ *                                    `gulp-pipe-media`.
  * @param {Object} [options.scripts] - Options for `gulp-task-webpack`.
  * @param {Object} [options.styles] - Options for `gulp-task-sass`.
  * @param {Object} [options.rev] - Options for `gulp-task-rev`.
@@ -101,10 +88,6 @@ exports.init = function(gulp, options, extendsDefaults) {
   }
 
   if (options.dest) {
-    DEFAULT_CONFIG.images.dest = path.join(options.dest, 'assets');
-    DEFAULT_CONFIG.videos.dest = path.join(options.dest, 'assets');
-    DEFAULT_CONFIG.fonts.dest = path.join(options.dest, 'assets');
-    DEFAULT_CONFIG.documents.dest = path.join(options.dest, 'assets');
     DEFAULT_CONFIG.scripts.output.path = path.join(options.dest, DEFAULT_CONFIG.scripts.output.publicPath);
     DEFAULT_CONFIG.styles.dest = path.join(options.dest, 'assets');
     DEFAULT_CONFIG.styles.envs.production.purify = path.join(options.dest, '**/*');
@@ -113,18 +96,23 @@ exports.init = function(gulp, options, extendsDefaults) {
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
   const tasks = ['images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev'];
+  const seq = [];
 
-  gulp.task('images', images(_.merge(_.omit(config, tasks), _.get(config, 'images')), extendsDefaults));
-  gulp.task('videos', videos(_.merge(_.omit(config, tasks), _.get(config, 'videos')), extendsDefaults));
-  gulp.task('fonts', fonts(_.merge(_.omit(config, tasks), _.get(config, 'fonts')), extendsDefaults));
-  gulp.task('documents', documents(_.merge(_.omit(config, tasks), _.get(config, 'documents')), extendsDefaults));
-  gulp.task('extras', extras(_.merge(_.omit(config, tasks), _.get(config, 'extras')), extendsDefaults));
+  media.init(gulp, config, extendsDefaults);
+
   gulp.task('scripts', webpack(_.merge(_.omit(config, tasks), _.get(config, 'scripts')), { callback: config.watch.tasks && (typeof config.watch.tasks[0] === 'function') && config.watch.tasks[0] }, extendsDefaults));
   gulp.task('styles', sass(_.merge(_.omit(config, tasks), _.get(config, 'styles')), extendsDefaults));
   gulp.task('rev', rev(_.merge(_.omit(config, tasks), _.get(config, 'rev')), extendsDefaults));
 
+  const seq = [];
+
+  if (options.images !== false) seq.push('images');
+  if (options.videos !== false) seq.push('videos');
+  if (options.fonts !== false) seq.push('fonts');
+  if (options.documents !== false) seq.push('documents');
+  if (options.extras !== false) seq.push('extras');
+
   gulp.task('assets', function(callback) {
-    const seq = ['images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', callback];
-    sequence.use(gulp).apply(null, seq);
+    sequence.use(gulp).apply(null, seq.concat(['scripts', 'styles', 'rev', callback]));
   });
 };

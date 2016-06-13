@@ -2,11 +2,11 @@
 
 Gulp asset pipeline (i.e. images, videos, fonts, documents, stylesheets via Sass, JavaScripts via Webpack, etc). This pipeline creates the following Gulp tasks:
 
-1. `images` - [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images)
-2. `videos` - [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos)
-3. `fonts` - [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts)
-4. `documents` - [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents)
-5. `extras` - [`gulp-task-extras`](https://www.npmjs.com/package/gulp-task-extras)
+1. `images` - `images` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media)
+2. `videos` - `videos` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media)
+3. `fonts` - `fonts` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media)
+4. `documents` - `documents` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media)
+5. `extras` - `extras` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media)
 6. `styles` - [`gulp-task-sass`](https://www.npmjs.com/package/gulp-task-sass)
 7. `scripts` - [`gulp-task-webpack`](https://www.npmjs.com/package/gulp-task-webpack)
 8. `rev` - [`gulp-task-rev`](https://www.npmjs.com/package/gulp-task-rev)
@@ -72,67 +72,37 @@ Fallback watch options for the individual tasks if a specific one is not provide
 ##### `options.images`
 
 Type: `Object`<br>
-Default: 
-```js
-{ 
-  src: 'images/**/*',
-  dest: `${options.dest}/assets`
-}
-```
+Default: `undefined`
 
-Options for [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images).
+Options for `images` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media).
 
 ##### `options.videos`
 
 Type: `Object`<br>
-Default:
-```js
-{ 
-  src: 'videos/**/*',
-  dest: `${options.dest}/assets`
-}
-```
+Default: `undefined`
 
-Options for [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos).
+Options for `videos` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media).
 
 ##### `options.fonts`
 
 Type: `Object`<br>
-Default:
-```js
-{ 
-  src: 'fonts/**/*',
-  dest: `${options.dest}/assets`
-}
-```
+Default: `undefined`
 
-Options for [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts).
+Options for `fonts` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media).
 
 ##### `options.documents`
 
 Type: `Object`<br>
-Default: 
-```js
-{ 
-  src: 'documents/**/*',
-  dest: `${options.dest}/assets`
-}
-```
+Default: `undefined`
 
-Options for [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents).
+Options for `documents` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media).
 
 ##### `options.extras`
 
 Type: `Object`<br>
-Default: 
-```js
-{ 
-  src: '*',
-  dest: `${options.dest}`
-}
-```
+Default: `undefined`
 
-Options for [`gulp-task-extras`](https://www.npmjs.com/package/gulp-task-extras).
+Options for `extras` task from [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media).
 
 ##### `options.scripts`
 
