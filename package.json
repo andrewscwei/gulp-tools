@@ -1,6 +1,6 @@
 {
   "name": "gulp-pipe-assets",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Gulp asset pipeline with Sass and Webpack",
   "main": "index.js",
   "repository": {

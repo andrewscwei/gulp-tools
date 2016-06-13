@@ -104,8 +104,6 @@ exports.init = function(gulp, options, extendsDefaults) {
   gulp.task('styles', sass(_.merge(_.omit(config, tasks), _.get(config, 'styles')), extendsDefaults));
   gulp.task('rev', rev(_.merge(_.omit(config, tasks), _.get(config, 'rev')), extendsDefaults));
 
-  const seq = [];
-
   if (options.images !== false) seq.push('images');
   if (options.videos !== false) seq.push('videos');
   if (options.fonts !== false) seq.push('fonts');
