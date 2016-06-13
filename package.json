@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-documents",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Gulp task for processing documents",
   "main": "index.js",
   "repository": {
