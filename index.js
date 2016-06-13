@@ -1,4 +1,4 @@
-// (c) VARIANTE
+// (c) Andrew Wei
 /**
  * @file Gulp task for processing video files. Option to watch for changes by
  *       passing either `--watch` or `--w` flag in the CLI.

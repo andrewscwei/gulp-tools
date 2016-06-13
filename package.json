@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-videos",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Gulp task for processing videos",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-videos.git"
+    "url": "https://github.com/andrewscwei/gulp-task-videos.git"
   },
   "files": [
     "index.js"

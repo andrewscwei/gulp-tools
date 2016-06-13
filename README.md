@@ -1,4 +1,4 @@
-# gulp-task-videos [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-videos/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-videos/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-videos.svg)](https://badge.fury.io/js/gulp-task-videos)
+# gulp-task-videos [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-videos/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-videos/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-videos.svg)](https://badge.fury.io/js/gulp-task-videos)
 
 Gulp task for processing videos with built-in support for watching emitted source files for changes. 
 
