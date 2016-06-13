@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-browserify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp task for Browserify",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-browserify.git"
+    "url": "https://github.com/andrewscwei/gulp-task-browserify.git"
   },
   "files": [
     "index.js"
