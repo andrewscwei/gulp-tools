@@ -1,4 +1,4 @@
-# gulp-task-fonts [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-fonts/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-fonts/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-fonts.svg)](https://badge.fury.io/js/gulp-task-fonts)
+# gulp-task-fonts [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-fonts/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-fonts/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-fonts.svg)](https://badge.fury.io/js/gulp-task-fonts)
 
 Gulp task for processing fonts with built-in support for watching emitted source files for changes. 
 

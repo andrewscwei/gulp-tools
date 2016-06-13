@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-fonts",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Gulp task for processing fonts",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-fonts.git"
+    "url": "https://github.com/andrewscwei/gulp-task-fonts.git"
   },
   "files": [
     "index.js"
