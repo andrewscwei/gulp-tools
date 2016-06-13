@@ -4,14 +4,14 @@ An end-to-end Gulp build system and asset pipeline for a webapp templated by Met
 
 1. `clean` - Cleans the built files.
 2. `views` - Generates Prismic-Metalsmith templates using [`gulp-pipe-metalprismic`](https://www.npmjs.com/package/gulp-pipe-metalprismic).
-3. `images` - Processes images using [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images).
-4. `videos` - Processes videos using [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos).
-5. `fonts` - Processes fonts using [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts).
-6. `documents` - Processes documents using [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents).
-7. `extras` - Processes other miscellaneous files such as `robots.txt` and `sitemap.xml` using [`gulp-task-extras`](https://www.npmjs.com/package/gulp-task-extras).
-8. `scripts` - Bundles JavaScripts using [`gulp-task-webpack`](https://www.npmjs.com/package/gulp-task-webpack).
-9. `styles`, - Compiles preprocessed stylesheets using [`gulp-task-sass`](https://www.npmjs.com/package/gulp-task-sass).
-10. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files. Uses [`gulp-task-rev`](https://www.npmjs.com/package/gulp-task-rev).
+3. `images` - Processes images using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+4. `videos` - Processes videos using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+5. `fonts` - Processes fonts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+6. `documents` - Processes documents using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+7. `extras` - Processes other miscellaneous files such as `robots.txt` and `sitemap.xml` using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+8. `scripts` - Bundles JavaScripts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+9. `styles`, - Compiles preprocessed stylesheets using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+10. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files. Uses [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 11. `serve` - Serves the app with [`browser-sync`](https://www.npmjs.com/package/browser-sync).
 12. `default` - Executes the above tasks in sequence.
 
@@ -107,7 +107,7 @@ Default:
 }
 ``` 
 
-Options for [`gulp-task-images`](https://www.npmjs.com/package/gulp-task-images).
+Options for `images` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.videos`
 
@@ -121,7 +121,7 @@ Default:
 }
 ``` 
 
-Options for [`gulp-task-videos`](https://www.npmjs.com/package/gulp-task-videos).
+Options for `videos` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.fonts`
 
@@ -135,7 +135,7 @@ Default:
 }
 ``` 
 
-Options for [`gulp-task-fonts`](https://www.npmjs.com/package/gulp-task-fonts).
+Options for `fonts` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.documents`
 
@@ -149,7 +149,7 @@ Default:
 }
 ``` 
 
-Options for [`gulp-task-documents`](https://www.npmjs.com/package/gulp-task-documents).
+Options for `documents` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.extras`
 
@@ -163,21 +163,21 @@ Default:
 }
 ``` 
 
-Options for [`gulp-task-extras`](https://www.npmjs.com/package/gulp-task-extras).
+Options for `extras` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.scripts`
 
 Type: `Object`<br>
 Default: See [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets)
 
-Options for [`gulp-task-webpack`](https://www.npmjs.com/package/gulp-task-webpack).
+Options for `scripts` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.styles`
 
 Type: `Object`<br>
 Default: See [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets)
 
-Options for [`gulp-task-sass`](https://www.npmjs.com/package/gulp-task-sass).
+Options for `styles` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.rev`
 
@@ -193,7 +193,7 @@ Default:
 }
 ```
 
-Options for [`gulp-task-rev`](https://www.npmjs.com/package/gulp-task-rev).
+Options for `rev` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 
 ##### `options.clean`
 
