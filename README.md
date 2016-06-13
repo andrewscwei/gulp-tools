@@ -1,4 +1,4 @@
-# gulp-task-documents [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-documents/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-documents/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-documents.svg)](https://badge.fury.io/js/gulp-task-documents)
+# gulp-task-documents [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-documents/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-documents/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-documents.svg)](https://badge.fury.io/js/gulp-task-documents)
 
 Gulp task for processing documents with built-in support for watching emitted source files for changes. 
 

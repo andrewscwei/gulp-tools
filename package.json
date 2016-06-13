@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-documents",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Gulp task for processing documents",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-documents.git"
+    "url": "https://github.com/andrewscwei/gulp-task-documents.git"
   },
   "files": [
     "index.js"
