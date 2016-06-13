@@ -1,4 +1,4 @@
-# gulp-task-sass [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-task-sass/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-task-sass/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-sass.svg)](https://badge.fury.io/js/gulp-task-sass)
+# gulp-task-sass [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-sass/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-sass/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-sass.svg)](https://badge.fury.io/js/gulp-task-sass)
 
 Gulp task for processing Sass files with the option to watch the emitted source files for changes.
 
