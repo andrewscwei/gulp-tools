@@ -8,7 +8,8 @@
     "url": "https://github.com/andrewscwei/gulp-pipe-media.git"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "tasks"
   ],
   "engines": {
     "node": ">=6.1.0",
