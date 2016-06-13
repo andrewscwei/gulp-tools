@@ -1,11 +1,11 @@
 {
   "name": "gulp-task-images",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Gulp task for processing images",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-task-images.git"
+    "url": "https://github.com/andrewscwei/gulp-task-images.git"
   },
   "files": [
     "index.js"
