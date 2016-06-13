@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-stylus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Gulp task for processing Stylus files",
   "main": "index.js",
   "repository": {
@@ -27,7 +27,7 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.4.0",
-    "gulp-task-helpers": "^1.2.0",
+    "gulp-task-helpers": "^1.2.2",
     "gulp-util": "^3.0.7",
     "run-sequence": "^1.2.1"
   }
