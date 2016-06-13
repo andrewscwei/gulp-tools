@@ -1,5 +1,7 @@
 # gulp-task-extras [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-extras/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-extras/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-extras.svg)](https://badge.fury.io/js/gulp-task-extras)
 
+## DEPRECATED, USE [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media) INSTEAD
+
 Gulp task for processing miscellaneous files such as `robots.txt`, `favicon.ico`, etc with the option to watch the emitted source files for changes. There are no specific file extension restrictions, so anything goes for this task.
 
 ## Usage
