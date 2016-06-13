@@ -1,11 +1,11 @@
 {
   "name": "gulp-pipe-media",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Gulp pipeline for media files",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VARIANTE/gulp-pipe-media.git"
+    "url": "https://github.com/andrewscwei/gulp-pipe-media.git"
   },
   "files": [
     "index.js"

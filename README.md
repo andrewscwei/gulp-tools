@@ -1,4 +1,4 @@
-# gulp-pipe-media [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-pipe-media/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-pipe-media/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-media.svg)](https://badge.fury.io/js/gulp-pipe-media)
+# gulp-pipe-media [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-media/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-media/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-media.svg)](https://badge.fury.io/js/gulp-pipe-media)
 
 Gulp pipeline for media tasks (i.e. images, videos, fonts and documents). This pipeline creates the following Gulp tasks:
 

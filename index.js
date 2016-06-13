@@ -1,4 +1,4 @@
-// (c) VARIANTE
+// (c) Andrew Wei
 /**
  * @file Gulp task for processing fonts files, with the option to watch for
  *       changes by passing either `--watch` or `--w` flag when running the
