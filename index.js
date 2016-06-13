@@ -12,6 +12,7 @@ const documents = require('./tasks/documents');
 const extras = require('./tasks/extras');
 const fonts = require('./tasks/fonts');
 const images = require('./tasks/images');
+const path = require('path');
 const sequence = require('run-sequence');
 const videos = require('./tasks/videos');
 
