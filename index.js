@@ -1,4 +1,4 @@
-// (c) VARIANTE
+// (c) Andrew Wei
 /**
  * @file Gulp pipeline for processing templates content managed by Prismic.io.
  *       This pipeline generates a single task, `views`, which does two things:
