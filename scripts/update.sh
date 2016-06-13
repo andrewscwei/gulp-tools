@@ -3,4 +3,6 @@
 set -e
 
 ncu -a
-npm -f version patch -m "Update packages"
+git add package.json
+git commit -m "Update packages"
+npm version patch
