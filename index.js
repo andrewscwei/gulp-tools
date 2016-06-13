@@ -1,4 +1,4 @@
-// (c) VARIANTE
+// (c) Andrew Wei
 /**
  * @file An end-to-end Gulp build system and asset pipeline for a webapp
  *       templated by Metalsmith and content-managed by Prismic.io. Includes

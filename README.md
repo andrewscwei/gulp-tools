@@ -1,4 +1,4 @@
-# gulp-sys-metalprismic [![Circle CI](https://circleci.com/gh/VARIANTE/gulp-sys-metalprismic/tree/master.svg?style=svg)](https://circleci.com/gh/VARIANTE/gulp-sys-metalprismic/tree/master) [![npm version](https://badge.fury.io/js/gulp-sys-metalprismic.svg)](https://badge.fury.io/js/gulp-sys-metalprismic)
+# gulp-sys-metalprismic [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-sys-metalprismic/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-sys-metalprismic/tree/master) [![npm version](https://badge.fury.io/js/gulp-sys-metalprismic.svg)](https://badge.fury.io/js/gulp-sys-metalprismic)
 
 An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Prismic.io. Generates the following Gulp tasks for you:
 
