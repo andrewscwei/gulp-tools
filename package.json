@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-browserify",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Gulp task for Browserify",
   "main": "index.js",
   "repository": {
