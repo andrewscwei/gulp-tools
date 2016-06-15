@@ -20,7 +20,7 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "gulp-pipe-media": "^2.0.3",
+    "gulp-pipe-media": "^2.0.4",
     "gulp-task-helpers": "^1.2.8",
     "gulp-task-rev": "^1.2.4",
     "gulp-task-sass": "^1.2.5",
