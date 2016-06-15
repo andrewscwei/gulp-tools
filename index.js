@@ -102,7 +102,7 @@ exports.init = function(gulp, options, extendsDefaults) {
   }
 
   if (options.extras !== false) {
-    gulp.task('extras', documents(_.merge(_.omit(config, tasks), _.get(config, 'extras')), extendsDefaults));
+    gulp.task('extras', extras(_.merge(_.omit(config, tasks), _.get(config, 'extras')), extendsDefaults));
     seq.push('extras');
   }
 
