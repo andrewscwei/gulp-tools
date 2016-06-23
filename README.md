@@ -41,6 +41,7 @@ Default:
   watch: undefined,
   sass: undefined,
   autoprefixer: undefined,
+  globbing: undefined,
   nano: false,
   purify: false,
   sourcemaps: true,
@@ -117,6 +118,13 @@ Type: `Object`<br>
 Default: `undefined`
 
 Options for [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
+
+##### `options.globbing`
+
+Type: `Object`<br>
+Default: `undefined`
+
+Options for [`gulp-css-globbing`](https://www.npmjs.com/package/gulp-css-globbing).
 
 ##### `options.nano`
 

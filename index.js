@@ -7,6 +7,7 @@
 const $ = require('gulp-task-helpers');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const globbing = require('gulp-css-globbing');
 const path = require('path');
 const postcss = require('gulp-postcss');
 const purifycss = require('gulp-purifycss');
@@ -25,6 +26,7 @@ const DEFAULT_CONFIG = {
   src: undefined,
   watch: undefined,
   sass: undefined,
+  globbing: undefined,
   autoprefixer: undefined,
   nano: false,
   purify: false,
@@ -66,6 +68,7 @@ const DEFAULT_CONFIG = {
  * @param {Object} [options.autoprefixer] - Options for `autoprefixer`. If set
  *                                          to `false`, `autoprefixer` will be
  *                                          skipped.
+ * @param {Object} [options.globbing] - Options for `gulp-css-globbing`.
  * @param {Object} [options.nano] - Options for `cssnano`. If `false`, `cssnano`
  *                                  will be skipped.
  * @param {boolean} [options.sourcemaps] - Specifies whether sourcemaps are
@@ -110,7 +113,10 @@ module.exports = function(options, extendsDefaults) {
       this.watch(config.watch.files, () => sequence.use(this).apply(null, config.watch.tasks));
     }
 
-    let stream = this.src(src, { base: config.base });
+    let stream = this
+      .src(src, { base: config.base })
+      .pipe(globbing(config.globbing));
+
     if (config.sourcemaps) stream = stream.pipe(sourcemaps.init());
     stream = stream.pipe(sass(config.sass).on('error', function(err) {
       if (shouldWatch) {

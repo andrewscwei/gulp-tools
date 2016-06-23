@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-sass",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Gulp task for processing Sass files",
   "main": "index.js",
   "repository": {
@@ -21,10 +21,11 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^6.3.6",
-    "cssnano": "^3.7.0",
+    "cssnano": "^3.7.1",
+    "gulp-css-globbing": "^0.1.8",
     "gulp-postcss": "^6.1.1",
     "gulp-purifycss": "^0.2.0",
-    "gulp-sass": "^2.3.1",
+    "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-task-helpers": "^1.2.8",
