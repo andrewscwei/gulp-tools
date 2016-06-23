@@ -122,7 +122,12 @@ Options for [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
 ##### `options.globbing`
 
 Type: `Object`<br>
-Default: `undefined`
+Default:
+```js
+{
+  extensions: ['.sass', '.scss', '.css']
+}
+```
 
 Options for [`gulp-css-globbing`](https://www.npmjs.com/package/gulp-css-globbing).
 

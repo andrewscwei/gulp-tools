@@ -26,7 +26,9 @@ const DEFAULT_CONFIG = {
   src: undefined,
   watch: undefined,
   sass: undefined,
-  globbing: undefined,
+  globbing: {
+    extensions: FILE_EXTENSIONS.map(val => (`.${val}`))
+  },
   autoprefixer: undefined,
   nano: false,
   purify: false,
