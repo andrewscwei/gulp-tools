@@ -23,7 +23,7 @@
     "gulp-pipe-media": "^2.0.4",
     "gulp-task-helpers": "^1.2.8",
     "gulp-task-rev": "^1.2.4",
-    "gulp-task-sass": "^1.2.6",
+    "gulp-task-sass": "^1.2.7",
     "gulp-task-webpack": "^1.2.4",
     "lodash": "^4.13.1",
     "run-sequence": "^1.2.1"
