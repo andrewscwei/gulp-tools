@@ -84,15 +84,11 @@ function generatePrismicDocuments(config) {
         if (c && c.collection) {
           const subdir = `.prismic/${docType}`;
           const dir = path.join(path.join(config.base || '', config.src || ''), subdir);
-          const layout = c.layout || `${docType}.${config.layouts.engine}`;
           c.pattern = path.join(subdir, '**/*');
 
           documents[docType].forEach(doc => {
             const filename = `${doc.uid || _.kebabCase(doc.slug)}.html`;
-            const frontMatter = yaml.stringify(_.merge(_.omit(doc, ['next', 'prev']), {
-              layout: `${layout}`,
-              path: getDocumentPermalink(doc, config)
-            }));
+            const frontMatter = yaml.stringify(_.omit(doc, ['next', 'prev']));
             fs.mkdirsSync(dir);
             fs.writeFileSync(path.join(dir, filename), `---\n${frontMatter}---\n`);
           });
@@ -102,34 +98,3 @@ function generatePrismicDocuments(config) {
       return;
     });
 }
-
-/**
- * Gets the permalink path of a document.
- *
- * @param {Object} doc
- * @param {strong} permalink
- *
- * @return {string}
- */
-function getDocumentPermalink(doc, config) {
-  let pattern = _.get(config, `collections.${doc.type}.permalink`);
-  let ret = pattern;
-
-  if (pattern) {
-    const regex = /:(\w+)/g;
-    let params = [];
-    let m;
-    while (m = regex.exec(pattern)) params.push(m[1]);
-
-    for (let i = 0, key; key = params[i++];) {
-      let val = doc[key];
-      if (!val) return null;
-
-      ret = ret.replace(`:${key}`, val);
-    }
-
-    return ret;
-  }
-
-  return null;
-};
