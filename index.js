@@ -18,10 +18,7 @@ const yaml = require('yamljs');
 const DEFAULT_CONFIG = {
   src: 'views',
   apiEndpoint: undefined,
-  accessToken: undefined,
-  layouts: {
-    engine: 'jade'
-  }
+  accessToken: undefined
 };
 
 /**
