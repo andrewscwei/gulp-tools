@@ -1,8 +1,15 @@
 // (c) Andrew Wei
 
 const _ = require('lodash');
+const marked = require('marked');
+const markedHelpers = require('gulp-task-metalsmith/helpers/marked-helpers');
 const moment = require('moment');
 const Prismic = require('prismic.io').Prismic;
+
+marked.setOptions({
+  renderer: markedHelpers.renderer,
+  highllight: markedHelpers.highlight
+});
 
 /**
  * Gets the Prismic API.
@@ -74,6 +81,7 @@ exports.reduce = function(docs, relative, config) {
     let r = _.mapKeys(_.mapValues(docs.data, (v, k) => {
       switch (v.type) {
         case 'StructuredText':
+          if ((k === 'markdown') || (k === `${docs.type}.markdown`)) ret = marked(ret);
           return docs.getStructuredText(k).asText();
         case 'Image':
           return docs.getImage(k).url;

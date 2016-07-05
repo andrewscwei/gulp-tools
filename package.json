@@ -1,6 +1,6 @@
 {
   "name": "gulp-pipe-metalprismic",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Gulp pipeline for generating static views via Metalsmith content managed by Prismic",
   "main": "index.js",
   "repository": {
@@ -23,10 +23,11 @@
   "dependencies": {
     "fs-extra": "^0.30.0",
     "gulp-task-helpers": "^1.2.8",
-    "gulp-task-metalsmith": "^1.4.0",
+    "gulp-task-metalsmith": "^1.6.0",
     "gulp-util": "^3.0.7",
     "lodash": "^4.13.1",
-    "moment": "^2.13.0",
+    "marked": "^0.3.5",
+    "moment": "^2.14.1",
     "prismic.io": "^3.1.3",
     "yamljs": "^0.2.8"
   }
