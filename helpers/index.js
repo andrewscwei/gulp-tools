@@ -41,15 +41,16 @@ exports.getEverything = function(api, ref, query, orderings) {
  * @param {Object|Object[]} docs - Raw Prismic document(s) to reduce.
  * @param {boolean} [relative] - Specifies whether to attach `prev` and `next`
  *                               pointers to each document.
+ * @param {Object} [config] - Options.
  *
  * @return {Object} - Object with reduced document data.
  */
-exports.reduce = function(docs, relative) {
+exports.reduce = function(docs, relative, config) {
   if (docs instanceof Array) {
     let ret = {};
 
     docs.forEach((doc, i) => {
-      const r = exports.reduce(doc);
+      const r = exports.reduce(doc, false, config);
       if (!ret[doc.type]) ret[doc.type] = [];
       ret[doc.type].push(r);
     });
@@ -79,7 +80,35 @@ exports.reduce = function(docs, relative) {
         case 'Number':
           return docs.getNumber(k);
         case 'SliceZone':
-          return docs.getSliceZone(k).asHtml();
+          return docs.getSliceZone(k).asHtml((doc) => {
+            if (!config) return null;
+
+            let pattern = _.get(config, `collections.${doc.type}.permalink`);
+            let ret = pattern;
+
+            if (pattern) {
+              const regex = /:(\w+)/g;
+              let params = [];
+              let m;
+              while (m = regex.exec(pattern)) params.push(m[1]);
+
+              for (let i = 0, key; key = params[i++];) {
+                let val = doc[key];
+                if (!val) return null;
+
+                ret = ret.replace(`:${key}`, val);
+              }
+
+              if (/((\/)?([a-zA-Z0-9\-\_\/\.]+))/g.test(ret)) {
+                if (!_.startsWith(ret, '/')) ret = `/${ret}`;
+                if (!_.endsWith(ret, '.html') && !_.endsWith(ret, '/')) ret = `${ret}/`;
+              }
+
+              return ret;
+            }
+
+            return null;
+          });
         case 'Date':
           return moment(docs.getDate(k)).format('YYYY-MM-DD');
         case 'Link.web':

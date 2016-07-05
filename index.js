@@ -68,8 +68,7 @@ function generatePrismicDocuments(config) {
     .then(res => {
       util.log(util.colors.blue('[prismic]'), `Fetched a total of ${res.results.length} documents`);
       if (res.results.length) res.results.forEach(doc => util.log(util.colors.blue('[prismic]'), `Fetched document [${doc.type}]: ${doc.slug}`));
-
-      const documents = prismic.reduce(res.results);
+      const documents = prismic.reduce(res.results, false, config);
 
       // Populate config metadata with retrieved documents.
       if (!config.metadata) config.metadata = { data: {} };
