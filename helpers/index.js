@@ -81,8 +81,9 @@ exports.reduce = function(docs, relative, config) {
     let r = _.mapKeys(_.mapValues(docs.data, (v, k) => {
       switch (v.type) {
         case 'StructuredText':
+          let ret = docs.getStructuredText(k).asText();
           if ((k === 'markdown') || (k === `${docs.type}.markdown`)) ret = marked(ret);
-          return docs.getStructuredText(k).asText();
+          return ret;
         case 'Image':
           return docs.getImage(k).url;
         case 'Number':
