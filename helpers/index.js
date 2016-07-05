@@ -8,7 +8,7 @@ const Prismic = require('prismic.io').Prismic;
 
 marked.setOptions({
   renderer: markedHelpers.renderer,
-  highllight: markedHelpers.highlight
+  highlight: markedHelpers.highlight
 });
 
 /**
