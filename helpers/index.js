@@ -2,14 +2,10 @@
 
 const _ = require('lodash');
 const marked = require('marked');
-const markedHelpers = require('gulp-task-metalsmith/helpers/marked-helpers');
 const moment = require('moment');
 const Prismic = require('prismic.io').Prismic;
 
-marked.setOptions({
-  renderer: markedHelpers.renderer,
-  highlight: markedHelpers.highlight
-});
+marked.setOptions({ langPrefix: 'language-' });
 
 /**
  * Gets the Prismic API.
