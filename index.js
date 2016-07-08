@@ -18,7 +18,10 @@ const yaml = require('yamljs');
 const DEFAULT_CONFIG = {
   src: 'views',
   apiEndpoint: undefined,
-  accessToken: undefined
+  accessToken: undefined,
+  related: {
+    pattern: '.prismic/**/*.html'
+  }
 };
 
 /**
