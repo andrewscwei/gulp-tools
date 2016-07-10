@@ -83,7 +83,7 @@ exports.init = function(options, extendsDefaults) {
   const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', 'views'];
 
   require('gulp-pipe-assets').init(gulp, _.omit(config, ['views', 'clean', 'serve']), extendsDefaults);
-  require('gulp-pipe-metalprismic').init(gulp, _.merge(_.omit(config, tasks), _.get(config, 'views')), extendsDefaults);
+  if (config.views !== false) require('gulp-pipe-metalprismic').init(gulp, _.merge(_.omit(config, tasks), _.get(config, 'views')), extendsDefaults);
 
   gulp.task('clean', function() {
     if (!config.clean || !config.clean.length) return;
@@ -96,7 +96,9 @@ exports.init = function(options, extendsDefaults) {
   });
 
   gulp.task('default', function(callback) {
-    let seq = ['clean', 'views', 'assets'];
+    let seq = ['clean'];
+    if (config.views !== false) seq.push('views');
+    seq.push('assets');
     if (util.env['serve'] || util.env['s']) seq.push('serve');
     seq.push(callback);
     sequence.use(gulp).apply(null, seq);
