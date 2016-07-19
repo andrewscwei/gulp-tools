@@ -20,9 +20,21 @@ const DEFAULT_CONFIG = {
     files: undefined, // Emitted files
     tasks: undefined // Current task name
   },
+  imagemin: {
+    plugins: [
+      imagemin.svgo()
+    ]
+  },
   envs: {
-    development: {
-      imagemin: false
+    production: {
+      imagemin: {
+        plugins: [
+          imagemin.gifsicle(),
+          imagemin.jpegtran(),
+          imagemin.optipng(),
+          imagemin.svgo()
+        ]
+      }
     }
   }
 };
