@@ -21,14 +21,14 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "browser-sync": "^2.13.0",
+    "browser-sync": "^2.14.0",
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-pipe-assets": "^2.0.6",
-    "gulp-pipe-metalprismic": "^4.0.0",
+    "gulp-pipe-metalprismic": "^4.0.1",
     "gulp-task-helpers": "^1.2.8",
     "gulp-util": "^3.0.7",
-    "lodash": "^4.13.1",
+    "lodash": "^4.14.1",
     "run-sequence": "^1.2.2"
   }
 }
