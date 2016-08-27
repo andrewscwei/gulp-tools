@@ -22,10 +22,10 @@
   "dependencies": {
     "gulp-pipe-media": "^2.1.0",
     "gulp-task-helpers": "^1.2.8",
-    "gulp-task-rev": "^1.2.4",
+    "gulp-task-rev": "^1.2.5",
     "gulp-task-sass": "^1.2.7",
     "gulp-task-webpack": "^1.2.4",
-    "lodash": "^4.13.1",
+    "lodash": "^4.15.0",
     "run-sequence": "^1.2.2"
   }
 }
