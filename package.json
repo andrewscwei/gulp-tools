@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-rev",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Gulp task for static asset revisioning",
   "main": "index.js",
   "repository": {

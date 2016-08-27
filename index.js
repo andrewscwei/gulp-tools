@@ -74,7 +74,7 @@ module.exports = function(options, extendsDefaults) {
       .pipe(this.dest(config.src))
       .on('end', () => {
         const manifest = require(path.join(config.src, manifestFileName));
-        const pattern = Object.keys(manifest).join('|');
+        const pattern = Object.keys(manifest).map(v => (`${v}\\b`)).join('|');
 
         for (let v in manifest) {
           util.log(util.colors.blue(`[${taskName}]`), `${v} => ${manifest[v]}`);
