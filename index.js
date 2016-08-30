@@ -96,7 +96,7 @@ exports.init = function(options, extendsDefaults) {
 
   if (config.sitemap !== undefined) {
     gulp.task('sitemap', function(callback) {
-      return gulp.src(path.join(config.dest, '*.html'))
+      return gulp.src(path.join(config.dest, '**/*.html'))
         .pipe(sitemap(config.sitemap))
         .pipe(gulp.dest(config.dest));
     });
