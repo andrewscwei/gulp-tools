@@ -11,6 +11,7 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const path = require('path');
+const sitemap = require('gulp-sitemap');
 const util = require('gulp-util');
 const sequence = require('run-sequence');
 
@@ -24,6 +25,7 @@ const DEFAULT_CONFIG = {
   views: {
     src: 'views'
   },
+  sitemap: undefined,
   serve: {
     server: {
       baseDir: undefined // Defaults to `${options.dest}`
@@ -73,7 +75,7 @@ exports.init = function(options, extendsDefaults) {
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
-  const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', 'views'];
+  const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', 'views', 'sitemap'];
 
   require('gulp-pipe-assets').init(gulp, _.omit(config, ['views', 'clean', 'serve']), extendsDefaults);
 
@@ -89,6 +91,14 @@ exports.init = function(options, extendsDefaults) {
     });
   }
 
+  if (config.sitemap !== undefined) {
+    gulp.task('sitemap', function(callback) {
+      return gulp.src(path.join(config.dest, '*.html'))
+        .pipe(sitemap(config.sitemap))
+        .pipe(gulp.dest(config.dest));
+    });
+  }
+
   gulp.task('serve', function() {
     browserSync.init(config.serve);
   });
@@ -96,6 +106,7 @@ exports.init = function(options, extendsDefaults) {
   gulp.task('default', function(callback) {
     let seq = ['clean'];
     if (config.views !== false) seq.push('views');
+    if (config.sitemap !== undefined) seq.push('sitemap');
     seq.push('assets');
     if (util.env['serve'] || util.env['s']) seq.push('serve');
     seq.push(callback);

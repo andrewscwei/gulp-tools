@@ -12,8 +12,9 @@ An end-to-end Gulp build system and asset pipeline for a webapp templated by Met
 8. `scripts` - Bundles JavaScripts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 9. `styles`, - Compiles preprocessed stylesheets using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
 10. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files. Uses [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-11. `serve` - Serves the app with [`browser-sync`](https://www.npmjs.com/package/browser-sync).
-12. `default` - Executes the above tasks in sequence.
+11. `sitemap` - Creates `sitemap.xml` from all generated HTML files, based on [`gulp-sitemap`](https://www.npmjs.com/package/gulp-sitemap).
+12. `serve` - Serves the app with [`browser-sync`](https://www.npmjs.com/package/browser-sync).
+13. `default` - Executes the above tasks in sequence.
 
 ## Usage
 
@@ -38,7 +39,8 @@ gulp.init({
       _: require('lodash'),
       moment: require('moment')
     }
-  }
+  },
+  sitemap: undefined
 });
 ```
 
@@ -193,6 +195,13 @@ Default:
 ```
 
 Options for `rev` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+
+##### `options.sitemap`
+
+Type: `Object`<br>
+Default: `undefined`
+
+Options for `sitemap` task based on [`gulp-sitemap`](https://www.npmjs.com/package/gulp-sitemap).
 
 ##### `options.clean`
 
