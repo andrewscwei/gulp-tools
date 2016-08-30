@@ -60,6 +60,7 @@ const DEFAULT_CONFIG = {
  * @param {Object} [options.styles] - Options for `gulp-task-sass`.
  * @param {Object} [options.scripts] - Options for `gulp-task-webpack`.
  * @param {Object} [options.rev] - Options for `gulp-task-rev`.
+ * @param {Object} [options.sitemap] - Options for `gulp-sitemap`.
  * @param {Object} [options.views] - Options for `gulp-task-metalsmith`.
  * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
  * @param {Object} [options.serve] - Options for `browser-sync`.
@@ -77,7 +78,7 @@ exports.init = function(options, extendsDefaults) {
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
   const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', 'views', 'sitemap'];
 
-  require('gulp-pipe-assets').init(gulp, _.omit(config, ['views', 'clean', 'serve']), extendsDefaults);
+  require('gulp-pipe-assets').init(gulp, _.omit(config, ['views', 'clean', 'serve', 'sitemap']), extendsDefaults);
 
   gulp.task('clean', function() {
     if (!config.clean || !config.clean.length) return;
