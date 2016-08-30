@@ -11,6 +11,7 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const path = require('path');
+const sitemap = require('gulp-sitemap');
 const util = require('gulp-util');
 const sequence = require('run-sequence');
 
@@ -27,6 +28,7 @@ const DEFAULT_CONFIG = {
     apiEndpoint: process.env.PRISMIC_API_ENDPOINT,
     accessToken: process.env.PRISMIC_ACCESS_TOKEN
   },
+  sitemap: undefined,
   serve: {
     server: {
       baseDir: undefined // Defaults to `${options.dest}`
@@ -61,6 +63,7 @@ const DEFAULT_CONFIG = {
  * @param {Object} [options.styles] - Options for `gulp-task-sass`.
  * @param {Object} [options.scripts] - Options for `gulp-task-webpack`.
  * @param {Object} [options.rev] - Options for `gulp-task-rev`.
+ * @param {Object} [options.sitemap] - Options for `gulp-sitemap`.
  * @param {Object} [options.views] - Options for `gulp-pipe-metalprismic`.
  * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
  * @param {Object} [options.serve] - Options for `browser-sync`.
@@ -80,9 +83,9 @@ exports.init = function(options, extendsDefaults) {
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
-  const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', 'views'];
+  const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev', 'views', 'sitemap'];
 
-  require('gulp-pipe-assets').init(gulp, _.omit(config, ['views', 'clean', 'serve']), extendsDefaults);
+  require('gulp-pipe-assets').init(gulp, _.omit(config, ['views', 'clean', 'serve', 'sitemap']), extendsDefaults);
   if (config.views !== false) require('gulp-pipe-metalprismic').init(gulp, _.merge(_.omit(config, tasks), _.get(config, 'views')), extendsDefaults);
 
   gulp.task('clean', function() {
@@ -91,6 +94,14 @@ exports.init = function(options, extendsDefaults) {
     return del(config.clean, { force: true });
   });
 
+  if (config.sitemap !== undefined) {
+    gulp.task('sitemap', function(callback) {
+      return gulp.src(path.join(config.dest, '*.html'))
+        .pipe(sitemap(config.sitemap))
+        .pipe(gulp.dest(config.dest));
+    });
+  }
+
   gulp.task('serve', function() {
     browserSync.init(config.serve);
   });
@@ -98,6 +109,7 @@ exports.init = function(options, extendsDefaults) {
   gulp.task('default', function(callback) {
     let seq = ['clean'];
     if (config.views !== false) seq.push('views');
+    if (config.sitemap !== undefined) seq.push('sitemap');
     seq.push('assets');
     if (util.env['serve'] || util.env['s']) seq.push('serve');
     seq.push(callback);
