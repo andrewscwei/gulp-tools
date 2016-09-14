@@ -1,0 +1,35 @@
+{
+  "name": "gulp-sys-metalcontentful",
+  "version": "1.0.0",
+  "description": "An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Contentful.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewscwei/gulp-sys-metalcontentful.git"
+  },
+  "files": [
+    "helpers",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "browser-sync": "^2.15.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-pipe-assets": "^2.0.8",
+    "gulp-pipe-metalcontentful": "^1.0.0",
+    "gulp-sitemap": "^4.2.0",
+    "gulp-task-helpers": "^1.2.8",
+    "gulp-util": "^3.0.7",
+    "lodash": "^4.15.0",
+    "run-sequence": "^1.2.2"
+  }
+}
