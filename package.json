@@ -20,10 +20,10 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "browser-sync": "^2.14.0",
+    "browser-sync": "^2.15.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-pipe-assets": "^2.0.7",
+    "gulp-pipe-assets": "^2.0.8",
     "gulp-task-helpers": "^1.2.8",
     "gulp-util": "^3.0.7",
     "lodash": "^4.15.0",
