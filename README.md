@@ -1,21 +1,24 @@
-# gulp-pipe-metalprismic [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-metalprismic/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-metalprismic/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-metalprismic.svg)](https://badge.fury.io/js/gulp-pipe-metalprismic)
+# gulp-pipe-metalcontentful [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-metalcontentful/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-metalcontentful/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-metalcontentful.svg)](https://badge.fury.io/js/gulp-pipe-metalcontentful)
 
-Gulp pipeline for processing templates content managed by Prismic.io. This pipeline generates a single task, `views`, which does two things:
+Gulp pipeline for processing templates content managed by Contentful. This pipeline generates a single task, `views`, which does two things:
 
-1. Fetches and processes documents from the Prismic repo so the resulting data can be made useful to the templates
+1. Fetches and processes entries from the Contentful repo so the resulting data can be made useful to the templates
 2. Generates static views using Metalsmith.
 
 ## Usage
 
 ```js
 import gulp from 'gulp';
-import metalprismic from 'gulp-pipe-metalprismic';
+import metalcontentful from 'gulp-pipe-metalcontentful';
 
-metalprismic.init(gulp, {
+metalcontentful.init(gulp, {
   src: 'app/views',
   dest: 'dest',
-  apiEndpoint: process.env.PRISMIC_API_ENDPOINT,
-  accessToken: process.env.PRISMIC_ACCESS_TOKEN
+  contentful: {
+    space: undefined,
+    accessToken: undefined,
+    host: undefined
+  }
 });
 ```
 
@@ -41,19 +44,19 @@ Options that define the behavior of this task. This object is parsed by `config(
 
 This object extends that of the configurables in [`gulp-task-metalsmith`](https://www.npmjs.com/package/gulp-task-metalsmith). The following are the extended properties of the object.
 
-##### `options.apiEndpoint`
+##### `options.contentful`
 
-Type: `string`<br>
-Default: `undefined`
+Type: `Object`<br>
+Default: 
+```
+{
+  space: undefined,
+  accessToken: undefined,
+  host: undefined
+}
+```
 
-The API endpoint of the Prismic repo.
-
-##### `options.accessToken`
-
-Type: `string`<br>
-Default: `undefined`
-
-The access token of the Prismic repo.
+Details required to access Contentful repo. See [official package](https://www.npmjs.com/package/contentful).
 
 #### `extendsDefaults`
 
