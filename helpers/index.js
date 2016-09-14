@@ -10,7 +10,7 @@
  *
  * @return {string}
  */
-function getPath(p, manifestPath) {
+exports.getPath = function(p, manifestPath) {
   // Ensure there are no relative paths.
   let regex = /^(?!.*:\/\/)\w+.*$/g
   if (regex.test(p)) p = `/${p}`;
@@ -26,6 +26,4 @@ function getPath(p, manifestPath) {
   catch (err) {
     return p;
   }
-}
-
-module.exports = getPath;
+};
