@@ -18,7 +18,6 @@ const DEFAULT_CONFIG = {
     loaders: [{
       test: /\.js/,
       loader: 'babel',
-      exclude: /node_modules/,
       query: {
         presets: ['es2015']
       }
