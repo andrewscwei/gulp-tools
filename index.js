@@ -11,7 +11,7 @@ const $ = require('gulp-task-helpers');
 const _ = require('lodash');
 const fs = require('fs-extra');
 const path = require('path');
-const prismic = require('./prismic-helpers');
+const prismic = require('./helpers/prismic-helpers');
 const util = require('gulp-util');
 const yaml = require('yamljs');
 
