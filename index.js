@@ -11,7 +11,7 @@ const $ = require('gulp-task-helpers');
 const _ = require('lodash');
 const fs = require('fs-extra');
 const path = require('path');
-const contentful = require('./helpers');
+const contentful = require('./helpers/contentful-helpers');
 const util = require('gulp-util');
 const yaml = require('yamljs');
 
