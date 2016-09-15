@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-assets",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "An end-to-end Gulp build system for assets with Sass and Webpack",
   "main": "index.js",
   "repository": {
@@ -8,6 +8,7 @@
     "url": "https://github.com/andrewscwei/gulp-sys-assets.git"
   },
   "files": [
+    "helpers",
     "index.js"
   ],
   "engines": {
