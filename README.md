@@ -37,6 +37,13 @@ Default: `undefined`
 
 Path to the directory that contains files that needs to be revisioned. If unspecified, this task is disabled. By default, the most common file extensions are used.
 
+#### `options.manifestFile`
+
+Type: `string`<br>
+Default: `rev-manifest.json`
+
+Name of the generated manifest file.
+
 ##### `options.ignore`
 
 Type: `string` or `Array`<br>

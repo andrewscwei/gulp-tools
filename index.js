@@ -19,6 +19,7 @@ const REPLACE_EXTENSIONS = ['html', 'htm', 'php', 'js', 'css'];
 const DEFAULT_CONFIG = {
   src: undefined,
   ignore: `**/favicon.{ico,png}`,
+  manifestFile: 'rev-manifest.json',
   replace: undefined,
   prefix: undefined
 };
@@ -63,7 +64,7 @@ module.exports = function(options, extendsDefaults) {
 
     const taskName = this.seq[0];
     const src = $.glob(['**/*'].concat(config.ignore), { base: config.src, exts: FILE_EXTENSIONS });
-    const manifestFileName = config.revManifest || 'rev-manifest.json';
+    const manifestFileName = config.manifestFile;
     const rep = $.glob('**/*', { base: config.replace || config.src, exts: REPLACE_EXTENSIONS });
 
     this
