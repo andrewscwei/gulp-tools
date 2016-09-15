@@ -63,7 +63,7 @@ module.exports = function(options, extendsDefaults) {
 
     const taskName = this.seq[0];
     const src = $.glob(['**/*'].concat(config.ignore), { base: config.src, exts: FILE_EXTENSIONS });
-    const manifestFileName = $.revManifest || 'rev-manifest.json';
+    const manifestFileName = config.revManifest || 'rev-manifest.json';
     const rep = $.glob('**/*', { base: config.replace || config.src, exts: REPLACE_EXTENSIONS });
 
     this
