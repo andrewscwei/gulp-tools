@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-assets",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "An end-to-end Gulp build system for assets with Sass and Webpack",
   "main": "index.js",
   "repository": {
@@ -21,10 +21,10 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "browser-sync": "^2.15.0",
+    "browser-sync": "^2.16.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-pipe-assets": "^2.0.8",
+    "gulp-pipe-assets": "^3.1.1",
     "gulp-task-helpers": "^1.2.8",
     "gulp-util": "^3.0.7",
     "lodash": "^4.15.0",
