@@ -80,7 +80,7 @@ function generatePrismicDocuments(config) {
       for (let docType in documents) {
         const c = _.get(config, `collections.${docType}`);
 
-        if (c && c.collection) {
+        if (c && c.permalink) {
           const subdir = `.prismic/${docType}`;
           const dir = path.join(path.join(config.base || '', config.src || ''), subdir);
           c.pattern = path.join(subdir, '**/*');
