@@ -86,7 +86,7 @@ function generateContentfulDocuments(config) {
       for (let contentType in entries) {
         const c = _.get(config, `collections.${contentType}`);
 
-        if (c && c.collection) {
+        if (c && c.permalink) {
           const subdir = `.contentful/${contentType}`;
           const dir = path.join(path.join(config.base || '', config.src || ''), subdir);
           c.pattern = path.join(subdir, '**/*');
