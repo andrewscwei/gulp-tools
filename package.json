@@ -23,7 +23,7 @@
   "dependencies": {
     "fs-extra": "^0.30.0",
     "gulp-task-helpers": "^1.2.8",
-    "gulp-task-metalsmith": "^5.2.0",
+    "gulp-task-metalsmith": "^5.3.0",
     "gulp-util": "^3.0.7",
     "lodash": "^4.15.0",
     "marked": "^0.3.6",
