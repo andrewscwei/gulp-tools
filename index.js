@@ -11,9 +11,10 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const path = require('path');
+const sequence = require('run-sequence');
 const sitemap = require('gulp-sitemap');
 const util = require('gulp-util');
-const sequence = require('run-sequence');
+const view = require('./helpers/view-helpers');
 
 util.log(`${util.colors.magenta('NODE_ENV')}=${process.env.NODE_ENV}`);
 util.log(`${util.colors.magenta('PORT')}=${process.env.PORT}`);
@@ -84,6 +85,12 @@ exports.init = function(options, extendsDefaults) {
     ];
 
     DEFAULT_CONFIG.serve.server.baseDir = options.dest;
+
+    DEFAULT_CONFIG.views.metadata = {
+      p: function(p) {
+        return view.getPath(p, path.join(options.dest, _.get(options, 'rev.manifestFile') || 'rev-manifest.json'));
+      }
+    }
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
