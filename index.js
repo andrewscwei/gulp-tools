@@ -84,7 +84,7 @@ exports.init = function(options, extendsDefaults) {
 
     DEFAULT_CONFIG.views.metadata = {
       p: function(p) {
-        return view.getPath(p, path.join(options.dest, options.rev.manifestFile || 'rev-manifest.json'));
+        return view.getPath(p, path.join(options.dest, _.get(options, 'rev.manifestFile') || 'rev-manifest.json'));
       }
     }
   }
