@@ -13,6 +13,7 @@ const gulp = require('gulp');
 const path = require('path');
 const sitemap = require('gulp-sitemap');
 const util = require('gulp-util');
+const view = require('./helpers/view-helpers');
 const sequence = require('run-sequence');
 
 util.log(`${util.colors.magenta('NODE_ENV')}=${process.env.NODE_ENV}`);
@@ -80,6 +81,12 @@ exports.init = function(options, extendsDefaults) {
     ];
 
     DEFAULT_CONFIG.serve.server.baseDir = options.dest;
+
+    DEFAULT_CONFIG.views.metadata = {
+      p: function(p) {
+        return view.getPath(p, path.join(options.dest, options.rev.manifestFile || 'rev-manifest.json'));
+      }
+    }
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
