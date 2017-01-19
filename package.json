@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-metalsmith",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "Gulp task for processing template files with Metalsmith",
   "main": "index.js",
   "repository": {

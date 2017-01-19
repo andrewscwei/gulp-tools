@@ -8,7 +8,6 @@ const $ = require('gulp-task-helpers');
 const _ = require('lodash');
 const async = require('async');
 const collections = require('metalsmith-collections');
-const fs = require('fs-extra');
 const helpers = require('./helpers');
 const i18n = require('i18n');
 const inPlace = require('metalsmith-in-place');
