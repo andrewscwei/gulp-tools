@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-metalcontentful",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Contentful.",
   "main": "index.js",
   "repository": {
