@@ -12,12 +12,7 @@ gulp.task('styles', sass({
   base: 'app',
   src: 'stylesheets/*',
   dest: 'public',
-  sourcemaps: true,
-  envs: {
-    production: {
-      sourcemaps: false
-    }
-  }
+  sourcemaps: true
 }));
 ```
 

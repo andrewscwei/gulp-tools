@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-sass",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Gulp task for processing Sass files",
   "main": "index.js",
   "repository": {
