@@ -17,16 +17,11 @@ jobs:
       - deploy:
           name: Publish to NPM
           command: |
-            set -eu
-            TAG=$(git describe --tags)
-            if [[ $TAG =~ ^v[0-9]+(\.[0-9]+)+(-rc[0-9]+)?(-alpha[0-9]+)?$ ]]; then
-              if [[ -n "$NPM_AUTH" ]]; then
-                echo "//registry.npmjs.org/:_authToken=$NPM_AUTH" >> ~/.npmrc
-                npm publish
-                echo "Successfully published to NPM"
-              else
-                echo "Publish skipped because NPM_AUTH was not set"
-              fi
+            echo $NPM_AUTH
+            if [[ $(git describe --tags) =~ ^v[0-9]+(\.[0-9]+)+(-rc[0-9]+)?(-alpha[0-9]+)?$ ]]; then
+              echo "//registry.npmjs.org/:_authToken=$NPM_AUTH" >> ~/.npmrc
+              npm publish
+              echo "Successfully published to NPM"
             else
               echo "Skipping publish because this is not a release"
             fi
