@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-helpers",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Helper functions for common Gulp tasks",
   "main": "index.js",
   "repository": {
