@@ -17,8 +17,6 @@ jobs:
       - deploy:
           name: Publish to NPM
           command: |
-            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH" >> ~/.npmrc
-            cat ~/.npmrc
             if [[ $(git describe --tags) =~ ^v[0-9]+(\.[0-9]+)+(-rc[0-9]+)?(-alpha[0-9]+)?$ ]]; then
               echo "//registry.npmjs.org/:_authToken=$NPM_AUTH" >> ~/.npmrc
               npm publish
