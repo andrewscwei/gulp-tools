@@ -32,14 +32,7 @@ const DEFAULT_CONFIG = {
     options: {
       presets: ['es2015']
     }
-  }],
-  envs: {
-    production: {
-      debug: false,
-      uglify: true,
-      sourcemaps: false
-    }
-  }
+  }]
 };
 
 /**
