@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-stylus",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Gulp task for processing Stylus files",
   "main": "index.js",
   "repository": {
@@ -10,25 +10,21 @@
   "files": [
     "index.js"
   ],
-  "engines": {
-    "node": ">=6.1.0",
-    "npm": ">=3.8.6"
-  },
   "scripts": {
     "test": "echo \"No tests yet... :)\""
   },
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "^6.3.6",
-    "cssnano": "^3.7.0",
-    "gulp-postcss": "^6.1.1",
+    "autoprefixer": "^7.0.0",
+    "cssnano": "^3.10.0",
+    "gulp-postcss": "^7.0.0",
     "gulp-purifycss": "^0.2.0",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-stylus": "^2.4.0",
-    "gulp-task-helpers": "^1.2.8",
-    "gulp-util": "^3.0.7",
-    "run-sequence": "^1.2.1"
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-stylus": "^2.6.0",
+    "gulp-task-helpers": "^1.4.0",
+    "gulp-util": "^3.0.8",
+    "run-sequence": "^1.2.2"
   }
 }
