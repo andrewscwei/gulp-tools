@@ -105,7 +105,7 @@ glob([
 
 ## Disclaimer
 
-This is an experimental project.
+This is an experimental project driven by internal requirements.
 
 ## License
 
