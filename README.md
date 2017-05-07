@@ -24,6 +24,10 @@ gulp.task('scripts', browserify({
 $ gulp scripts
 ```
 
+## Example
+
+Run the example using `$ npm run example` to see it in action.
+
 ## API
 
 ### `browserify(options[, extendsDefaults])`
@@ -45,9 +49,12 @@ Default:
   watch: {
     callback: undefined
   },
-  transform: [
-    babelify
-  ],
+  transforms: [{
+    name: 'babelify',
+    options: {
+      presets: ['es2015']
+    }
+  }],
   envs: {
     production: {
       debug: false,
@@ -102,12 +109,20 @@ Default: `true`, `false` when `NODE_ENV=production`
 
 Specifies whether sourcemaps should be generated.
 
-##### `options.transform`
+##### `options.transforms`
 
 Type: `Array`<br>
-Default: `[babelify]`
+Default:
+```js
+[{
+  name: 'babelify',
+  options: {
+    presets: ['es2015']
+  }
+}]
+```
 
-Array of transforms to apply to the bundler.
+Array of transforms to apply to the bundler. Transforms are represented by an object containing the `name` key and the `options` key.
 
 ##### `options.watch`
 
@@ -138,6 +153,10 @@ $ gulp scripts --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
+
+## Disclaimer
+
+This is an experimental project driven by internal requirements.
 
 ## License
 

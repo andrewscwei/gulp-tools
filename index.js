@@ -5,7 +5,7 @@
  */
 
 const $ = require('gulp-task-helpers');
-const babelify = require('babelify');
+const assert = require('assert');
 const browserify = require('browserify');
 const buffer = require('vinyl-buffer');
 const source = require('vinyl-source-stream');
@@ -27,9 +27,12 @@ const DEFAULT_CONFIG = {
   watch: {
     callback: undefined
   },
-  transform: [
-    babelify
-  ],
+  transforms: [{
+    name: 'babelify',
+    options: {
+      presets: ['es2015']
+    }
+  }],
   envs: {
     production: {
       debug: false,
@@ -90,8 +93,7 @@ module.exports = function(options, extendsDefaults) {
       .pipe(through2.obj(function(file, enc, next) {
         const opts = {
           entries: [file.path],
-          debug: config.debug,
-          transform: [].concat(config.transform)
+          debug: config.debug
         };
         const bundler = (shouldWatch) ? watchify(browserify(opts)) : browserify(opts);
         const output = file.path.replace(file.base, '');
@@ -105,7 +107,17 @@ module.exports = function(options, extendsDefaults) {
       }));
 
     function bundle(bundler, output, next) {
-      let b = bundler.bundle()
+      let b = bundler;
+
+      if (config.transforms) {
+        for (let i = 0; i < config.transforms.length; i++) {
+          const transform = config.transforms[i];
+          assert(transform.name, 'Transform name must be provided');
+          b = b.transform(transform.name, transform.options);
+        }
+      }
+
+      b = b.bundle()
         .on('error', function(err) {
           util.log(util.colors.blue('[browserify]'), util.colors.red(`Error: ${err.message}`));
           if (next) next(); else this.emit('end');
@@ -118,7 +130,7 @@ module.exports = function(options, extendsDefaults) {
         .pipe(buffer());
 
       if (config.sourcemaps) b = b.pipe(sourcemaps.init({ loadMaps: true }));
-      if (config.uglify) b = b.pipe(uglify());
+      if (config.uglify) b = b.pipe(uglify()).on('error', util.log);
       if (config.sourcemaps) b = b.pipe(sourcemaps.write('./'));
 
       return b.pipe(gulp.dest(dest));
