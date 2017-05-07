@@ -32,13 +32,7 @@ const DEFAULT_CONFIG = {
   autoprefixer: undefined,
   nano: false,
   purify: false,
-  sourcemaps: true,
-  envs: {
-    production: {
-      nano: {},
-      sourcemaps: false
-    }
-  }
+  sourcemaps: true
 };
 
 /**

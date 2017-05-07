@@ -25,6 +25,10 @@ gulp.task('styles', sass({
 $ gulp styles
 ```
 
+## Example
+
+Run `$ npm run example` to see it in action.
+
 ## API
 
 ### `sass(options[, extendsDefaults])`
