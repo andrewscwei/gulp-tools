@@ -65,8 +65,9 @@ const DEFAULT_CONFIG = {
   },
   inPlace: {
     pattern: '**/*.pug',
-    engine: 'pug',
-    rename: true
+    rename: true,
+    engineOptions: {
+    }
   },
   pug: {
     pretty: true
@@ -231,6 +232,7 @@ function getDefaults(context, options) {
 
     defaults.jade.basedir = $.glob(options.src, { base: options.base });
     defaults.pug.basedir = $.glob(options.src, { base: options.base });
+    defaults.inPlace.engineOptions.basedir = $.glob(options.src, { base: options.base });
   }
 
   return defaults;
