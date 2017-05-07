@@ -103,6 +103,10 @@ glob([
 // ];
 ```
 
+## Disclaimer
+
+This is an experimental project.
+
 ## License
 
 This software is released under the [MIT License](http://opensource.org/licenses/MIT).
