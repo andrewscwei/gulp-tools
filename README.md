@@ -14,6 +14,11 @@ gulp.task('scripts', webpack({
   entry: {
     application: 'application.js'
   },
+  resolve: {
+    modules: [
+      path.join(__dirname, '../', 'node_modules')
+    ]
+  },
   output: {
     path: 'public/javascripts',
     publicPath: 'javascripts'
@@ -26,6 +31,10 @@ gulp.task('scripts', webpack({
 ```
 $ gulp scripts
 ```
+
+## Example
+
+Run the example using `$ npm run example` to see it in action.
 
 ## API
 
@@ -44,25 +53,18 @@ Default:
     chunkFilename: '[chunkhash].js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
+      loader: 'babel-loader',
+      options: {
         presets: ['es2015']
       }
-    }, {
-      test: /\.json/,
-      loader: 'json',
-      exclude: /node_modules/
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.json']
-  },
-  resolveLoader: {
-    modulesDirectories: [
-      path.join(__dirname, 'node_modules')
+    extensions: ['.js', '.json'],
+    modules: [
+      {options.context} // If specified
     ]
   },
   plugins: [
@@ -71,7 +73,11 @@ Default:
   envs: {
     development: {
       debug: true,
-      devtool: 'eval-source-map'
+      devtool: 'eval-source-map',
+      plugins: [
+        new webpack.LoaderOptionsPlugin({ debug: true }),
+        new webpack.optimize.CommonsChunkPlugin('common.js')
+      ]
     },
     production: {
       plugins: [
@@ -115,6 +121,10 @@ $ gulp scripts --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `watchOptions`.
+
+## Disclaimer
+
+This is an experimental project driven by internal requirements.
 
 ## License
 

@@ -15,20 +15,16 @@ const DEFAULT_CONFIG = {
     chunkFilename: '[chunkhash].js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js/,
-      loader: 'babel',
-      query: {
+      loader: 'babel-loader',
+      options: {
         presets: ['es2015']
       }
-    }, {
-      test: /\.json/,
-      loader: 'json',
-      exclude: /node_modules/
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.json']
+    extensions: ['.js', '.json']
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js')
@@ -36,7 +32,11 @@ const DEFAULT_CONFIG = {
   envs: {
     development: {
       debug: true,
-      devtool: 'eval-source-map'
+      devtool: 'eval-source-map',
+      plugins: [
+        new webpack.LoaderOptionsPlugin({ debug: true }),
+        new webpack.optimize.CommonsChunkPlugin('common.js')
+      ]
     },
     production: {
       plugins: [
@@ -71,7 +71,7 @@ module.exports = function(options, watchOptions, extendsDefaults) {
 
     // Set defaults based on options before merging.
     if (options.context) {
-      DEFAULT_CONFIG.resolve.root = [options.context];
+      DEFAULT_CONFIG.resolve.modules = [options.context];
     }
 
     const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
