@@ -1,6 +1,6 @@
 {
   "name": "gulp-pipe-metalcontentful",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Gulp pipeline for generating static views via Metalsmith content managed by Contentful",
   "main": "index.js",
   "repository": {
@@ -11,22 +11,18 @@
     "helpers",
     "index.js"
   ],
-  "engines": {
-    "node": ">=6.1.0",
-    "npm": ">=3.8.6"
-  },
   "scripts": {
     "test": "echo \"No tests yet... :)\""
   },
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "contentful": "^3.8.0",
-    "fs-extra": "^2.0.0",
-    "gulp-task-helpers": "^1.2.8",
-    "gulp-task-metalsmith": "^5.3.1",
+    "contentful": "^4.3.0",
+    "fs-extra": "^3.0.1",
+    "gulp-task-helpers": "^1.4.0",
+    "gulp-task-metalsmith": "^5.4.0",
     "gulp-util": "^3.0.8",
     "lodash": "^4.17.4",
-    "yamljs": "^0.2.8"
+    "yamljs": "^0.2.10"
   }
 }
