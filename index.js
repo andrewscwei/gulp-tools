@@ -100,7 +100,7 @@ exports.init = function(gulp, options, extendsDefaults) {
 
   media.init(gulp, config, extendsDefaults);
 
-  gulp.task('scripts', webpack(_.merge(_.omit(config, tasks), _.get(config, 'scripts')), { callback: config.watch.tasks && (typeof config.watch.tasks[0] === 'function') && config.watch.tasks[0] }, extendsDefaults));
+  gulp.task('scripts', webpack(_.get(config, 'scripts'), { callback: config.watch.tasks && (typeof config.watch.tasks[0] === 'function') && config.watch.tasks[0] }, extendsDefaults));
   gulp.task('styles', sass(_.merge(_.omit(config, tasks), _.get(config, 'styles')), extendsDefaults));
   gulp.task('rev', rev(_.merge(_.omit(config, tasks), _.get(config, 'rev')), extendsDefaults));
 
