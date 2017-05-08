@@ -31,7 +31,6 @@ const DEFAULT_CONFIG = {
   ],
   envs: {
     development: {
-      debug: true,
       devtool: 'eval-source-map',
       plugins: [
         new webpack.LoaderOptionsPlugin({ debug: true }),
