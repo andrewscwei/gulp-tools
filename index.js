@@ -18,9 +18,14 @@ const DEFAULT_CONFIG = {
     rules: [{
       test: /\.js/,
       loader: 'babel-loader',
+      exclude: /node_modules/,
       options: {
         presets: ['es2015']
       }
+    }, {
+      test: /\.json/,
+      loader: 'json-loader',
+      exclude: /node_modules/
     }]
   },
   resolve: {
