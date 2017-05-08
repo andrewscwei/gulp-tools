@@ -62,6 +62,10 @@ Default: `true`
 
 Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
 
+## Disclaimer
+
+This is an experimental project driven by internal requirements.
+
 ## License
 
 This software is released under the [MIT License](http://opensource.org/licenses/MIT).
