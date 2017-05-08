@@ -68,19 +68,19 @@ Default:
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common.js')
+    new webpack.optimize.CommonsChunkPlugin('common')
   ],
   envs: {
     development: {
       devtool: 'eval-source-map',
       plugins: [
         new webpack.LoaderOptionsPlugin({ debug: true }),
-        new webpack.optimize.CommonsChunkPlugin('common.js')
+        new webpack.optimize.CommonsChunkPlugin('common')
       ]
     },
     production: {
       plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common.js'),
+        new webpack.optimize.CommonsChunkPlugin('common'),
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, sourceMap: false })
       ]
     }
