@@ -25,6 +25,12 @@ media.init(gulp, {
 $ gulp media
 ```
 
+## Example
+
+```sh
+$ npm run example
+```
+
 ## API
 
 ### `init(gulp, options[, extendsDefaults])`
@@ -370,6 +376,10 @@ $ gulp media --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to each task will be executed whenever a corresponding file changes. To override this behavior see `options.watch` or individual `options.{task}.watch` config.
+
+## Disclaimer
+
+This is an experimental project driven by internal requirements.
 
 ## License
 
