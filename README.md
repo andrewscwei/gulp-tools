@@ -222,6 +222,10 @@ By default, files that were emitted as source files will be marked for watching 
 
 You can pass a `--serve` or `--s` flag to the Gulp command to serve the app. When used in conjuction with the `--watch` flag, upon every file change `browserSync.reload` will be called.
 
+## Disclaimer
+
+This is an experimental project driven by internal requirements.
+
 ## License
 
 This software is released under the [MIT License](http://opensource.org/licenses/MIT).
