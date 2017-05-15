@@ -10,7 +10,9 @@ jobs:
       - checkout
       - run: 
           name: Install dependencies
-          command: yarn
+          command: | 
+            yarn global add node-gyp
+            yarn
       - run:
           name: Run tests
           command: npm test
