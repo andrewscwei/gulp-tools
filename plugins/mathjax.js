@@ -17,7 +17,7 @@ const MathJax = require('mathjax-node');
  */
 module.exports = function(options, locale) {
   return function(files, metalsmith, done) {
-    MathJax.config({ MathJax: _.omit(options, 'delimiters') || {} });
+    MathJax.config(_.omit(options, 'delimiters') || {});
 
     const delimiters = options.delimiter || [['\\(', '\\)']];
 

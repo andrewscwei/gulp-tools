@@ -237,7 +237,7 @@ Custom options for Prism. Currently only supports `showLanguage` and `lineNumber
 Type: `Object` or `boolean`<br>
 Default: `false`
 
-Options for [`mathjax-node`](https://www.npmjs.com/package/mathjax-node)'s `./lib/mj-page.js`. If `false`, MathJax will be disabled.
+Options for [`mathjax-node`](https://www.npmjs.com/package/mathjax-node). If `false`, MathJax will be disabled.
 
 #### `extendsDefaults`
 
