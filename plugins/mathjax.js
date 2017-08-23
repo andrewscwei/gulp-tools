@@ -5,7 +5,7 @@ const async = require('async');
 const JSDOM = require('jsdom').JSDOM;
 const path = require('path');
 const util = require('gulp-util');
-const MathJax = require('mathjax-node-page').mjpage;
+const MathJax = require('mathjax-node');
 
 /**
  * Metalsmith for prerendering math equations in HTML files in MathJax.
@@ -17,6 +17,10 @@ const MathJax = require('mathjax-node-page').mjpage;
  */
 module.exports = function(options, locale) {
   return function(files, metalsmith, done) {
+    MathJax.config({ MathJax: _.omit(options, 'delimiters') || {} });
+
+    const delimiters = options.delimiter || [['\\(', '\\)']];
+
     async.eachSeries(Object.keys(files), prerender, done);
 
     function prerender(file, done) {
@@ -28,13 +32,48 @@ module.exports = function(options, locale) {
       else {
         const contents = data.contents.toString('utf8');
         const window = new JSDOM(contents).window;
+        
+        let innerHTML = window.document.body.innerHTML;
+        let matches = match(innerHTML);
+        let offset = 0;
 
-        MathJax(window.document.body.innerHTML, {
-          format: ['TeX']
-        }, _.merge({
-          svg: true
-        }, options || {}), result => {
-          window.document.body.innerHTML = result.html;
+        function escape(regexString) {
+          return regexString.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        }
+
+        function match(string) {
+          let matches = [];
+
+          for (let i = 0; i < delimiters.length; i++) {
+            const start = delimiters[i][0];
+            const end = delimiters[i][1];
+            const regex1 = new RegExp(`${escape(start)}\\s*(.*)\\s*${escape(end)}`, 'g');
+            const regex2 = new RegExp(`${escape(start)}\\n\\s*([\\s\\S]*)\\n\\s*${escape(end)}`, 'g');
+
+            let match;
+            while (match = regex1.exec(string)) matches.push(match);
+            while (match = regex2.exec(string)) matches.push(match);
+          }
+          
+          return matches;
+        }
+
+        function parse(match, done) {
+          const index = match.index + offset;
+          const wholeMatch = match[0];
+          const firstHalf = innerHTML.substring(0, index);
+          const secondHalf = innerHTML.substring(index + wholeMatch.length, innerHTML.length);
+          const math = match[1];
+    
+          MathJax.typeset({ math: math, svg: true, format: 'TeX' }, (data) => {
+            innerHTML = firstHalf + data.svg + secondHalf;
+            offset += data.svg.length - wholeMatch.length;
+            done();
+          });
+        }
+
+        async.eachSeries(matches, parse, () => {
+          window.document.body.innerHTML = innerHTML;
           const html = '<!DOCTYPE html>\n' + window.document.documentElement.outerHTML.replace(/^(\n|\s)*/, '');
           data.contents = new Buffer(html);
 

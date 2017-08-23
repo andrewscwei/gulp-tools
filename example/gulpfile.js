@@ -32,7 +32,7 @@ gulp.task('views', metalsmith({
       layout: 'post',
       metadata: {
         prism: true,
-        mathjax: false
+        mathjax: true
       },
       paginate: {
         perPage: 5,
