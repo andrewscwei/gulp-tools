@@ -10,7 +10,7 @@ This is post nine!
 
 \\(g(x)\\)
 
-\\(
+$$
 g(x) \equiv f(x){-}f\_0
 \int\_{x\_0}^{x\_1} g(x)dx
-\\)
+$$
