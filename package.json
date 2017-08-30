@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-rev",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Gulp task for static asset revisioning",
   "main": "index.js",
   "repository": {
@@ -16,8 +16,8 @@
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
-    "gulp-replace": "^0.5.4",
-    "gulp-rev": "^7.1.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-rev": "^8.0.0",
     "gulp-task-helpers": "^1.4.0",
     "gulp-util": "^3.0.8"
   }

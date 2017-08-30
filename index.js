@@ -1,9 +1,9 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file Gulp task for performing static asset revisioning by appending content
  *       hash to filenames. Original paths in html/js/css files will be
- *       automatically replaced with the revisioned path. Option to add a prefix
- *       to revisioned paths (i.e. CDN host).
+ *       automatically replaced with the revisioned path. Option to prefix a 
+ *       public path to revisioned paths (i.e. CDN host).
  */
 
 const $ = require('gulp-task-helpers');
@@ -21,7 +21,7 @@ const DEFAULT_CONFIG = {
   ignore: `**/favicon.{ico,png}`,
   manifestFile: 'rev-manifest.json',
   replace: undefined,
-  prefix: undefined
+  publicPath: '/'
 };
 
 /**
@@ -43,8 +43,8 @@ const DEFAULT_CONFIG = {
  *                                              html/js/css files within the
  *                                              directory. Defaults to the same
  *                                              directory as `options.src`.
- * @param {string} [options.prefix] - Prefix to be added to the revisioned file
- *                                    paths (i.e. CDN host).
+ * @param {string} [options.publicPath] - Public path to be prefixed to the 
+ *                                        revisioned file paths (i.e. CDN host).
  * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
  *                                           `gulp-task-helpers`#config.
  *
@@ -82,13 +82,13 @@ module.exports = function(options, extendsDefaults) {
           if (v !== manifest[v]) fs.unlinkSync(path.join(config.src, v));
         }
 
-        if (config.prefix) {
+        if (config.publicPath) {
           this
             .src(rep)
             .pipe(replace(new RegExp(`((?:\\.?\\.\\/?)+)?([\\/\\da-z\\.-]+)(${pattern})`, 'gi'), (m) => {
               let k = m.match(new RegExp(pattern, 'i'))[0];
               let v = manifest[k];
-              return m.replace(k, v).replace(/^((?:\.?\.?\/?)+)?/, (config.prefix.charAt(config.prefix.length-1) === '/') ? config.prefix : `${config.prefix}/`);
+              return m.replace(k, v).replace(/^((?:\.?\.?\/?)+)?/, config.publicPath);
             }))
             .pipe(this.dest(config.src))
             .on('end', callback)

@@ -58,12 +58,12 @@ Default: `undefined`
 
 Path to the directory that contains files that might have the original file paths of the revisioned files. Only the directory path is needed. This module automatically scans for html/js/css files within the directory. Defaults to the same directory as `options.src`.
 
-##### `options.prefix`
+##### `options.publicPath`
 
 Type: `string`<br>
-Default: `undefined`
+Default: `/`
 
-Prefix to be added to the revisioned file paths (i.e. CDN host).
+Public path to be prefixed to the revisioned file paths (i.e. CDN host).
 
 #### `extendsDefaults`
 
