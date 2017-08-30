@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file An end-to-end Gulp build system for assets only.
  */
