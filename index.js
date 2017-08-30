@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file An end-to-end Gulp build system and asset pipeline for a webapp
  *       templated by Metalsmith. Includes tasks for processing all asset types
