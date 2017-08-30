@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 
 /**
  * Resolves paths in view files. This method ensures that there are no

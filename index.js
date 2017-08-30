@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file This file bundles up several Gulp tasks to form a full asset pipeline.
  *       The tasks involve processing images, videos, fonts, documents,
