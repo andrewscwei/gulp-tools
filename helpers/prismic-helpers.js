@@ -80,6 +80,8 @@ exports.reduce = function(docs, relative, config) {
           let ret = docs.getStructuredText(k).asText();
           if ((k === 'markdown') || (k === `${docs.type}.markdown`)) ret = marked(ret);
           return ret;
+        case 'Select':
+          return docs.getBoolean(k);
         case 'Image':
           return docs.getImage(k).url;
         case 'Number':
