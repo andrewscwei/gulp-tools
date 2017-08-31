@@ -1,11 +1,9 @@
-// (c) Andrew Wei
+// © Andrew Wei
 
-const _ = require('lodash');
 const async = require('async');
-const jsdom = require('mathjax-node/node_modules/jsdom');
 const path = require('path');
 const util = require('gulp-util');
-const MathJax = require('mathjax-node/lib/mj-page');
+const mathjaxDOM = require('mathjax-dom');
 
 /**
  * Metalsmith for prerendering math equations in HTML files in MathJax.
@@ -27,35 +25,26 @@ module.exports = function(options, locale) {
       }
       else {
         const contents = data.contents.toString('utf8');
+        
+        mathjaxDOM(contents, Object.assign(typeof options === 'object' ? options : {}, typeof data.mathjax === 'object' ? data.mathjax : {}))
+          .then(html => {
+            data.contents = new Buffer(html);
 
-        jsdom.env({
-          html: contents,
-          done: function(err, window) {
-            if (err) {
-              if (locale)
-                util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), util.colors.red('Error occured when attempting MathJax rendering on'), util.colors.magenta(file));
-              else
-                util.log(util.colors.blue('[metalsmith]'), util.colors.red('Error occured when attempting MathJax rendering on'), util.colors.magenta(file));
-              throw(err);
-            }
+            if (locale)
+              util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), 'Prerendered MathJax for', util.colors.magenta(file));
+            else
+              util.log(util.colors.blue('[metalsmith]'), 'Prerendered MathJax for', util.colors.magenta(file));
 
-            MathJax.start();
-            MathJax.typeset(_.merge({
-              html: window.document.body.innerHTML,
-              renderer: 'SVG',
-              inputs: ['TeX']
-            }, options || {}), result => {
-              window.document.body.innerHTML = result.html;
-              const html = '<!DOCTYPE html>\n' + window.document.documentElement.outerHTML.replace(/^(\n|\s)*/, '');
-              data.contents = new Buffer(html);
-              if (locale)
-                util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), 'Prerendered MathJax for', util.colors.magenta(file));
-              else
-                util.log(util.colors.blue('[metalsmith]'), 'Prerendered MathJax for', util.colors.magenta(file));
-              done();
-            });
-          }
-        });
+            done();
+          })
+          .catch(err => {
+            if (locale)
+              util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), util.colors.red('Error occured when attempting MathJax rendering on'), util.colors.magenta(file));
+            else
+              util.log(util.colors.blue('[metalsmith]'), util.colors.red('Error occured when attempting MathJax rendering on'), util.colors.magenta(file));
+            
+            throw(err);
+          });
       }
     }
   };

@@ -2,6 +2,7 @@
 title: Post 10
 date: 2016-10-10
 tags: e, f
+prism: true
 ---
 
 This is post ten!

@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 
 const _ = require('lodash');
 const helpers = require('../helpers');

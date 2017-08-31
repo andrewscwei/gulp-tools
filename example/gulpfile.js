@@ -15,11 +15,6 @@ gulp.task('views', metalsmith({
     m: require('moment')
   },
   multilingual: true,
-  mathjax: true,
-  prism: {
-    lineNumbers: true,
-    showLanguage: true
-  },
   related: {
     pattern: 'blog/**/*.md'
   },
@@ -30,10 +25,6 @@ gulp.task('views', metalsmith({
       reverse: true,
       permalink: 'blog/:title/',
       layout: 'post',
-      metadata: {
-        prism: true,
-        mathjax: true
-      },
       paginate: {
         perPage: 5,
         layout: 'page',
@@ -42,6 +33,8 @@ gulp.task('views', metalsmith({
       }
     }
   },
+  prism: true,
+  mathjax: true,
   tags: {
     path: 'blog/:tag',
     layout: 'page',

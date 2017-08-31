@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 
 const path = require('path');
 

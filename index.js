@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file Gulp task for processing template files using Metalsmith. Option to
  *       watch for changes by passing either `--watch` or `--w` flag in the CLI.
@@ -53,10 +53,7 @@ const DEFAULT_CONFIG = {
     pattern: undefined, // Path relative to `config.src`
     text: (doc) => (doc.contents || doc.body || doc.markdown || doc.title || ((doc.tags instanceof Array) && doc.tags.join(', ')))
   },
-  prism: {
-    lineNumbers: false,
-    showLanguage: false
-  },
+  prism: false,
   mathjax: false,
   layouts: {
     pattern: undefined, // Path relative to `config.src`
@@ -201,8 +198,8 @@ function build(config, locale, done) {
     .use(pathfinder(locale, config.i18n && config.i18n.locales))
     .use(layouts(config.layouts))
     .use(inPlace(config.inPlace))
-    .use((config.prism !== false) ? prism(config.prism) : noop())
-    .use((config.mathjax !== false) ? mathjax((typeof config.mathjax === 'object') ? config.mathjax : {}, locale) : noop())
+    .use((config.prism !== false) ? prism(config.prism, locale) : noop())
+    .use((config.mathjax !== false) ? mathjax(config.mathjax, locale) : noop())
     .use(permalinks(config.permalinks))
     .use(reporter(locale))
     .build(function(err) {

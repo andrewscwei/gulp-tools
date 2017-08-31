@@ -33,7 +33,7 @@ gulp.task('views', metalsmith({
   multilingual: true,
   mathjax: true,
   prism: {
-    showLanguage: true,
+    showLanguage: false,
     lineNumbers: true
   },
   collections: {
@@ -221,23 +221,16 @@ Options for [`metalsmith-in-place`](https://www.npmjs.com/package/metalsmith-in-
 ##### `options.prism`
 
 Type: `Object` or `boolean`<br>
-Default:
+Default: `false`
 
-```
-{
-  showLanguage: false,
-  lineNumbers: false
-}
-```
-
-Custom options for Prism. Currently only supports `showLanguage` and `lineNumbers`.
+Custom options for Prism. See [prism-dom](https://www.npmjs.com/package/prism-dom). If `false`, Prism highlighting will be disabled altogether. If `true`, default options will be used.
 
 ##### `options.mathjax`
 
 Type: `Object` or `boolean`<br>
 Default: `false`
 
-Options for [`mathjax-node`](https://www.npmjs.com/package/mathjax-node)'s `./lib/mj-page.js`. If false, MathJax will be disabled.
+Options for [mathjax-dom](https://www.npmjs.com/package/mathjax-dom). If `false`, Prism highlighting will be disabled altogether. If `true`, default options will be used.
 
 #### `extendsDefaults`
 
