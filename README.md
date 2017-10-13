@@ -57,8 +57,11 @@ Default:
       test: /\.js/,
       loader: 'babel-loader',
       options: {
-        presets: ['es2015']
+        presets: ['env']
       }
+    }, {
+      test: /\.json/,
+      loader: 'json-loader'
     }]
   },
   resolve: {
@@ -70,18 +73,34 @@ Default:
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common')
   ],
+  stats: {
+    colors: true,
+    modules: true,
+    reasons: true,
+    errorDetails: true
+  },
   envs: {
     development: {
-      devtool: 'eval-source-map',
+      devtool: 'cheap-eval-source-map',
       plugins: [
-        new webpack.LoaderOptionsPlugin({ debug: true }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('development')
+          }
+        }),
         new webpack.optimize.CommonsChunkPlugin('common')
       ]
     },
     production: {
       plugins: [
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
+        }),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin('common'),
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, sourceMap: false })
+        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
       ]
     }
   }
