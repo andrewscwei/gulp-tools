@@ -1,4 +1,4 @@
-# (c) Andrew Wei
+# © Andrew Wei
 
 version: 2
 jobs:
@@ -8,7 +8,7 @@ jobs:
       - image: node:latest
     steps:
       - checkout
-      - run: 
+      - run:
           name: Install dependencies
           command: npm install
       - run:
