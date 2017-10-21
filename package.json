@@ -1,6 +1,6 @@
 {
   "name": "gulp-pipe-media",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Gulp pipeline for media files",
   "main": "index.js",
   "repository": {
