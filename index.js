@@ -1,36 +1,36 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file Gulp task for processing JavaScript files using Webpack. Option to
  *       watch for changes by passing either `--watch` or `--w` flag in the CLI.
  */
 
-const $ = require('gulp-task-helpers');
-const path = require('path');
-const util = require('gulp-util');
-const webpack = require('webpack');
+const $ = require(`gulp-task-helpers`);
+const path = require(`path`);
+const util = require(`gulp-util`);
+const webpack = require(`webpack`);
 
 const DEFAULT_CONFIG = {
   output: {
-    filename: '[name].js',
-    chunkFilename: '[chunkhash].js'
+    filename: `[name].js`,
+    chunkFilename: `[chunkhash].js`
   },
   module: {
     rules: [{
       test: /\.js/,
-      loader: 'babel-loader',
+      loader: `babel-loader`,
       options: {
-        presets: ['env']
+        presets: [`env`]
       }
     }, {
       test: /\.json/,
-      loader: 'json-loader'
+      loader: `json-loader`
     }]
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: [`.js`, `.json`]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common')
+    new webpack.optimize.CommonsChunkPlugin(`common`)
   ],
   stats: {
     colors: true,
@@ -40,25 +40,25 @@ const DEFAULT_CONFIG = {
   },
   envs: {
     development: {
-      devtool: 'cheap-eval-source-map',
+      devtool: `cheap-eval-source-map`,
       plugins: [
         new webpack.DefinePlugin({
           'process.env': {
-            NODE_ENV: JSON.stringify('development')
+            NODE_ENV: JSON.stringify(`development`)
           }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common')
+        new webpack.optimize.CommonsChunkPlugin(`common`)
       ]
     },
     production: {
       plugins: [
         new webpack.DefinePlugin({
           'process.env': {
-            NODE_ENV: JSON.stringify('production')
+            NODE_ENV: JSON.stringify(`production`)
           }
         }),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin('common'),
+        new webpack.optimize.CommonsChunkPlugin(`common`),
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
       ]
     }
@@ -92,9 +92,9 @@ module.exports = function(options, watchOptions, extendsDefaults) {
       DEFAULT_CONFIG.resolve.modules = [options.context];
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== `boolean`) || extendsDefaults);
     const watchCallback = watchOptions && watchOptions.callback;
-    const shouldWatch = (util.env['watch'] || util.env['w']) && (watchOptions !== false);
+    const shouldWatch = (util.env[`watch`] || util.env[`w`]) && (watchOptions !== false);
 
     if (shouldWatch)
       webpack(config).watch(100, bundle(callback));
@@ -113,20 +113,20 @@ module.exports = function(options, watchOptions, extendsDefaults) {
         }
         else {
           if (err)
-            util.log(util.colors.blue('[webpack]'), util.colors.red(err));
+            util.log(util.colors.blue(`[webpack]`), util.colors.red(err));
           else if (details.errors.length > 0)
-            util.log(util.colors.blue('[webpack]'), util.colors.red(stats.toString()));
+            util.log(util.colors.blue(`[webpack]`), util.colors.red(stats.toString()));
           else
-            util.log(util.colors.blue('[webpack]'), stats.toString());
+            util.log(util.colors.blue(`[webpack]`), stats.toString());
 
           if (!isWatching)
             done();
-          else if (typeof watchCallback === 'function')
+          else if (typeof watchCallback === `function`)
             watchCallback();
 
           isWatching = shouldWatch;
         }
       };
     }
-  }
+  };
 };

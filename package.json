@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-webpack",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Gulp task for Webpack",
   "main": "index.js",
   "repository": {
@@ -19,10 +19,10 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
-    "gulp-task-helpers": "^1.4.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp-task-helpers": "latest",
     "json-loader": "^0.5.7",
-    "webpack": "^3.7.1"
+    "webpack": "^3.8.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
