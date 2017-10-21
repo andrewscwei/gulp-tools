@@ -1,4 +1,4 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file Gulp pipeline for media files (i.e. images, videos, fonts, documents,
  *       and other miscellaneous files), with the option to watch for
@@ -6,38 +6,38 @@
  *       task using the CLI.
  */
 
-const $ = require('gulp-task-helpers');
-const _ = require('lodash');
-const documents = require('./tasks/documents');
-const extras = require('./tasks/extras');
-const fonts = require('./tasks/fonts');
-const images = require('./tasks/images');
-const path = require('path');
-const sequence = require('run-sequence');
-const videos = require('./tasks/videos');
+const $ = require(`gulp-task-helpers`);
+const _ = require(`lodash`);
+const documents = require(`./tasks/documents`);
+const extras = require(`./tasks/extras`);
+const fonts = require(`./tasks/fonts`);
+const images = require(`./tasks/images`);
+const path = require(`path`);
+const sequence = require(`run-sequence`);
+const videos = require(`./tasks/videos`);
 
 const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
   watch: undefined,
   images: {
-    src: 'images/**/*',
+    src: `images/**/*`,
     dest: undefined // `options.dest/assets`
   },
   videos: {
-    src: 'videos/**/*',
+    src: `videos/**/*`,
     dest: undefined // `options.dest/assets`
   },
   fonts: {
-    src: 'fonts/**/*',
+    src: `fonts/**/*`,
     dest: undefined // `options.dest/assets`
   },
   documents: {
-    src: 'documents/**/*',
+    src: `documents/**/*`,
     dest: undefined // `options.dest/assets`
   },
   extras: {
-    src: '*'
+    src: `*`
   }
 };
 
@@ -67,46 +67,46 @@ const DEFAULT_CONFIG = {
  *                                           `gulp-task-helpers`#config.
  */
 exports.init = function(gulp, options, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
+  if (typeof extendsDefaults !== `boolean`) extendsDefaults = true;
 
   // Set defaults before merging.
   if (options.dest) {
-    DEFAULT_CONFIG.images.dest = path.join(options.dest, 'assets');
-    DEFAULT_CONFIG.videos.dest = path.join(options.dest, 'assets');
-    DEFAULT_CONFIG.fonts.dest = path.join(options.dest, 'assets');
-    DEFAULT_CONFIG.documents.dest = path.join(options.dest, 'assets');
+    DEFAULT_CONFIG.images.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.videos.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.fonts.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.documents.dest = path.join(options.dest, `assets`);
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
-  const tasks = ['images', 'videos', 'fonts', 'documents', 'extras'];
+  const tasks = [`images`, `videos`, `fonts`, `documents`, `extras`];
   const seq = [];
 
   if (options.images !== false) {
-    gulp.task('images', images(_.merge(_.omit(config, tasks), _.get(config, 'images')), extendsDefaults));
-    seq.push('images');
+    gulp.task(`images`, images(_.merge(_.omit(config, tasks), _.get(config, `images`)), extendsDefaults));
+    seq.push(`images`);
   }
 
   if (options.videos !== false) {
-    gulp.task('videos', videos(_.merge(_.omit(config, tasks), _.get(config, 'videos')), extendsDefaults));
-    seq.push('videos');
+    gulp.task(`videos`, videos(_.merge(_.omit(config, tasks), _.get(config, `videos`)), extendsDefaults));
+    seq.push(`videos`);
   }
 
   if (options.fonts !== false) {
-    gulp.task('fonts', fonts(_.merge(_.omit(config, tasks), _.get(config, 'fonts')), extendsDefaults));
-    seq.push('fonts');
+    gulp.task(`fonts`, fonts(_.merge(_.omit(config, tasks), _.get(config, `fonts`)), extendsDefaults));
+    seq.push(`fonts`);
   }
 
   if (options.documents !== false) {
-    gulp.task('documents', documents(_.merge(_.omit(config, tasks), _.get(config, 'documents')), extendsDefaults));
-    seq.push('documents');
+    gulp.task(`documents`, documents(_.merge(_.omit(config, tasks), _.get(config, `documents`)), extendsDefaults));
+    seq.push(`documents`);
   }
 
   if (options.extras !== false) {
-    gulp.task('extras', extras(_.merge(_.omit(config, tasks), _.get(config, 'extras')), extendsDefaults));
-    seq.push('extras');
+    gulp.task(`extras`, extras(_.merge(_.omit(config, tasks), _.get(config, `extras`)), extendsDefaults));
+    seq.push(`extras`);
   }
 
-  gulp.task('media', function(callback) {
+  gulp.task(`media`, function(callback) {
     sequence.use(gulp).apply(null, seq.concat(callback));
   });
 };

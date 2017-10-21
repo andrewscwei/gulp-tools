@@ -1,16 +1,16 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file Gulp task for processing image files. Option to watch for changes by
  *       passing either `--watch` or `--w` flag in the CLI.
  */
 
-const $ = require('gulp-task-helpers');
-const imagemin = require('gulp-imagemin');
-const sequence = require('run-sequence');
-const size = require('gulp-size');
-const util = require('gulp-util');
+const $ = require(`gulp-task-helpers`);
+const imagemin = require(`gulp-imagemin`);
+const sequence = require(`run-sequence`);
+const size = require(`gulp-size`);
+const util = require(`gulp-util`);
 
-const FILE_EXTENSIONS = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'ico', 'tiff', 'bmp'];
+const FILE_EXTENSIONS = [`jpg`, `jpeg`, `gif`, `png`, `svg`, `ico`, `tiff`, `bmp`];
 
 const DEFAULT_CONFIG = {
   base: undefined,
@@ -85,13 +85,13 @@ module.exports = function(options, extendsDefaults) {
       DEFAULT_CONFIG.watch = {
         files: [].concat($.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })),
         tasks: [taskName]
-      }
+      };
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
-    const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== `boolean`) || extendsDefaults);
+    const shouldWatch = (util.env[`watch`] || util.env[`w`]) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
-    const dest = $.glob('', { base: config.dest });
+    const dest = $.glob(``, { base: config.dest });
 
     if (shouldWatch && !isWatching) {
       isWatching = true;
@@ -106,5 +106,5 @@ module.exports = function(options, extendsDefaults) {
     return stream
       .pipe(size({ title: `[${taskName}]`, gzip: true }))
       .pipe(this.dest(dest));
-  }
+  };
 };

@@ -1,0 +1,9 @@
+node_modules
+bower_components
+jspm_packages
+public
+www
+static
+docs
+dist
+.*
