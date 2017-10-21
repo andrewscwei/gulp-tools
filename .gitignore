@@ -53,6 +53,9 @@ dump.rdb
 # Generated static files
 public
 uploads
+docs
+lib
+.publish
 
 # Secrets
 *.pem

@@ -1,3 +1,3 @@
 // © Andrew Wei
 
-module.exports = require('gulp-pipe-assets/helpers');
+module.exports = require(`gulp-pipe-assets/helpers`);

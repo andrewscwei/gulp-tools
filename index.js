@@ -3,16 +3,16 @@
  * @file An end-to-end Gulp build system for assets only.
  */
 
-const $ = require('gulp-task-helpers');
-const _ = require('lodash');
-const browserSync = require('browser-sync');
-const del = require('del');
-const gulp = require('gulp');
-const util = require('gulp-util');
-const sequence = require('run-sequence');
+const $ = require(`gulp-task-helpers`);
+const _ = require(`lodash`);
+const browserSync = require(`browser-sync`);
+const del = require(`del`);
+const gulp = require(`gulp`);
+const util = require(`gulp-util`);
+const sequence = require(`run-sequence`);
 
-util.log(`${util.colors.magenta('NODE_ENV')}=${process.env.NODE_ENV}`);
-util.log(`${util.colors.magenta('PORT')}=${process.env.PORT}`);
+util.log(`${util.colors.magenta(`NODE_ENV`)}=${process.env.NODE_ENV}`);
+util.log(`${util.colors.magenta(`PORT`)}=${process.env.PORT}`);
 
 const DEFAULT_CONFIG = {
   base: undefined,
@@ -25,7 +25,7 @@ const DEFAULT_CONFIG = {
     files: false,
     notify: false,
     port: process.env.PORT || 3000,
-    logLevel: 'info',
+    logLevel: `info`,
     open: false
   },
   watch: { tasks: [browserSync.reload] }
@@ -57,7 +57,7 @@ const DEFAULT_CONFIG = {
  *                                           `gulp-task-helpers`#config.
  */
 exports.init = function(options, extendsDefaults) {
-  if (typeof extendsDefaults !== 'boolean') extendsDefaults = true;
+  if (typeof extendsDefaults !== `boolean`) extendsDefaults = true;
 
   if (options.dest && options.base) {
     DEFAULT_CONFIG.clean = [options.dest];
@@ -65,24 +65,23 @@ exports.init = function(options, extendsDefaults) {
   }
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
-  const tasks = ['clean', 'serve', 'images', 'videos', 'fonts', 'documents', 'extras', 'scripts', 'styles', 'rev'];
 
-  require('gulp-pipe-assets').init(gulp, _.omit(config, ['clean', 'serve']), extendsDefaults);
+  require(`gulp-pipe-assets`).init(gulp, _.omit(config, [`clean`, `serve`]), extendsDefaults);
 
-  gulp.task('clean', function() {
+  gulp.task(`clean`, function() {
     if (!config.clean || !config.clean.length) return;
-    config.clean.forEach(val => util.log(util.colors.blue('[clean]'), 'Removing', util.colors.cyan(val)));
+    config.clean.forEach(val => util.log(util.colors.blue(`[clean]`), `Removing`, util.colors.cyan(val)));
     return del(config.clean, { force: true });
   });
 
-  gulp.task('serve', function() {
+  gulp.task(`serve`, function() {
     browserSync.init(config.serve);
   });
 
-  gulp.task('default', function(callback) {
-    let seq = ['clean'];
-    seq.push('assets');
-    if (util.env['serve'] || util.env['s']) seq.push('serve');
+  gulp.task(`default`, function(callback) {
+    let seq = [`clean`];
+    seq.push(`assets`);
+    if (util.env[`serve`] || util.env[`s`]) seq.push(`serve`);
     seq.push(callback);
     sequence.use(gulp).apply(null, seq);
   });
