@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-metalsmith",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "Gulp task for processing template files with Metalsmith",
   "main": "index.js",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "async": "^2.4.0",
     "browser-sync": "^2.18.8",
-    "gulp-task-helpers": "^1.4.0",
+    "gulp-task-helpers": "latest",
     "gulp-util": "^3.0.8",
     "i18n": "^0.8.3",
     "lodash": "^4.17.4",
