@@ -6,22 +6,22 @@
  *       public path to revisioned paths (i.e. CDN host).
  */
 
-const $ = require('gulp-task-helpers');
-const fs = require('fs');
-const path = require('path');
-const replace = require('gulp-replace');
-const rev = require('gulp-rev');
-const util = require('gulp-util');
+const $ = require(`gulp-task-helpers`);
+const fs = require(`fs`);
+const path = require(`path`);
+const replace = require(`gulp-replace`);
+const rev = require(`gulp-rev`);
+const util = require(`gulp-util`);
 
-const FILE_EXTENSIONS = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'ico', 'tiff', 'bmp', 'mov', 'avi', 'ogg', 'ogv', 'webm', 'flv', 'swf', 'mp4', 'mv4', 'eot', 'svg', 'ttf', 'woff', 'woff2', 'css', 'js', 'md', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'csv', 'rtf'];
-const REPLACE_EXTENSIONS = ['html', 'htm', 'php', 'js', 'css'];
+const FILE_EXTENSIONS = [`jpg`, `jpeg`, `gif`, `png`, `svg`, `ico`, `tiff`, `bmp`, `mov`, `avi`, `ogg`, `ogv`, `webm`, `flv`, `swf`, `mp4`, `mv4`, `eot`, `svg`, `ttf`, `woff`, `woff2`, `css`, `js`, `md`, `pdf`, `doc`, `docx`, `xls`, `xlsx`, `ppt`, `csv`, `rtf`];
+const REPLACE_EXTENSIONS = [`html`, `htm`, `php`, `js`, `css`];
 
 const DEFAULT_CONFIG = {
   src: undefined,
   ignore: `**/favicon.{ico,png}`,
-  manifestFile: 'rev-manifest.json',
+  manifestFile: `rev-manifest.json`,
   replace: undefined,
-  publicPath: '/'
+  publicPath: `/`
 };
 
 /**
@@ -51,7 +51,7 @@ const DEFAULT_CONFIG = {
  * @return {Function} - A function that returns a Gulp stream.
  */
 module.exports = function(options, extendsDefaults) {
-  const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
+  const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== `boolean`) || extendsDefaults);
 
   if (config.ignore) config.ignore = [].concat(config.ignore);
   config.ignore.forEach((val, i) => { config.ignore[i] = `!${val}`; });
@@ -63,9 +63,9 @@ module.exports = function(options, extendsDefaults) {
     }
 
     const taskName = this.seq[0];
-    const src = $.glob(['**/*'].concat(config.ignore), { base: config.src, exts: FILE_EXTENSIONS });
+    const src = $.glob([`**/*`].concat(config.ignore), { base: config.src, exts: FILE_EXTENSIONS });
     const manifestFileName = config.manifestFile;
-    const rep = $.glob('**/*', { base: config.replace || config.src, exts: REPLACE_EXTENSIONS });
+    const rep = $.glob(`**/*`, { base: config.replace || config.src, exts: REPLACE_EXTENSIONS });
 
     this
       .src(src)
@@ -73,9 +73,9 @@ module.exports = function(options, extendsDefaults) {
       .pipe(this.dest(config.src))
       .pipe(rev.manifest(manifestFileName))
       .pipe(this.dest(config.src))
-      .on('end', () => {
+      .on(`end`, () => {
         const manifest = require(path.join(config.src, manifestFileName));
-        const pattern = Object.keys(manifest).map(v => (`${v}\\b`)).join('|');
+        const pattern = Object.keys(manifest).map(v => (`${v}\\b`)).join(`|`);
 
         for (let v in manifest) {
           util.log(util.colors.blue(`[${taskName}]`), `${v} => ${manifest[v]}`);
@@ -85,24 +85,24 @@ module.exports = function(options, extendsDefaults) {
         if (config.publicPath) {
           this
             .src(rep)
-            .pipe(replace(new RegExp(`((?:\\.?\\.\\/?)+)?([\\/\\da-z\\.-]+)(${pattern})`, 'gi'), (m) => {
-              let k = m.match(new RegExp(pattern, 'i'))[0];
+            .pipe(replace(new RegExp(`((?:\\.?\\.\\/?)+)?([\\/\\da-z\\.-]+)(${pattern})`, `gi`), (m) => {
+              let k = m.match(new RegExp(pattern, `i`))[0];
               let v = manifest[k];
               return m.replace(k, v).replace(/^((?:\.?\.?\/?)+)?/, config.publicPath);
             }))
             .pipe(this.dest(config.src))
-            .on('end', callback)
-            .on('error', callback);
+            .on(`end`, callback)
+            .on(`error`, callback);
         }
         else {
           this
             .src(rep)
-            .pipe(replace(new RegExp(`${pattern}`, 'gi'), (m) => (manifest[m])))
+            .pipe(replace(new RegExp(`${pattern}`, `gi`), (m) => (manifest[m])))
             .pipe(this.dest(config.src))
-            .on('end', callback)
-            .on('error', callback);
+            .on(`end`, callback)
+            .on(`error`, callback);
         }
       })
-      .on('error', callback);
+      .on(`error`, callback);
   };
 };
