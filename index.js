@@ -1,24 +1,24 @@
-// (c) Andrew Wei
+// © Andrew Wei
 /**
  * @file Gulp task for processing Sass files. Option to watch for changes by
  *       passing either `--watch` or `--w` flag in the CLI.
  */
 
-const $ = require('gulp-task-helpers');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const globbing = require('gulp-css-globbing');
-const path = require('path');
-const postcss = require('gulp-postcss');
-const purifycss = require('gulp-purifycss');
-const sass = require('gulp-sass');
-const size = require('gulp-size');
-const sequence = require('run-sequence');
-const sourcemaps = require('gulp-sourcemaps');
-const util = require('gulp-util');
+const $ = require(`gulp-task-helpers`);
+const autoprefixer = require(`autoprefixer`);
+const cssnano = require(`cssnano`);
+const globbing = require(`gulp-css-globbing`);
+const path = require(`path`);
+const postcss = require(`gulp-postcss`);
+const purifycss = require(`gulp-purifycss`);
+const sass = require(`gulp-sass`);
+const size = require(`gulp-size`);
+const sequence = require(`run-sequence`);
+const sourcemaps = require(`gulp-sourcemaps`);
+const util = require(`gulp-util`);
 
-const FILE_EXTENSIONS = ['sass', 'scss', 'css'];
-const PURIFY_EXTENSIONS = ['js', 'html', 'htm', 'php'];
+const FILE_EXTENSIONS = [`sass`, `scss`, `css`];
+const PURIFY_EXTENSIONS = [`js`, `html`, `htm`, `php`];
 
 const DEFAULT_CONFIG = {
   base: undefined,
@@ -83,22 +83,22 @@ module.exports = function(options, extendsDefaults) {
     // Set defaults based on options before merging.
     if (options.src) {
       DEFAULT_CONFIG.watch = {
-        files: [$.glob(path.join(path.dirname(options.src), '**/*'), { base: options.base, exts: FILE_EXTENSIONS })],
+        files: [$.glob(path.join(path.dirname(options.src), `**/*`), { base: options.base, exts: FILE_EXTENSIONS })],
         tasks: [taskName]
-      }
+      };
 
       DEFAULT_CONFIG.sass = {
         includePaths: [
-          path.dirname(path.join(options.base || '', options.src || '')),
-          path.join(require.resolve('gulp').split('node_modules')[0], 'node_modules')
+          path.dirname(path.join(options.base || ``, options.src || ``)),
+          path.join(require.resolve(`gulp`).split(`node_modules`)[0], `node_modules`)
         ]
       };
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
-    const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== `boolean`) || extendsDefaults);
+    const shouldWatch = (util.env[`watch`] || util.env[`w`]) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
-    const dest = $.glob('', { base: config.dest });
+    const dest = $.glob(``, { base: config.dest });
     const postcssPlugins = [];
     const purify = config.purify && [].concat($.glob(config.purify, { exts: PURIFY_EXTENSIONS }));
     if (config.autoprefixer !== false) postcssPlugins.push(autoprefixer(config.autoprefixer));
@@ -114,22 +114,22 @@ module.exports = function(options, extendsDefaults) {
       .pipe(globbing(config.globbing));
 
     if (config.sourcemaps) stream = stream.pipe(sourcemaps.init());
-    stream = stream.pipe(sass(config.sass).on('error', function(err) {
+    stream = stream.pipe(sass(config.sass).on(`error`, function(err) {
       if (shouldWatch) {
         // When watching, don't kill the process.
         util.log(util.colors.blue(`[sass]`), util.colors.red(err));
-        this.emit('end');
+        this.emit(`end`);
       }
       else {
-        throw new util.PluginError('sass', err);
+        throw new util.PluginError(`sass`, err);
       }
     }));
     if (purify) stream = stream.pipe(purifycss(purify));
     stream = stream.pipe(postcss(postcssPlugins));
-    if (config.sourcemaps) stream = stream.pipe(sourcemaps.write('/'));
+    if (config.sourcemaps) stream = stream.pipe(sourcemaps.write(`/`));
 
     return stream
       .pipe(size({ title: `[${taskName}]`, gzip: true }))
       .pipe(this.dest(dest));
-  }
+  };
 };

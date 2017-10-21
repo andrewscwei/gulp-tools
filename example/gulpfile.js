@@ -1,10 +1,10 @@
 
-const gulp = require('gulp');
-const sass = require('../');
+const gulp = require(`gulp`);
+const sass = require(`../`);
 
-gulp.task('default', sass({
-  base: 'app',
-  src: 'stylesheets/*',
-  dest: 'public',
+gulp.task(`default`, sass({
+  base: `app`,
+  src: `stylesheets/*`,
+  dest: `public`,
   sourcemaps: true
 }));
