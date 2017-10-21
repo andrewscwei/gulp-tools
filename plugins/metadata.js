@@ -1,7 +1,7 @@
 // © Andrew Wei
 
-const _ = require('lodash');
-const minimatch = require('minimatch');
+const _ = require(`lodash`);
+const minimatch = require(`minimatch`);
 
 /**
  * Merges additional metadata into a file if that file matches the specified

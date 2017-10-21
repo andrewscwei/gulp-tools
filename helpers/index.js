@@ -1,6 +1,6 @@
 // © Andrew Wei
 
-const _ = require('lodash');
+const _ = require(`lodash`);
 
 /**
  * Normalizes a path so that relative paths are converted to absolute paths and
@@ -12,8 +12,8 @@ const _ = require('lodash');
  */
 exports.getNormalizedPath = function(path) {
   if (/((\/)?([a-zA-Z0-9\-\_\/\.]+))/g.test(path)) {
-    if (!_.startsWith(path, '/')) path = `/${path}`;
-    if (!_.endsWith(path, '.html') && !_.endsWith(path, '/')) path = `${path}/`;
+    if (!_.startsWith(path, `/`)) path = `/${path}`;
+    if (!_.endsWith(path, `.html`) && !_.endsWith(path, `/`)) path = `${path}/`;
   }
 
   return path;
@@ -35,9 +35,9 @@ exports.getLocalizedPath = function(path, currentLocale, locales) {
 
   // Prefix the permalink with the correct locale ID. Account for cases
   // where the permalink is already prefixed with the locale.
-  let parts = _.compact(path.split('/'));
+  let parts = _.compact(path.split(`/`));
   if (locales.indexOf(parts[0]) < 0) parts.unshift(currentLocale);
-  return '/' + parts.join('/');
+  return `/` + parts.join(`/`);
 };
 
 /**
@@ -85,7 +85,7 @@ exports.getPaginationData = function(collectionName, collection, currentPage, op
   if (!collection.length) return undefined;
 
   const config = _.get(options, collection[0].type);
-  const perPage = _.get(config, 'paginate.perPage');
+  const perPage = _.get(config, `paginate.perPage`);
 
   if (!config || isNaN(perPage)) return undefined;
 
