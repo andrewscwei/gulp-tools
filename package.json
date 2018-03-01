@@ -31,7 +31,6 @@
     "del": "^3.0.0",
     "gulp-css-globbing": "^0.2.2",
     "gulp-imagemin": "^4.1.0",
-    "gulp-pipe-assets": "latest",
     "gulp-postcss": "^7.0.1",
     "gulp-purifycss": "^0.2.0",
     "gulp-replace": "^0.6.1",
