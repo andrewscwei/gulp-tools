@@ -42,7 +42,7 @@ $ gulp
 
 Type: `Object`
 
-Options that define the behavior of this task. This object is parsed by `config()` in [`task-helpers.js`](../helpers/task-helpers.md), so you can target specific `NODE_ENV` environments.
+Options that define the behavior of this task. This object is parsed by `config()` in [`task-helpers.js`](./helpers/task-helpers.md), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base` (required)
 
@@ -206,7 +206,7 @@ Options for [`browser-sync`](https://www.npmjs.com/package/browser-sync). To ser
 Type: `boolean`<br>
 Default: `true`
 
-Maps to `useConcat` param in `config()` of [`task-helpers.js`](../helpers/task-helpers.md).
+Maps to `useConcat` param in `config()` of [`task-helpers.js`](./helpers/task-helpers.md).
 
 ## Watching for Changes
 
