@@ -3,8 +3,9 @@
  * @file An end-to-end Gulp build system for assets only.
  */
 
-const $ = require(`gulp-task-helpers`);
+const $ = require(`./helpers/task-helpers`);
 const _ = require(`lodash`);
+const assets = require(`./pipelines/assets`);
 const browserSync = require(`browser-sync`);
 const del = require(`del`);
 const gulp = require(`gulp`);
@@ -66,7 +67,7 @@ exports.init = function(options, extendsDefaults) {
 
   const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
 
-  require(`gulp-pipe-assets`).init(gulp, _.omit(config, [`clean`, `serve`]), extendsDefaults);
+  assets.init(gulp, _.omit(config, [`clean`, `serve`]), extendsDefaults);
 
   gulp.task(`clean`, function() {
     if (!config.clean || !config.clean.length) return;

@@ -3,14 +3,14 @@
 An end-to-end Gulp build system for assets. Generates the following Gulp tasks for you:
 
 1. `clean` - Cleans the built files.
-2. `images` - Processes images using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-3. `videos` - Processes videos using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-4. `fonts` - Processes fonts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-5. `documents` - Processes documents using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-6. `extras` - Processes other miscellaneous files such as `robots.txt` and `sitemap.xml` using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-7. `scripts` - Bundles JavaScripts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-8. `styles`, - Compiles preprocessed stylesheets using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-9. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files. Uses [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+2. `images` - Processes images.
+3. `videos` - Processes videos.
+4. `fonts` - Processes fonts.
+5. `documents` - Processes documents.
+6. `extras` - Processes other miscellaneous files such as `robots.txt` and `sitemap.xml`.
+7. `scripts` - Bundles JavaScripts.
+8. `styles`, - Compiles Sass stylesheets.
+9. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files.
 10. `serve` - Serves the app with [`browser-sync`](https://www.npmjs.com/package/browser-sync).
 11. `default` - Executes the above tasks in sequence.
 
@@ -42,7 +42,7 @@ $ gulp
 
 Type: `Object`
 
-Options that define the behavior of this task. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
+Options that define the behavior of this task. This object is parsed by `config()` in [`task-helpers.js`](../helpers/task-helpers.md), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base` (required)
 
@@ -80,9 +80,9 @@ Default:
   src: `images/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `images` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `images` task (see [`assets.js`](./pipelines/assets.md)).
 
 ##### `options.videos`
 
@@ -94,9 +94,9 @@ Default:
   src: `videos/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `videos` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `videos` task (see [`assets.js`](./pipelines/assets.md)).
 
 ##### `options.fonts`
 
@@ -108,9 +108,9 @@ Default:
   src: `fonts/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `fonts` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `fonts` task (see [`assets.js`](./pipelines/assets.md)).
 
 ##### `options.documents`
 
@@ -122,9 +122,9 @@ Default:
   src: `documents/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `documents` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `documents` task (see [`assets.js`](./pipelines/assets.md)).
 
 ##### `options.extras`
 
@@ -136,23 +136,23 @@ Default:
   src: `*`,
   dest: `${options.dest}`
 }
-``` 
+```
 
-Options for `extras` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `extras` task (see [`assets.js`](./pipelines/assets.md)).
 
 ##### `options.scripts`
 
 Type: `Object`<br>
-Default: See [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets)
+Default: See [`assets.js`](./pipelines/assets.md)
 
-Options for `scripts` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `scripts` task from [`assets.js`](./pipelines/assets.md).
 
 ##### `options.styles`
 
 Type: `Object`<br>
-Default: See [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets)
+Default: See [`assets.js`](./pipelines/assets.md)
 
-Options for `styles` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `styles` task from [`assets.js`](./pipelines/assets.md).
 
 ##### `options.rev`
 
@@ -168,7 +168,7 @@ Default:
 }
 ```
 
-Options for `rev` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `rev` task from [`assets.js`](./pipelines/assets.md).
 
 ##### `options.clean`
 
@@ -206,7 +206,7 @@ Options for [`browser-sync`](https://www.npmjs.com/package/browser-sync). To ser
 Type: `boolean`<br>
 Default: `true`
 
-Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
+Maps to `useConcat` param in `config()` of [`task-helpers.js`](../helpers/task-helpers.md).
 
 ## Watching for Changes
 

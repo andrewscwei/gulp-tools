@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-assets",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "An end-to-end Gulp build system for assets with Sass and Webpack",
   "main": "index.js",
   "repository": {
@@ -9,21 +9,45 @@
   },
   "files": [
     "helpers",
+    "pipelines",
+    "tasks",
     "index.js"
   ],
   "scripts": {
-    "test": "echo \"No tests yet... :)\""
+    "demo": "rimraf demo/public && gulp --gulpfile demo/gulpfile.js",
+    "test": "echo \"No tests yet... :)\"",
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix"
   },
   "author": "Andrew Wei",
   "license": "MIT",
   "dependencies": {
+    "autoprefixer": "^8.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.3",
+    "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.13",
+    "cssnano": "^3.10.0",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp-css-globbing": "^0.2.2",
+    "gulp-imagemin": "^4.1.0",
     "gulp-pipe-assets": "latest",
-    "gulp-task-helpers": "latest",
+    "gulp-postcss": "^7.0.1",
+    "gulp-purifycss": "^0.2.0",
+    "gulp-replace": "^0.6.1",
+    "gulp-rev": "^8.1.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-util": "^3.0.8",
+    "json-loader": "^0.5.7",
     "lodash": "^4.17.4",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.1",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "gulp": "^3.9.1",
+    "rimraf": "^2.6.2"
   }
 }
