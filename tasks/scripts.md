@@ -1,4 +1,4 @@
-# `webpack.js`
+# `scripts.js`
 
 Gulp task for [Webpack]((https://webpack.github.io/).
 
@@ -7,9 +7,9 @@ Gulp task for [Webpack]((https://webpack.github.io/).
 ```js
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import webpack from 'gulp-sys-assets/tasks/webpack';
+import scripts from 'gulp-sys-assets/tasks/scripts';
 
-gulp.task('scripts', webpack({
+gulp.task('scripts', scripts({
   context: 'app/javascripts',
   entry: {
     application: 'application.js'
@@ -38,9 +38,7 @@ Run the example using `$ npm run example` to see it in action.
 
 ## API
 
-### `webpack(options[, watchOptions][, extendsDefaults])`
-
-Return: `Function`
+### `scripts(options[, watchOptions][, extendsDefaults])`
 
 #### `options`
 

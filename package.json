@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-assets",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "An end-to-end Gulp build system for assets with Sass and Webpack",
   "main": "index.js",
   "repository": {
@@ -9,7 +9,6 @@
   },
   "files": [
     "helpers",
-    "pipelines",
     "tasks",
     "index.js"
   ],

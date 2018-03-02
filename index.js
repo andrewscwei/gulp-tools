@@ -5,12 +5,20 @@
 
 const $ = require(`./helpers/task-helpers`);
 const _ = require(`lodash`);
-const assets = require(`./pipelines/assets`);
 const browserSync = require(`browser-sync`);
 const del = require(`del`);
+const documents = require(`./tasks/documents`);
+const extras = require(`./tasks/extras`);
+const fonts = require(`./tasks/fonts`);
+const images = require(`./tasks/images`);
 const gulp = require(`gulp`);
+const path = require(`path`);
+const rev = require(`./tasks/rev`);
+const sass = require(`./tasks/sass`);
 const util = require(`gulp-util`);
+const scripts = require(`./tasks/scripts`);
 const sequence = require(`run-sequence`);
+const videos = require(`./tasks/videos`);
 
 util.log(`${util.colors.magenta(`NODE_ENV`)}=${process.env.NODE_ENV}`);
 util.log(`${util.colors.magenta(`PORT`)}=${process.env.PORT}`);
@@ -19,6 +27,48 @@ const DEFAULT_CONFIG = {
   base: undefined,
   dest: undefined,
   clean: undefined, // Defaults to [`$options.dest}`]
+  images: {
+    src: `images/**/*`,
+    dest: undefined // `options.dest/assets`
+  },
+  videos: {
+    src: `videos/**/*`,
+    dest: undefined // `options.dest/assets`
+  },
+  fonts: {
+    src: `fonts/**/*`,
+    dest: undefined // `options.dest/assets`
+  },
+  documents: {
+    src: `documents/**/*`,
+    dest: undefined // `options.dest/assets`
+  },
+  extras: {
+    src: `*`
+  },
+  scripts: {
+    context: undefined, // `options.base/javascripts`
+    output: {
+      path: undefined,  // `options.dest/assets/javascripts`
+      publicPath: `assets/javascripts`
+    }
+  },
+  styles: {
+    src: `stylesheets/*`,
+    dest: undefined, // `options.dest/assets`
+    envs: {
+      production: {
+        purify: undefined // `options.dest/**/*`
+      }
+    }
+  },
+  rev: {
+    envs: {
+      production: {
+        src: undefined // `options.dest`
+      }
+    }
+  },
   serve: {
     server: {
       baseDir: undefined // Defaults to `${options.dest}`
@@ -38,36 +88,58 @@ const DEFAULT_CONFIG = {
  * `videos`, `fonts`, `documents`, `extras`, `scripts`, `styles`, `rev` and
  * `default`.
  *
- * @param {Object} options - System options, extends options supported by
- *                           `gulp-pipe-assets`, with a few extras (see below).
+ * @param {Object} options - Options.
  * @param {string} options.base - Fallback base path for source files.
  * @param {string} options.dest - Fallback path to destination directory where
  *                                piped files are written to.
  * @param {Object} [options.watch] - Fallback file watching options.
- * @param {Object} [options.images] - Options for `gulp-task-images`.
- * @param {Object} [options.videos] - Options for `gulp-task-videos`.
- * @param {Object} [options.fonts] - Options for `gulp-task-fonts`.
- * @param {Object} [options.documents] - Options for `gulp-task-documents`.
- * @param {Object} [options.extras] - Options for `gulp-task-extras`.
- * @param {Object} [options.styles] - Options for `gulp-task-sass`.
- * @param {Object} [options.scripts] - Options for `gulp-task-webpack`.
- * @param {Object} [options.rev] - Options for `gulp-task-rev`.
+ * @param {Object|boolean} [options.images] - Set to `false` to disable this
+ *                                            task. @see tasks/images
+ * @param {Object|boolean} [options.videos] - Set to `false` to disable this
+ *                                            task. @see tasks/videos
+ * @param {Object|boolean} [options.fonts] - Set to `false` to disable this
+ *                                           task. @see tasks/fonts
+ * @param {Object|boolean} [options.documents] - Set to `false` to disable this
+ *                                               task. @see tasks/documents
+ * @param {Object|boolean} [options.extras] - Set to `false` to disable this
+ *                                            task. @see tasks/extras
+ * @param {Object|boolean} [options.styles] - Set to `false` to disable this
+ *                                            task. @see tasks/styles
+ * @param {Object|boolean} [options.scripts] - Set to `false` to disable this
+ *                                             task. @see tasks/scripts
+ * @param {Object|boolean} [options.rev] - Set to `false` to disable this
+ *                                         task. @see tasks/rev
  * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
  * @param {Object} [options.serve] - Options for `browser-sync`.
  * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
- *                                           `gulp-task-helpers`#config.
+ *                                           helpers/task-helpers#config.
  */
 exports.init = function(options, extendsDefaults) {
   if (typeof extendsDefaults !== `boolean`) extendsDefaults = true;
+
+  if (options.base) {
+    DEFAULT_CONFIG.scripts.context = path.join(options.base, `javascripts`);
+  }
 
   if (options.dest && options.base) {
     DEFAULT_CONFIG.clean = [options.dest];
     DEFAULT_CONFIG.serve.server.baseDir = options.dest;
   }
 
-  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+  if (options.dest) {
+    DEFAULT_CONFIG.images.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.videos.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.fonts.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.documents.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.scripts.output.path = path.join(options.dest, DEFAULT_CONFIG.scripts.output.publicPath);
+    DEFAULT_CONFIG.styles.dest = path.join(options.dest, `assets`);
+    DEFAULT_CONFIG.styles.envs.production.purify = path.join(options.dest, `**/*`);
+    DEFAULT_CONFIG.rev.envs.production.src = options.dest;
+  }
 
-  assets.init(gulp, _.omit(config, [`clean`, `serve`]), extendsDefaults);
+  const config = $.config(options, DEFAULT_CONFIG, extendsDefaults);
+  const tasks = [`clean`, `images`, `videos`, `fonts`, `documents`, `extras`, `scripts`, `styles`, `rev`, `serve`];
+  const seq = [];
 
   gulp.task(`clean`, function() {
     if (!config.clean || !config.clean.length) return;
@@ -75,15 +147,54 @@ exports.init = function(options, extendsDefaults) {
     return del(config.clean, { force: true });
   });
 
+  if (options.images !== false) {
+    gulp.task(`images`, images(_.merge(_.omit(config, tasks), _.get(config, `images`)), extendsDefaults));
+    seq.push(`images`);
+  }
+
+  if (options.videos !== false) {
+    gulp.task(`videos`, videos(_.merge(_.omit(config, tasks), _.get(config, `videos`)), extendsDefaults));
+    seq.push(`videos`);
+  }
+
+  if (options.fonts !== false) {
+    gulp.task(`fonts`, fonts(_.merge(_.omit(config, tasks), _.get(config, `fonts`)), extendsDefaults));
+    seq.push(`fonts`);
+  }
+
+  if (options.documents !== false) {
+    gulp.task(`documents`, documents(_.merge(_.omit(config, tasks), _.get(config, `documents`)), extendsDefaults));
+    seq.push(`documents`);
+  }
+
+  if (options.extras !== false) {
+    gulp.task(`extras`, extras(_.merge(_.omit(config, tasks), _.get(config, `extras`)), extendsDefaults));
+    seq.push(`extras`);
+  }
+
+  if (options.scripts !== false) {
+    gulp.task(`scripts`, scripts(_.get(config, `scripts`), { callback: config.watch.tasks && (typeof config.watch.tasks[0] === `function`) && config.watch.tasks[0] }, extendsDefaults));
+    seq.push(`scripts`);
+  }
+
+  if (options.styles !== false) {
+    gulp.task(`styles`, sass(_.merge(_.omit(config, tasks), _.get(config, `styles`)), extendsDefaults));
+    seq.push(`styles`);
+  }
+
+  if (options.rev !== false) {
+    gulp.task(`rev`, rev(_.merge(_.omit(config, tasks), _.get(config, `rev`)), extendsDefaults));
+    seq.push(`rev`);
+  }
+
   gulp.task(`serve`, function() {
     browserSync.init(config.serve);
   });
 
   gulp.task(`default`, function(callback) {
-    let seq = [`clean`];
-    seq.push(`assets`);
-    if (util.env[`serve`] || util.env[`s`]) seq.push(`serve`);
-    seq.push(callback);
-    sequence.use(gulp).apply(null, seq);
+    let s = [`clean`].concat(seq);
+    if (util.env[`serve`] || util.env[`s`]) s.push(`serve`);
+    s.push(callback);
+    sequence.use(gulp).apply(null, s);
   });
 };

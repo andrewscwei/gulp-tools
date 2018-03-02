@@ -78,11 +78,20 @@ Default:
 {
   base: `${options.base}`,
   src: `images/**/*`,
-  dest: `${options.dest}/assets`
+  dest: `${options.dest}/assets`,
+  watch: {
+    files: Emitted files
+    tasks: Current task name
+  },
+  envs: {
+    development: {
+      imagemin: false
+    }
+  }
 }
 ```
 
-Options for `images` task (see [`assets.js`](./pipelines/assets.md)).
+Options for `images` task (see [`images.js`](./tasks/images.md)).
 
 ##### `options.videos`
 
@@ -96,7 +105,7 @@ Default:
 }
 ```
 
-Options for `videos` task (see [`assets.js`](./pipelines/assets.md)).
+Options for `videos` task (see [`videos.js`](./tasks/videos.md)).
 
 ##### `options.fonts`
 
@@ -110,7 +119,7 @@ Default:
 }
 ```
 
-Options for `fonts` task (see [`assets.js`](./pipelines/assets.md)).
+Options for `fonts` task (see [`fonts.js`](./tasks/fonts.md)).
 
 ##### `options.documents`
 
@@ -124,7 +133,7 @@ Default:
 }
 ```
 
-Options for `documents` task (see [`assets.js`](./pipelines/assets.md)).
+Options for `documents` task (see [`documents.js`](./tasks/documents.md)).
 
 ##### `options.extras`
 
@@ -138,21 +147,47 @@ Default:
 }
 ```
 
-Options for `extras` task (see [`assets.js`](./pipelines/assets.md)).
+Options for `extras` task (see [`extras.js`](./tasks/extras.md)).
 
 ##### `options.scripts`
 
 Type: `Object`<br>
-Default: See [`assets.js`](./pipelines/assets.md)
+Default:
+```js
+{
+  context: `${options.base}/javascripts`,
+  output: {
+    path: `${config.dest}/assets/javascripts`,
+    publicPath: 'assets/javascripts'
+  }
+}
+```
 
-Options for `scripts` task from [`assets.js`](./pipelines/assets.md).
+Options for `scripts` task from [`scripts.js`](./tasks/scripts.md).
 
 ##### `options.styles`
 
 Type: `Object`<br>
-Default: See [`assets.js`](./pipelines/assets.md)
+Default:
+```js
+{
+  src: 'stylesheets/*',
+  dest: `${options.dest}/assets`,
+  sass: {
+    includePaths: [`${options.base}/stylesheets`]
+  },
+  watch: {
+    files: `${options.base}/stylesheets/**/*`
+  },
+  envs: {
+    production: {
+      purify: `${options.dest}/**/*`
+    }
+  }
+}
+```
 
-Options for `styles` task from [`assets.js`](./pipelines/assets.md).
+Options for `styles` task from [`styles.js`](./tasks/styles.md).
 
 ##### `options.rev`
 
@@ -168,7 +203,7 @@ Default:
 }
 ```
 
-Options for `rev` task from [`assets.js`](./pipelines/assets.md).
+Options for `rev` task from [`rev.js`](./tasks/rev.md).
 
 ##### `options.clean`
 

@@ -22,8 +22,6 @@ $ gulp rev
 
 ### `rev(options[, extendsDefaults])`
 
-Return: `Function`
-
 #### `options`
 
 Type: `Object`
