@@ -124,7 +124,7 @@ const DEFAULT_CONFIG = {
  * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
  * @param {Object} [options.serve] - Options for `browser-sync`.
  * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
- *                                           `gulp-task-helpers`#config.
+ *                                           task-helpers#config.
  */
 exports.init = function(options, extendsDefaults) {
   if (typeof extendsDefaults !== `boolean`) extendsDefaults = true;
@@ -173,7 +173,7 @@ exports.init = function(options, extendsDefaults) {
   }
 
   if (config.sitemap !== undefined) {
-    gulp.task(`sitemap`, function(callback) {
+    gulp.task(`sitemap`, function() {
       return gulp.src([
         path.join(config.dest, `**/*.html`),
         `!${path.join(config.dest, `**/{404,500}.html`)}`
