@@ -107,9 +107,7 @@ const DEFAULT_CONFIG = {
  * `images`, `videos`, `fonts`, `documents`, `extras`, `scripts`, `styles`,
  * `rev`, `views` and `default`.
  *
- * @param {Object} options - System options, extends options supported by
- *                           `gulp-pipe-metalprismic` as `options.views` and
- *                           `gulp-pipe-assets`, with a few extras (see below).
+ * @param {Object} options - Options.
  * @param {string} options.base - Fallback base path for source files.
  * @param {string} options.dest - Fallback path to destination directory where
  *                                piped files are written to.
@@ -181,7 +179,7 @@ exports.init = function(options, extendsDefaults) {
 
       if (config.apiEndpoint) {
         generatePrismicDocuments(c)
-          .then(() => views(_.merge(c)).bind(this)(callback))
+          .then(() => views(c).bind(this)(callback))
           .catch(err => {
             util.log(util.colors.blue(`[prismic]`), util.colors.red(err));
             throw new Error(err);
@@ -189,7 +187,7 @@ exports.init = function(options, extendsDefaults) {
       }
       else {
         util.log(util.colors.blue(`[prismic]`), util.colors.yellow(`No credentials provided`));
-        views(_.merge(c)).bind(this)(callback);
+        views(c).bind(this)(callback);
       }
     });
     seq.push(`views`);
