@@ -3,13 +3,13 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/gulp-sys-metalcontentful
+    working_directory: ~/gulp-contentful-mpa-builder
     docker:
       - image: node:latest
     steps:
       - checkout
       - restore_cache:
-          keys: 
+          keys:
             - dependency-cache-{{ checksum "package.json" }}
             - dependency-cache-
       - run:
