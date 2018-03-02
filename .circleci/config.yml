@@ -3,13 +3,13 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/gulp-sys-assets
+    working_directory: ~/gulp-asset-pipeline
     docker:
       - image: node:latest
     steps:
       - checkout
       - restore_cache:
-          keys: 
+          keys:
             - dependency-cache-{{ checksum "package.json" }}
             - dependency-cache-
       - run:

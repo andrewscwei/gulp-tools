@@ -1,4 +1,4 @@
-# gulp-sys-assets [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-sys-assets/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-sys-assets/tree/master) [![npm version](https://badge.fury.io/js/gulp-sys-assets.svg)](https://badge.fury.io/js/gulp-sys-assets)
+# gulp-asset-pipeline [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-asset-pipeline/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-asset-pipeline/tree/master) [![npm version](https://badge.fury.io/js/gulp-asset-pipeline.svg)](https://badge.fury.io/js/gulp-asset-pipeline)
 
 An end-to-end Gulp build system for assets. Generates the following Gulp tasks for you:
 
@@ -17,7 +17,7 @@ An end-to-end Gulp build system for assets. Generates the following Gulp tasks f
 ## Usage
 
 ```js
-import gulp from 'gulp-sys-assets';
+import gulp from 'gulp-asset-pipeline';
 
 gulp.init({
   src: 'app',
