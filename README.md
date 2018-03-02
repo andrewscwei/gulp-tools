@@ -3,15 +3,15 @@
 An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Prismic.io. Generates the following Gulp tasks for you:
 
 1. `clean` - Cleans the built files.
-2. `views` - Generates Metalsmith templates using [`gulp-task-metalsmith`](https://www.npmjs.com/package/gulp-task-metalsmith).
-3. `images` - Processes images using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-4. `videos` - Processes videos using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-5. `fonts` - Processes fonts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-6. `documents` - Processes documents using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-7. `extras` - Processes other miscellaneous files such as `robots.txt` and `sitemap.xml` using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-8. `scripts` - Bundles JavaScripts using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-9. `styles`, - Compiles preprocessed stylesheets using [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
-10. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files. Uses [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+2. `views` - Generates Metalsmith templates.
+3. `images` - Processes images.
+4. `videos` - Processes videos.
+5. `fonts` - Processes fonts.
+6. `documents` - Processes documents.
+7. `extras` - Processes other miscellaneous files such as `robots.txt` and `sitemap.xml`.
+8. `scripts` - Bundles JavaScripts.
+9. `styles`, - Compiles Sass stylesheets.
+10. `rev` - Revisions asset files by appending content hash to filenames and auto replaces old paths with fingerprinted paths in affected files.
 11. `sitemap` - Creates `sitemap.xml` from all generated HTML files, based on [`gulp-sitemap`](https://www.npmjs.com/package/gulp-sitemap).
 12. `serve` - Serves the app with [`browser-sync`](https://www.npmjs.com/package/browser-sync).
 13. `default` - Executes the above tasks in sequence.
@@ -35,7 +35,7 @@ gulp.init({
       locales: ['en', 'fr'],
       directory: 'config/locales'
     },
-    metadata {
+    metadata: {
       _: require('lodash'),
       moment: require('moment')
     }
@@ -56,7 +56,7 @@ $ gulp
 
 Type: `Object`
 
-Options that define the behavior of this task. This object is parsed by `config()` in [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers), so you can target specific `NODE_ENV` environments.
+Options that define the behavior of this task. This object is parsed by `config()` in [`task-helpers.js`](./helpers/task-helpers.md), so you can target specific `NODE_ENV` environments.
 
 ##### `options.base` (required)
 
@@ -94,7 +94,7 @@ Default:
 }
 ```
 
-Options for [`gulp-task-metalsmith`](https://www.npmjs.com/package/gulp-task-metalsmith).
+Options for [`metalsmith.js`](./tasks/metalsmith.md).
 
 ##### `options.images`
 
@@ -104,11 +104,20 @@ Default:
 {
   base: `${options.base}`,
   src: `images/**/*`,
-  dest: `${options.dest}/assets`
+  dest: `${options.dest}/assets`,
+  watch: {
+    files: Emitted files
+    tasks: Current task name
+  },
+  envs: {
+    development: {
+      imagemin: false
+    }
+  }
 }
-``` 
+```
 
-Options for `images` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `images` task (see [`images.js`](./tasks/images.md)).
 
 ##### `options.videos`
 
@@ -120,9 +129,9 @@ Default:
   src: `videos/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `videos` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `videos` task (see [`videos.js`](./tasks/videos.md)).
 
 ##### `options.fonts`
 
@@ -134,9 +143,9 @@ Default:
   src: `fonts/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `fonts` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `fonts` task (see [`fonts.js`](./tasks/fonts.md)).
 
 ##### `options.documents`
 
@@ -148,9 +157,9 @@ Default:
   src: `documents/**/*`,
   dest: `${options.dest}/assets`
 }
-``` 
+```
 
-Options for `documents` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `documents` task (see [`documents.js`](./tasks/documents.md)).
 
 ##### `options.extras`
 
@@ -162,23 +171,49 @@ Default:
   src: `*`,
   dest: `${options.dest}`
 }
-``` 
+```
 
-Options for `extras` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `extras` task (see [`extras.js`](./tasks/extras.md)).
 
 ##### `options.scripts`
 
 Type: `Object`<br>
-Default: See [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets)
+Default:
+```js
+{
+  context: `${options.base}/javascripts`,
+  output: {
+    path: `${config.dest}/assets/javascripts`,
+    publicPath: 'assets/javascripts'
+  }
+}
+```
 
-Options for `scripts` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `scripts` task from [`scripts.js`](./tasks/scripts.md).
 
 ##### `options.styles`
 
 Type: `Object`<br>
-Default: See [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets)
+Default:
+```js
+{
+  src: 'stylesheets/*',
+  dest: `${options.dest}/assets`,
+  sass: {
+    includePaths: [`${options.base}/stylesheets`]
+  },
+  watch: {
+    files: `${options.base}/stylesheets/**/*`
+  },
+  envs: {
+    production: {
+      purify: `${options.dest}/**/*`
+    }
+  }
+}
+```
 
-Options for `styles` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `styles` task from [`styles.js`](./tasks/styles.md).
 
 ##### `options.rev`
 
@@ -194,7 +229,7 @@ Default:
 }
 ```
 
-Options for `rev` task from [`gulp-pipe-assets`](https://www.npmjs.com/package/gulp-pipe-assets).
+Options for `rev` task from [`rev.js`](./tasks/rev.md).
 
 ##### `options.sitemap`
 
@@ -239,7 +274,7 @@ Options for [`browser-sync`](https://www.npmjs.com/package/browser-sync). To ser
 Type: `boolean`<br>
 Default: `true`
 
-Maps to `useConcat` param in `config()` of [`gulp-task-helpers`](https://www.npmjs.com/package/gulp-task-helpers).
+Maps to `useConcat` param in `config()` of [`task-helpers.js`](./helpers/task-helpers.md).
 
 ## Watching for Changes
 
