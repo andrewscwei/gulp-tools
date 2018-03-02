@@ -1,4 +1,4 @@
-# gulp-sys-metalsmith [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-sys-metalsmith/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-sys-metalsmith/tree/master) [![npm version](https://badge.fury.io/js/gulp-sys-metalsmith.svg)](https://badge.fury.io/js/gulp-sys-metalsmith)
+# gulp-mpa-builder [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-mpa-builder/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-mpa-builder/tree/master) [![npm version](https://badge.fury.io/js/gulp-mpa-builder.svg)](https://badge.fury.io/js/gulp-mpa-builder)
 
 An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Prismic.io. Generates the following Gulp tasks for you:
 
@@ -19,7 +19,7 @@ An end-to-end Gulp build system and asset pipeline for a webapp templated by Met
 ## Usage
 
 ```js
-import gulp from 'gulp-sys-metalsmith';
+import gulp from 'gulp-mpa-builder';
 
 gulp.init({
   src: 'app',

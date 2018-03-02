@@ -19,7 +19,7 @@ This task also has built-in support for [i18n](https://www.npmjs.com/package/i18
 import _ from 'lodash';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
-import metalsmith from 'gulp-sys-metalsmith/tasks/metalsmith';
+import metalsmith from 'gulp-mpa-builder/tasks/metalsmith';
 import moment from 'moment';
 import path from 'path';
 

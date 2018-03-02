@@ -3,13 +3,13 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/gulp-sys-metalsmith
+    working_directory: ~/gulp-mpa-builder
     docker:
       - image: node:latest
     steps:
       - checkout
       - restore_cache:
-          keys: 
+          keys:
             - dependency-cache-{{ checksum "package.json" }}
             - dependency-cache-
       - run:

@@ -1,11 +1,11 @@
 {
-  "name": "gulp-sys-metalsmith",
-  "version": "4.0.1",
+  "name": "gulp-mpa-builder",
+  "version": "4.1.0",
   "description": "An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewscwei/gulp-sys-metalsmith.git"
+    "url": "https://github.com/andrewscwei/gulp-mpa-builder.git"
   },
   "files": [
     "helpers",
