@@ -7,7 +7,7 @@ Gulp task for [Webpack]((https://webpack.github.io/).
 ```js
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import scripts from 'gulp-asset-pipeline/tasks/scripts';
+import scripts from 'gulp-assets-pipeline/tasks/scripts';
 
 gulp.task('scripts', scripts({
   context: 'app/javascripts',

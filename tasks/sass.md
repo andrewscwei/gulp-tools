@@ -6,7 +6,7 @@ Gulp task for processing Sass files with the option to watch the emitted source 
 
 ```js
 import gulp from 'gulp';
-import sass from 'gulp-asset-pipeline/tasks/sass';
+import sass from 'gulp-assets-pipeline/tasks/sass';
 
 gulp.task('styles', sass({
   base: 'app',

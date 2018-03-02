@@ -6,7 +6,7 @@ Gulp task for performing static asset revisioning by appending content hash to f
 
 ```js
 import gulp from 'gulp';
-import rev from 'gulp-asset-pipeline/tasks/rev';
+import rev from 'gulp-assets-pipeline/tasks/rev';
 
 gulp.task('rev', rev({
   src: 'public',

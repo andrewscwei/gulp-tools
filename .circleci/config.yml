@@ -3,7 +3,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/gulp-asset-pipeline
+    working_directory: ~/gulp-assets-pipeline
     docker:
       - image: node:latest
     steps:

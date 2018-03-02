@@ -6,7 +6,7 @@ Processes document files, defaults to the following file extensions: `['md', 'pd
 
 ```js
 import gulp from 'gulp';
-import documents from 'gulp-asset-pipeline/tasks/documents';
+import documents from 'gulp-assets-pipeline/tasks/documents';
 
 gulp.task('documents', documents({
   src: 'app/documents/**/*',

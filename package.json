@@ -1,11 +1,11 @@
 {
-  "name": "gulp-asset-pipeline",
-  "version": "4.2.0",
+  "name": "gulp-assets-pipeline",
+  "version": "4.3.0",
   "description": "An end-to-end Gulp build system for assets with Sass and Webpack",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewscwei/gulp-asset-pipeline.git"
+    "url": "https://github.com/andrewscwei/gulp-assets-pipeline.git"
   },
   "files": [
     "helpers",
