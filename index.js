@@ -14,7 +14,6 @@ const extras = require(`./tasks/extras`);
 const fonts = require(`./tasks/fonts`);
 const images = require(`./tasks/images`);
 const gulp = require(`gulp`);
-const metalsmith = require(`./tasks/metalsmith`);
 const path = require(`path`);
 const rev = require(`./tasks/rev`);
 const sass = require(`./tasks/sass`);
@@ -24,6 +23,7 @@ const util = require(`gulp-util`);
 const sequence = require(`run-sequence`);
 const videos = require(`./tasks/videos`);
 const view = require(`./helpers/view-helpers`);
+const views = require(`./tasks/views`);
 
 util.log(`${util.colors.magenta(`NODE_ENV`)}=${process.env.NODE_ENV}`);
 util.log(`${util.colors.magenta(`PORT`)}=${process.env.PORT}`);
@@ -97,9 +97,7 @@ const DEFAULT_CONFIG = {
  * `videos`, `fonts`, `documents`, `extras`, `scripts`, `styles`, `rev`, `views`
  * and `default`.
  *
- * @param {Object} options - System options, extends options supported by
- *                           `gulp-task-metalsmith` as `options.views` and
- *                           `gulp-pipe-assets`, with a few extras (see below).
+ * @param {Object} options - Options.
  * @param {string} options.base - Fallback base path for source files.
  * @param {string} options.dest - Fallback path to destination directory where
  *                                piped files are written to.
@@ -122,7 +120,7 @@ const DEFAULT_CONFIG = {
  *                                         task. @see tasks/rev
  * @param {Object} [options.sitemap] - Options for `gulp-sitemap`.
  * @param {Object|boolean} [options.views] - Set to `false` to disable this
- *                                           task. @see tasks/metalsmith
+ *                                           task. @see tasks/views
  * @param {Array} [options.clean] - Path(s) to remove in the `clean` task.
  * @param {Object} [options.serve] - Options for `browser-sync`.
  * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
@@ -169,7 +167,7 @@ exports.init = function(options, extendsDefaults) {
 
   if (config.views !== false) {
     gulp.task(`views`, function(callback) {
-      metalsmith(_.merge(_.omit(config, tasks), _.get(config, `views`))).bind(this)(callback);
+      views(_.merge(_.omit(config, tasks), _.get(config, `views`))).bind(this)(callback);
     });
     seq.push(`views`);
   }
