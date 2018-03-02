@@ -1,4 +1,4 @@
-# `metalsmith.js`
+# `views.js`
 
 Gulp task for processing template files with Metalsmith plugins, option to watch source files for changes. Built-in plugins are executed in the following order:
 
