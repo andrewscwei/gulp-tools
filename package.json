@@ -1,6 +1,6 @@
 {
   "name": "gulp-sys-metalsmith",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith",
   "main": "index.js",
   "repository": {

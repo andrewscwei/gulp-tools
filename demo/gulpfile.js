@@ -49,9 +49,9 @@ gulp.init({
     },
     watch: {
       tasks: [browserSync.reload]
-    },
-    sitemap: {
-      hostname: `http://www.example.com`
     }
+  },
+  sitemap: {
+    siteUrl: `http://www.example.com`
   }
 });
