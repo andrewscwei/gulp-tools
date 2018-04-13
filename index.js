@@ -14,6 +14,7 @@ const extras = require(`./tasks/extras`);
 const fonts = require(`./tasks/fonts`);
 const gulp = require(`gulp`);
 const images = require(`./tasks/images`);
+const moment = require(`moment`);
 const path = require(`path`);
 const fs = require(`fs-extra`);
 const rev = require(`./tasks/rev`);
@@ -152,9 +153,11 @@ exports.init = function(options, extendsDefaults) {
     DEFAULT_CONFIG.serve.server.baseDir = options.dest;
 
     DEFAULT_CONFIG.views.metadata = {
-      p: function(p) {
+      $asset: function(p) {
         return view.getPath(p, path.join(options.dest, _.get(options, `rev.manifestFile`) || `rev-manifest.json`));
-      }
+      },
+      $moment: moment,
+      _: _
     };
   }
 
@@ -278,8 +281,8 @@ function generatePrismicDocuments(config) {
       const documents = prismic.reduce(res.results, false, config);
 
       // Populate config metadata with retrieved documents.
-      if (!config.metadata) config.metadata = { data: {} };
-      _.merge(config.metadata.data, documents);
+      if (!config.metadata) config.metadata = { $data: {} };
+      _.merge(config.metadata.$data, documents);
 
       for (let docType in documents) {
         const c = _.get(config, `collections.${docType}`);

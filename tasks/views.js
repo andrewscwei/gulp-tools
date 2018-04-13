@@ -245,12 +245,12 @@ function getDefaults(context, options) {
 function normalizeConfig(config, locale) {
   // Set current locale of i18n context.
   if (config.i18n && (config.i18n.locales instanceof Array)) {
-    config.metadata.global.locale = locale || config.i18n.locales[0];
-    config.metadata.global.locales = config.i18n.locales;
-    config.metadata.global.__p = function(s) { return helpers.getNormalizedPath(helpers.getLocalizedPath(s, locale, config.i18n.locales)); };
+    config.metadata.global.$locale = locale || config.i18n.locales[0];
+    config.metadata.global.$locales = config.i18n.locales;
+    config.metadata.global.$route = function(s) { return helpers.getNormalizedPath(helpers.getLocalizedPath(s, locale, config.i18n.locales)); };
   }
   else {
-    config.metadata.global.__p = function(s) { return helpers.getNormalizedPath(s); };
+    config.metadata.global.$route = function(s) { return helpers.getNormalizedPath(s); };
   }
 
   // Set defaults for metalsmith-layouts.

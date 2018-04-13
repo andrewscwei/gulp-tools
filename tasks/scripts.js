@@ -28,9 +28,6 @@ const DEFAULT_CONFIG = {
   resolve: {
     extensions: [`.js`, `.json`]
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin(`common`)
-  ],
   stats: {
     colors: true,
     modules: true,
@@ -41,24 +38,17 @@ const DEFAULT_CONFIG = {
     development: {
       devtool: `cheap-eval-source-map`,
       plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify(`development`)
-          }
-        }),
-        new webpack.optimize.CommonsChunkPlugin(`common`)
+        new webpack.EnvironmentPlugin({
+          NODE_ENV: `development`
+        })
       ]
     },
     production: {
       plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify(`production`)
-          }
+        new webpack.EnvironmentPlugin({
+          NODE_ENV: `production`
         }),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin(`common`),
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
       ]
     }
   }

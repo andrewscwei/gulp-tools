@@ -58,10 +58,10 @@ html
       li: a(href='/') En
       li: a(href='/jp/') Jp
     nav.horizontal
-      li: a(href=__p('/')) Home
-      li: a(href=__p('/about/')) About
-      li: a(href=__p('/blog/')) Blog
+      li: a(href=$route('/')) Home
+      li: a(href=$route('/about/')) About
+      li: a(href=$route('/blog/')) Blog
     div.wrapper
       block body
-    script(src=p('/assets/javascripts/common.js'))
-    script(src=p('/assets/javascripts/application.js'))
+    script(src=$asset('/assets/javascripts/common.js'))
+    script(src=$asset('/assets/javascripts/application.js'))
