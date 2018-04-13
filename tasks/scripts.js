@@ -9,6 +9,7 @@ const util = require(`gulp-util`);
 const webpack = require(`webpack`);
 
 const DEFAULT_CONFIG = {
+  mode: process.env === `development` ? `development` : `production`,
   output: {
     filename: `[name].js`,
     chunkFilename: `[chunkhash].js`
@@ -17,6 +18,7 @@ const DEFAULT_CONFIG = {
     rules: [{
       test: /\.js/,
       loader: `babel-loader`,
+      exclude: /node_modules/,
       options: {
         presets: [`env`]
       }
@@ -66,7 +68,7 @@ const DEFAULT_CONFIG = {
  *                                          disabled even if the `--watch` flag
  *                                          is set.
  * @param {boolean} [extendsDefaults=true] - Maps to `useConcat` param in
- *                                           `gulp-task-helpers`#config.
+ *                                           task-helpers#config.
  *
  * @return {Function} - A function that returns a Gulp stream.
  */

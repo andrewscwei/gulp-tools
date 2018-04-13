@@ -95,7 +95,7 @@ const DEFAULT_CONFIG = {
     },
     files: false,
     notify: false,
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 8080,
     logLevel: `info`,
     open: false
   },
@@ -157,6 +157,7 @@ exports.init = function(options, extendsDefaults) {
         return view.getPath(p, path.join(options.dest, _.get(options, `rev.manifestFile`) || `rev-manifest.json`));
       },
       $moment: moment,
+      $env: process.env,
       _: _
     };
   }
