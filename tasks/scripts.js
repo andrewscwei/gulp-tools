@@ -18,10 +18,7 @@ const DEFAULT_CONFIG = {
     rules: [{
       test: /\.js/,
       loader: `babel-loader`,
-      exclude: /node_modules/,
-      options: {
-        presets: [`env`]
-      }
+      exclude: /node_modules/
     }, {
       test: /\.json/,
       loader: `json-loader`
