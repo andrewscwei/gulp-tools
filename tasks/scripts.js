@@ -9,17 +9,22 @@ const util = require(`gulp-util`);
 const webpack = require(`webpack`);
 
 const DEFAULT_CONFIG = {
+  target: `web`,
+  stats: {
+    colors: true,
+    modules: true,
+    reasons: true,
+    errorDetails: true
+  },
   output: {
     filename: `[name].js`,
-    chunkFilename: `[chunkhash].js`
+    chunkFilename: `[chunkhash].js`,
+    sourceMapFilename: `[file].map`
   },
   module: {
     rules: [{
       test: /\.js/,
-      loader: `babel-loader`,
-      options: {
-        presets: [`env`]
-      }
+      loader: `babel-loader`
     }, {
       test: /\.json/,
       loader: `json-loader`
@@ -29,37 +34,18 @@ const DEFAULT_CONFIG = {
     extensions: [`.js`, `.json`]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(`common`)
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: `production`
+    })
   ],
-  stats: {
-    colors: true,
-    modules: true,
-    reasons: true,
-    errorDetails: true
-  },
   envs: {
     development: {
-      devtool: `cheap-eval-source-map`,
-      plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify(`development`)
-          }
-        }),
-        new webpack.optimize.CommonsChunkPlugin(`common`)
-      ]
+      mode: `development`,
+      devtool: `cheap-eval-source-map`
     },
     production: {
-      plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify(`production`)
-          }
-        }),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin(`common`),
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
-      ]
+      mode: `production`,
+      devtool: `source-map`
     }
   }
 };
