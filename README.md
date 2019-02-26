@@ -293,7 +293,3 @@ You can pass a `--serve` or `--s` flag to the Gulp command to serve the app. Whe
 ## Disclaimer
 
 This is an experimental project driven by internal requirements.
-
-## License
-
-This software is released under the [MIT License](http://opensource.org/licenses/MIT).
