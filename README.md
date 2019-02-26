@@ -1,4 +1,4 @@
-# gulp-pipe-media [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-media/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-media/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-media.svg)](https://badge.fury.io/js/gulp-pipe-media)
+# gulp-pipe-media [![npm version](https://badge.fury.io/js/gulp-pipe-media.svg)](https://badge.fury.io/js/gulp-pipe-media)
 
 Gulp pipeline for media tasks (i.e. images, videos, fonts, documents and extras) with built-in support for watching files for changes. This pipeline creates the following Gulp tasks:
 
@@ -380,7 +380,3 @@ By default, files that were emitted as source files will be marked for watching 
 ## Disclaimer
 
 This is an experimental project driven by internal requirements.
-
-## License
-
-This software is released under the [MIT License](http://opensource.org/licenses/MIT).
