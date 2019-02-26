@@ -102,7 +102,3 @@ $ gulp fonts --watch
 ```
 
 By default, files that were emitted as source files will be marked for watching and the task name assigned to this module will be executed whenever a file changes. To override this behavior see `options.watch`.
-
-## License
-
-This software is released under the [MIT License](http://opensource.org/licenses/MIT).
