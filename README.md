@@ -1,6 +1,6 @@
 # gulp-task-webpack [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-webpack/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-webpack/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-webpack.svg)](https://badge.fury.io/js/gulp-task-webpack)
 
-Gulp task for [Webpack]((https://webpack.github.io/).
+Gulp task for [Webpack](https://webpack.github.io/).
 
 ## Usage
 
@@ -143,7 +143,3 @@ By default, files that were emitted as source files will be marked for watching 
 ## Disclaimer
 
 This is an experimental project driven by internal requirements.
-
-## License
-
-This software is released under the [MIT License](http://opensource.org/licenses/MIT).
