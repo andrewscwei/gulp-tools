@@ -106,7 +106,3 @@ glob([
 ## Disclaimer
 
 This is an experimental project driven by internal requirements.
-
-## License
-
-This software is released under the [MIT License](http://opensource.org/licenses/MIT).
