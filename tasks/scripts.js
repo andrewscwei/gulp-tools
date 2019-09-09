@@ -33,6 +33,18 @@ const DEFAULT_CONFIG = {
     reasons: true,
     errorDetails: true,
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          test: /node_modules/,
+          chunks: 'all',
+          name: 'common',
+          enforce: true,
+        },
+      },
+    },
+  },
   envs: {
     development: {
       devtool: 'cheap-eval-source-map',
