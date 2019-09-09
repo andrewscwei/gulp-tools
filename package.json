@@ -69,7 +69,7 @@
     "prismic.io": "^3.6.1",
     "run-sequence": "^2.2.1",
     "transform-runtime": "^0.0.0",
-    "webpack": "^4.5.0",
+    "webpack": "^4.39.3",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
