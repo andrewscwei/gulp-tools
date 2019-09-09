@@ -55,30 +55,16 @@ const DEFAULT_CONFIG = {
   prism: false,
   mathjax: false,
   layouts: {
-    pattern: undefined, // Path relative to `config.src`
+    pattern: '**/*', // Path relative to `config.src`
     engine: 'pug',
     directory: undefined, // Defaults to `config.src`/layouts in runtime.
+    engineOptions: {
+    },
   },
   inPlace: {
     pattern: '**/*.pug',
     rename: true,
     engineOptions: {
-    },
-  },
-  pug: {
-    pretty: true,
-  },
-  jade: {
-    pretty: true,
-  },
-  envs: {
-    production: {
-      pug: {
-        pretty: false,
-      },
-      jade: {
-        pretty: false,
-      },
     },
   },
 };
@@ -224,8 +210,7 @@ function getDefaults(context, options) {
       tasks: [taskName],
     };
 
-    defaults.jade.basedir = $.glob(options.src, { base: options.base });
-    defaults.pug.basedir = $.glob(options.src, { base: options.base });
+    defaults.layouts.engineOptions.basedir = $.glob(options.src, { base: options.base });
     defaults.inPlace.engineOptions.basedir = $.glob(options.src, { base: options.base });
   }
 
