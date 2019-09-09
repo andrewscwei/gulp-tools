@@ -1,4 +1,4 @@
-# gulp-prismic-mpa-builder [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-prismic-mpa-builder/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-prismic-mpa-builder/tree/master) [![npm version](https://badge.fury.io/js/gulp-prismic-mpa-builder.svg)](https://badge.fury.io/js/gulp-prismic-mpa-builder)
+# gulp-prismic-mpa-builder ![](https://img.shields.io/maintenance/no/2017) [![](https://img.shields.io/github/license/andrewscwei/gulp-prismic-mpa-builder)](https://github.com/andrewscwei/gulp-prismic-mpa-builder/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/gulp-prismic-mpa-builder.svg)](https://www.npmjs.com/package/gulp-prismic-mpa-builder) [![CircleCI](https://img.shields.io/circleci/build/github/andrewscwei/gulp-prismic-mpa-builder.svg)](https://circleci.com/gh/andrewscwei/gulp-prismic-mpa-builder)
 
 An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Prismic.io. Generates the following Gulp tasks for you:
 
