@@ -12,7 +12,7 @@ const DEFAULT_CONFIG = {
   mode: process.env === 'development' ? 'development' : 'production',
   output: {
     filename: '[name].js',
-    chunkFilename: '[chunkhash].js',
+    chunkFilename: '[name].js',
   },
   module: {
     rules: [{
