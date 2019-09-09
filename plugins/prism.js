@@ -24,10 +24,10 @@ module.exports = function(options, locale) {
       }
       else {
         const contents = data.contents.toString('utf8');
-        
+
         prismDOM(contents, Object.assign(typeof options === 'object' ? options : {}, typeof data.prism === 'object' ? data.prism : {}))
           .then(htmlString => {
-            data.contents = new Buffer(htmlString);
+            data.contents = Buffer.from(htmlString);
 
             if (locale) util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), 'Finished Prism syntax highlighting for', util.colors.magenta(file));
             else util.log(util.colors.blue('[metalsmith]'), 'Finished Prism syntax highlighting for', util.colors.magenta(file));

@@ -29,7 +29,7 @@ module.exports = function(options, locale) {
 
         mathjaxDOM(contents, Object.assign(typeof options === 'object' ? options : {}, typeof data.mathjax === 'object' ? data.mathjax : {}))
           .then(html => {
-            data.contents = new Buffer(html);
+            data.contents = Buffer.from(html);
 
             if (locale) util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), 'Prerendered MathJax for', util.colors.magenta(file));
             else util.log(util.colors.blue('[metalsmith]'), 'Prerendered MathJax for', util.colors.magenta(file));

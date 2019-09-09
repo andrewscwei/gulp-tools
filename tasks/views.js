@@ -145,7 +145,7 @@ module.exports = function(options, extendsDefaults) {
       i18n.init(config.metadata.global);
     }
 
-    async.eachSeries((config.i18n && config.multilingual) ? config.i18n.locales : [null], function(locale, done) {
+    async.eachSeries((config.i18n && config.multilingual) ? config.i18n.locales : [null], (locale, done) => {
       build(config, locale, done);
     }, callback);
   };
@@ -186,9 +186,9 @@ function build(config, locale, done) {
     .use((config.mathjax !== false) ? mathjax(config.mathjax, locale) : noop())
     .use(permalinks(config.permalinks))
     .use(reporter(locale))
-    .build(function(err) {
+    .build(err => {
       if (err && shouldWatch) util.log(util.colors.blue('[metalsmith]'), util.colors.red(err));
-      done(!shouldWatch && err);
+      done(!shouldWatch ? err : undefined);
     });
 }
 
