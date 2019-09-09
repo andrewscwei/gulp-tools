@@ -11,7 +11,8 @@
     "helpers",
     "plugins",
     "tasks",
-    "index.js"
+    "index.js",
+    ".babelrc"
   ],
   "scripts": {
     "demo": "rimraf demo/public && gulp --gulpfile demo/gulpfile.js --watch --serve",
