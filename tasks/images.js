@@ -4,13 +4,13 @@
  *       passing either `--watch` or `--w` flag in the CLI.
  */
 
-const $ = require(`../helpers/task-helpers`);
-const imagemin = require(`gulp-imagemin`);
-const sequence = require(`run-sequence`);
-const size = require(`gulp-size`);
-const util = require(`gulp-util`);
+const $ = require('../helpers/task-helpers');
+const imagemin = require('gulp-imagemin');
+const sequence = require('run-sequence');
+const size = require('gulp-size');
+const util = require('gulp-util');
 
-const FILE_EXTENSIONS = [`jpg`, `jpeg`, `gif`, `png`, `svg`, `ico`, `tiff`, `bmp`];
+const FILE_EXTENSIONS = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'ico', 'tiff', 'bmp'];
 
 const DEFAULT_CONFIG = {
   base: undefined,
@@ -18,12 +18,12 @@ const DEFAULT_CONFIG = {
   src: undefined,
   watch: {
     files: undefined, // Emitted files
-    tasks: undefined // Current task name
+    tasks: undefined, // Current task name
   },
   imagemin: {
     plugins: [
-      imagemin.svgo()
-    ]
+      imagemin.svgo(),
+    ],
   },
   envs: {
     production: {
@@ -32,11 +32,11 @@ const DEFAULT_CONFIG = {
           imagemin.gifsicle(),
           imagemin.jpegtran(),
           imagemin.optipng(),
-          imagemin.svgo()
-        ]
-      }
-    }
-  }
+          imagemin.svgo(),
+        ],
+      },
+    },
+  },
 };
 
 /**
@@ -84,14 +84,14 @@ module.exports = function(options, extendsDefaults) {
     if (options.src) {
       DEFAULT_CONFIG.watch = {
         files: [].concat($.glob(options.src, { base: options.base, exts: FILE_EXTENSIONS })),
-        tasks: [taskName]
+        tasks: [taskName],
       };
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== `boolean`) || extendsDefaults);
-    const shouldWatch = (util.env[`watch`] || util.env[`w`]) && (config.watch !== false);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
+    const shouldWatch = (util.env['watch'] || util.env['w']) && (config.watch !== false);
     const src = $.glob(config.src, { base: config.base, exts: FILE_EXTENSIONS });
-    const dest = $.glob(``, { base: config.dest });
+    const dest = $.glob('', { base: config.dest });
 
     if (shouldWatch && !isWatching) {
       isWatching = true;
@@ -100,8 +100,7 @@ module.exports = function(options, extendsDefaults) {
 
     let stream = this.src(src, { base: config.base });
 
-    if (config.imagemin !== false)
-      stream = stream.pipe(imagemin(config.imagemin && config.imagemin.plugins, config.imagemin && config.imagemin.options));
+    if (config.imagemin !== false) stream = stream.pipe(imagemin(config.imagemin && config.imagemin.plugins, config.imagemin && config.imagemin.options));
 
     return stream
       .pipe(size({ title: `[${taskName}]`, gzip: true }))

@@ -4,53 +4,53 @@
  *       watch for changes by passing either `--watch` or `--w` flag in the CLI.
  */
 
-const $ = require(`../helpers/task-helpers`);
-const util = require(`gulp-util`);
-const webpack = require(`webpack`);
+const $ = require('../helpers/task-helpers');
+const util = require('gulp-util');
+const webpack = require('webpack');
 
 const DEFAULT_CONFIG = {
-  mode: process.env === `development` ? `development` : `production`,
+  mode: process.env === 'development' ? 'development' : 'production',
   output: {
-    filename: `[name].js`,
-    chunkFilename: `[chunkhash].js`
+    filename: '[name].js',
+    chunkFilename: '[chunkhash].js',
   },
   module: {
     rules: [{
       test: /\.js/,
-      loader: `babel-loader`,
-      exclude: /node_modules/
+      loader: 'babel-loader',
+      exclude: /node_modules/,
     }, {
       test: /\.json/,
-      loader: `json-loader`
-    }]
+      loader: 'json-loader',
+    }],
   },
   resolve: {
-    extensions: [`.js`, `.json`]
+    extensions: ['.js', '.json'],
   },
   stats: {
     colors: true,
     modules: true,
     reasons: true,
-    errorDetails: true
+    errorDetails: true,
   },
   envs: {
     development: {
-      devtool: `cheap-eval-source-map`,
+      devtool: 'cheap-eval-source-map',
       plugins: [
         new webpack.EnvironmentPlugin({
-          NODE_ENV: `development`
-        })
-      ]
+          NODE_ENV: 'development',
+        }),
+      ],
     },
     production: {
       plugins: [
         new webpack.EnvironmentPlugin({
-          NODE_ENV: `production`
+          NODE_ENV: 'production',
         }),
         new webpack.NoEmitOnErrorsPlugin(),
-      ]
-    }
-  }
+      ],
+    },
+  },
 };
 
 /**
@@ -78,14 +78,12 @@ module.exports = function(options, watchOptions, extendsDefaults) {
       DEFAULT_CONFIG.resolve.modules = [options.context];
     }
 
-    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== `boolean`) || extendsDefaults);
+    const config = $.config(options, DEFAULT_CONFIG, (typeof extendsDefaults !== 'boolean') || extendsDefaults);
     const watchCallback = watchOptions && watchOptions.callback;
-    const shouldWatch = (util.env[`watch`] || util.env[`w`]) && (watchOptions !== false);
+    const shouldWatch = (util.env['watch'] || util.env['w']) && (watchOptions !== false);
 
-    if (shouldWatch)
-      webpack(config).watch(100, bundle(callback));
-    else
-      webpack(config).run(bundle(callback));
+    if (shouldWatch) webpack(config).watch(100, bundle(callback));
+    else webpack(config).run(bundle(callback));
 
     function bundle(done) {
       return function(err, stats) {
@@ -98,17 +96,12 @@ module.exports = function(options, watchOptions, extendsDefaults) {
           done(details.errors);
         }
         else {
-          if (err)
-            util.log(util.colors.blue(`[webpack]`), util.colors.red(err));
-          else if (details.errors.length > 0)
-            util.log(util.colors.blue(`[webpack]`), util.colors.red(stats.toString()));
-          else
-            util.log(util.colors.blue(`[webpack]`), stats.toString());
+          if (err) util.log(util.colors.blue('[webpack]'), util.colors.red(err));
+          else if (details.errors.length > 0) util.log(util.colors.blue('[webpack]'), util.colors.red(stats.toString()));
+          else util.log(util.colors.blue('[webpack]'), stats.toString());
 
-          if (!isWatching)
-            done();
-          else if (typeof watchCallback === `function`)
-            watchCallback();
+          if (!isWatching) done();
+          else if (typeof watchCallback === 'function') watchCallback();
 
           isWatching = shouldWatch;
         }

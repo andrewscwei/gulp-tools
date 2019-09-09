@@ -1,7 +1,7 @@
 // © Andrew Wei
 
-const _ = require(`lodash`);
-const helpers = require(`../helpers/view-helpers`);
+const _ = require('lodash');
+const helpers = require('../helpers/view-helpers');
 
 /**
  * Resolves the path for each file data.
@@ -13,11 +13,9 @@ module.exports = function(currentLocale, locales) {
     Object.keys(files).forEach((file, i) => {
       const data = files[file];
 
-      if (typeof data.path === `string`)
-        data.path = helpers.getNormalizedPath(helpers.getLocalizedPath(data.path, currentLocale, locales));
+      if (typeof data.path === 'string') data.path = helpers.getNormalizedPath(helpers.getLocalizedPath(data.path, currentLocale, locales));
 
-      if (data.pagination)
-        data.pagination.pages.forEach(val => val.path = helpers.getNormalizedPath(helpers.getLocalizedPath(val.path, currentLocale, locales)));
+      if (data.pagination) data.pagination.pages.forEach(val => val.path = helpers.getNormalizedPath(helpers.getLocalizedPath(val.path, currentLocale, locales)));
     });
 
     done();

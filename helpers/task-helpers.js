@@ -1,7 +1,7 @@
 // © Andrew Wei
 
-const _ = require(`lodash`);
-const path = require(`path`);
+const _ = require('lodash');
+const path = require('path');
 
 /**
  * Returns a new object by merging `config` into `defaults` with values that
@@ -48,12 +48,12 @@ const path = require(`path`);
  *   // }
  */
 exports.config = function(config, defaults, useConcat) {
-  const env = process.env.NODE_ENV || `production`;
-  const defaultConfig = _.omit(defaults, `envs`) || {};
+  const env = process.env.NODE_ENV || 'production';
+  const defaultConfig = _.omit(defaults, 'envs') || {};
   const defaultEnvConfig = _.get(defaults, `envs.${env}`) || {};
-  const targetBaseConfig = _.omit(config, `envs`) || {};
+  const targetBaseConfig = _.omit(config, 'envs') || {};
   const targetEnvConfig = _.get(config, `envs.${env}`) || {};
-  useConcat = (typeof defaults === `boolean`) ? defaults : useConcat;
+  useConcat = (typeof defaults === 'boolean') ? defaults : useConcat;
 
   const baseConfig = _.mergeWith(defaultConfig, targetBaseConfig, function(a, b) { return (useConcat && _.isArray(a)) ? _.union(a, b) : undefined; });
   const envConfig = _.mergeWith(defaultEnvConfig, targetEnvConfig, function(a, b) { return (useConcat && _.isArray(a)) ? _.union(a, b) : undefined; });
@@ -98,14 +98,14 @@ exports.glob = function(patterns, options) {
     return _.map(patterns, val => (exports.glob(val, options)));
   }
   else {
-    if (!patterns) patterns = ``;
-    const base = _.get(options, `base`);
-    const negate = _.startsWith(patterns, `!`) && patterns.length > 1;
-    const exts = (path.extname(patterns) === ``) ? globExts(_.get(options, `exts`)) : ``;
+    if (!patterns) patterns = '';
+    const base = _.get(options, 'base');
+    const negate = _.startsWith(patterns, '!') && patterns.length > 1;
+    const exts = (path.extname(patterns) === '') ? globExts(_.get(options, 'exts')) : '';
 
     if (negate) patterns = patterns.substr(1);
 
-    return `${negate ? `!` : ``}${path.join(base || ``, `${patterns}${exts}`)}`;
+    return `${negate ? '!' : ''}${path.join(base || '', `${patterns}${exts}`)}`;
   }
 };
 
@@ -120,5 +120,5 @@ exports.glob = function(patterns, options) {
  */
 function globExts() {
   let exts = _.flattenDeep(_.concat.apply(null, arguments));
-  return (exts.length <= 1) ? (exts[0] && `.${exts[0]}` || ``) : `.{${exts.join(`,`)}}`;
+  return (exts.length <= 1) ? (exts[0] && `.${exts[0]}` || '') : `.{${exts.join(',')}}`;
 }

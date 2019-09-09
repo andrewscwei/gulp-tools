@@ -1,13 +1,13 @@
 {
-  "sourceMaps": true,
   "retainLines": true,
+  "sourceMaps": true,
   "presets": [
-    "env"
+    "@babel/preset-env"
   ],
   "plugins": [
-    "transform-runtime",
-    "transform-object-rest-spread",
-    "transform-decorators-legacy",
-    "transform-class-properties"
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-syntax-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

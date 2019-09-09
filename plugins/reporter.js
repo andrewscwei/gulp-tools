@@ -1,6 +1,6 @@
 // © Andrew Wei
 
-const util = require(`gulp-util`);
+const util = require('gulp-util');
 
 /**
  * Writes Metalsmith file report to console.
@@ -10,10 +10,8 @@ const util = require(`gulp-util`);
 module.exports = function(locale) {
   return function(files, metalsmith, done) {
     Object.keys(files).forEach(file => {
-      if (locale)
-        util.log(util.colors.blue(`[metalsmith]`), util.colors.green(`[${locale}]`), `Generated`, util.colors.magenta(file));
-      else
-        util.log(util.colors.blue(`[metalsmith]`), `Generated`, util.colors.magenta(file));
+      if (locale) util.log(util.colors.blue('[metalsmith]'), util.colors.green(`[${locale}]`), 'Generated', util.colors.magenta(file));
+      else util.log(util.colors.blue('[metalsmith]'), 'Generated', util.colors.magenta(file));
     });
 
     done();

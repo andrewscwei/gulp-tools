@@ -1,11 +1,11 @@
 // © Andrew Wei
 
-const _ = require(`lodash`);
-const marked = require(`marked`);
-const moment = require(`moment`);
-const Prismic = require(`prismic.io`).Prismic;
+const _ = require('lodash');
+const marked = require('marked');
+const moment = require('moment');
+const Prismic = require('prismic.io').Prismic;
 
-marked.setOptions({ langPrefix: `language-` });
+marked.setOptions({ langPrefix: 'language-' });
 
 /**
  * Gets the Prismic API.
@@ -31,9 +31,9 @@ exports.getAPI = function(apiEndpoint, options) {
  */
 exports.getEverything = function(api, ref, query, orderings) {
   return api
-    .form(`everything`)
+    .form('everything')
     .ref(ref || api.master())
-    .query(query || ``)
+    .query(query || '')
     .orderings(orderings)
     .submit();
 };
@@ -76,18 +76,18 @@ exports.reduce = function(docs, relative, config) {
   else {
     let r = _.mapKeys(_.mapValues(docs.data, (v, k) => {
       switch (v.type) {
-      case `StructuredText`: {
+      case 'StructuredText': {
         let ret = docs.getStructuredText(k).asText();
-        if ((k === `markdown`) || (k === `${docs.type}.markdown`)) ret = marked(ret);
+        if ((k === 'markdown') || (k === `${docs.type}.markdown`)) ret = marked(ret);
         return ret;
       }
-      case `Select`:
+      case 'Select':
         return docs.getBoolean(k);
-      case `Image`:
+      case 'Image':
         return docs.getImage(k).url;
-      case `Number`:
+      case 'Number':
         return docs.getNumber(k);
-      case `SliceZone`:
+      case 'SliceZone':
         return docs.getSliceZone(k).asHtml((doc) => {
           let pattern = _.get(config, `collections.${doc.type}.permalink`);
           let ret = pattern;
@@ -106,8 +106,8 @@ exports.reduce = function(docs, relative, config) {
             }
 
             if (/((\/)?([a-zA-Z0-9\-\_\/\.]+))/g.test(ret)) {
-              if (!_.startsWith(ret, `/`)) ret = `/${ret}`;
-              if (!_.endsWith(ret, `.html`) && !_.endsWith(ret, `/`)) ret = `${ret}/`;
+              if (!_.startsWith(ret, '/')) ret = `/${ret}`;
+              if (!_.endsWith(ret, '.html') && !_.endsWith(ret, '/')) ret = `${ret}/`;
             }
 
             return ret;
@@ -115,15 +115,15 @@ exports.reduce = function(docs, relative, config) {
 
           return null;
         });
-      case `Date`:
-        return moment(docs.getDate(k)).format(`YYYY-MM-DD`);
-      case `Link.web`:
+      case 'Date':
+        return moment(docs.getDate(k)).format('YYYY-MM-DD');
+      case 'Link.web':
         return docs.getLink(k).url();
       default:
         return undefined;
       }
     }), (v, k) => {
-      return _.replace(k, `${docs.type}.`, ``);
+      return _.replace(k, `${docs.type}.`, '');
     });
 
     r.id = docs.id;

@@ -1,6 +1,6 @@
 // © Andrew Wei
 
-const _ = require(`lodash`);
+const _ = require('lodash');
 
 /**
  * Create i18n file paths.
