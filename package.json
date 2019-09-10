@@ -1,6 +1,6 @@
 {
   "name": "gulp-prismic-mpa-builder",
-  "version": "7.4.2",
+  "version": "7.5.0",
   "description": "An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Prismic.io.",
   "main": "index.js",
   "repository": {
@@ -50,7 +50,6 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-util": "^3.0.8",
     "i18n": "^0.8.3",
-    "json-loader": "^0.5.7",
     "jstransformer-pug": "^0.3.0",
     "lodash": "^4.17.15",
     "marked": "^0.7.0",
