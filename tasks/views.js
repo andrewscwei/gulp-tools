@@ -57,6 +57,7 @@ const DEFAULT_CONFIG = {
   layouts: {
     pattern: '**/*', // Path relative to `config.src`
     engine: 'pug',
+    suppressNoFilesError: true,
     directory: undefined, // Defaults to `config.src`/layouts in runtime.
     engineOptions: {
     },
