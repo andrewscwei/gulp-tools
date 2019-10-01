@@ -35,6 +35,7 @@ exports.getEverything = function(api, ref, query, orderings) {
     .ref(ref || api.master())
     .query(query || '')
     .orderings(orderings)
+    .pageSize(100)
     .submit();
 };
 
