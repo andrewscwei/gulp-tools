@@ -1,4 +1,4 @@
-# gulp-pipe-metalcontentful [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-metalcontentful/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-metalcontentful/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-metalcontentful.svg)](https://badge.fury.io/js/gulp-pipe-metalcontentful)
+# gulp-pipe-metalcontentful ![](https://img.shields.io/maintenance/no/2016)
 
 Gulp pipeline for processing templates content managed by Contentful. This pipeline generates a single task, `views`, which does two things:
 
