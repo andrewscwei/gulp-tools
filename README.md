@@ -1,4 +1,4 @@
-# gulp-pipe-metalprismic [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-pipe-metalprismic/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-pipe-metalprismic/tree/master) [![npm version](https://badge.fury.io/js/gulp-pipe-metalprismic.svg)](https://badge.fury.io/js/gulp-pipe-metalprismic)
+# gulp-pipe-metalprismic ![](https://img.shields.io/maintenance/no/2017)
 
 Gulp pipeline for processing templates content managed by Prismic.io. This pipeline generates a single task, `views`, which does two things:
 
