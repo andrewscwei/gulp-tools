@@ -1,4 +1,4 @@
-# gulp-contentful-mpa-builder [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-contentful-mpa-builder/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-contentful-mpa-builder/tree/master) [![npm version](https://badge.fury.io/js/gulp-contentful-mpa-builder.svg)](https://badge.fury.io/js/gulp-contentful-mpa-builder)
+# gulp-contentful-mpa-builder ![](https://img.shields.io/maintenance/no/2016)
 
 An end-to-end Gulp build system and asset pipeline for a webapp templated by Metalsmith and content-managed by Contentful. Generates the following Gulp tasks for you:
 
