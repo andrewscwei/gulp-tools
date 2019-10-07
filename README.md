@@ -1,4 +1,4 @@
-# gulp-task-videos [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-videos/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-videos/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-videos.svg)](https://badge.fury.io/js/gulp-task-videos)
+# gulp-task-videos ![](https://img.shields.io/maintenance/no/2016)
 
 ## DEPRECATED, USE [`gulp-pipe-media`](https://www.npmjs.com/package/gulp-pipe-media) INSTEAD
 
