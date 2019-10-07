@@ -1,4 +1,4 @@
-# gulp-task-stylus [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-stylus/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-stylus/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-stylus.svg)](https://badge.fury.io/js/gulp-task-stylus)
+# gulp-task-stylus ![](https://img.shields.io/maintenance/no/2016)
 
 Gulp task for processing Stylus files with the option to watch the emitted source files for changes.
 
