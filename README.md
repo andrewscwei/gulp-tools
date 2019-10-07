@@ -1,4 +1,4 @@
-# gulp-task-webpack [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-webpack/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-webpack/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-webpack.svg)](https://badge.fury.io/js/gulp-task-webpack)
+# gulp-task-webpack ![](https://img.shields.io/maintenance/no/2016)
 
 Gulp task for [Webpack](https://webpack.github.io/).
 
