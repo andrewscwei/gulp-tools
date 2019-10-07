@@ -1,4 +1,4 @@
-# gulp-task-browserify [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-browserify/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-browserify/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-browserify.svg)](https://badge.fury.io/js/gulp-task-browserify)
+# gulp-task-browserify ![](https://img.shields.io/maintenance/no/2016)
 
 Gulp task for [Browserify](http://browserify.org/).
 
