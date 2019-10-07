@@ -1,4 +1,4 @@
-# gulp-pipe-media ![](https://img.shields.io/maintenance/no/2017)
+# gulp-pipe-media ![](https://img.shields.io/maintenance/no/2016)
 
 Gulp pipeline for media tasks (i.e. images, videos, fonts, documents and extras) with built-in support for watching files for changes. This pipeline creates the following Gulp tasks:
 
