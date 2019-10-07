@@ -1,4 +1,4 @@
-# gulp-task-helpers [![Circle CI](https://circleci.com/gh/andrewscwei/gulp-task-helpers/tree/master.svg?style=svg)](https://circleci.com/gh/andrewscwei/gulp-task-helpers/tree/master) [![npm version](https://badge.fury.io/js/gulp-task-helpers.svg)](https://badge.fury.io/js/gulp-task-helpers)
+# gulp-task-helpers ![](https://img.shields.io/maintenance/no/2016)
 
 Micro library containing helper functions for common Gulp tasks.
 
