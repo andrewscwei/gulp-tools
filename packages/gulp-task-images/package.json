@@ -1,0 +1,29 @@
+{
+  "name": "gulp-task-images",
+  "version": "1.2.10",
+  "description": "Gulp task for processing images",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewscwei/gulp-task-images.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-imagemin": "^3.0.1",
+    "gulp-size": "^2.1.0",
+    "gulp-task-helpers": "^1.2.8",
+    "gulp-util": "^3.0.7",
+    "run-sequence": "^1.2.1"
+  }
+}
