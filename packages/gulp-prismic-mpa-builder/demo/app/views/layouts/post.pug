@@ -1,0 +1,25 @@
+extends /layouts/base
+
+block body
+  h1= title
+  h2= m(date).format('MMM DD')
+
+  nav.horizontal
+    span Tags
+    each tag in tags
+      li: a(href=$route(`/blog/${tag.slug}`))= tag.name
+
+  != contents
+
+  nav.horizontal
+    if previous
+      li: a(href=previous.path) Previous: #{previous.title}
+    if next
+      li: a(href=next.path) Next: #{next.title}
+
+  if related
+    nav.vertical
+      h3 Related
+      each post in related
+        li: a(href=post.path)= post.title
+
