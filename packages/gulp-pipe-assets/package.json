@@ -1,0 +1,28 @@
+{
+  "name": "gulp-pipe-assets",
+  "version": "4.0.1",
+  "description": "Gulp asset pipeline with Sass and Webpack",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewscwei/gulp-pipe-assets.git"
+  },
+  "files": [
+    "helpers",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-pipe-media": "latest",
+    "gulp-task-helpers": "latest",
+    "gulp-task-rev": "latest",
+    "gulp-task-sass": "latest",
+    "gulp-task-webpack": "latest",
+    "lodash": "^4.17.4",
+    "run-sequence": "^2.2.0"
+  }
+}
