@@ -1,0 +1,32 @@
+{
+  "name": "gulp-pipe-media",
+  "version": "3.0.1",
+  "description": "Gulp pipeline for media files",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewscwei/gulp-pipe-media.git"
+  },
+  "files": [
+    "index.js",
+    "tasks"
+  ],
+  "scripts": {
+    "example": "rimraf example/public && gulp --gulpfile example/gulpfile.js --watch",
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-imagemin": "^3.4.0",
+    "gulp-size": "^2.1.0",
+    "gulp-task": "^2.1.0",
+    "gulp-task-helpers": "latest",
+    "gulp-util": "^3.0.8",
+    "lodash": "^4.17.4",
+    "run-sequence": "^2.2.0"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2"
+  }
+}
