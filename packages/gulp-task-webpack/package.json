@@ -1,0 +1,30 @@
+{
+  "name": "gulp-task-webpack",
+  "version": "3.0.0",
+  "description": "Gulp task for Webpack",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewscwei/gulp-task-webpack.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "example": "gulp --gulpfile example/gulpfile.js",
+    "test": "echo \"No tests yet... :)\""
+  },
+  "author": "Andrew Wei",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "gulp-task-helpers": "latest",
+    "json-loader": "^0.5.7",
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
